@@ -9,7 +9,6 @@ object enemigo1{
     }
     method avanzar(){
         self.position(direccion.siguientePosition(self.position()))
-       // 
     }
 }
 object derecha {
@@ -36,3 +35,8 @@ object abajo {
 object arriba {
 
 }
+
+//primero comiteo lo de mi branch
+//voy al master y pull
+//voy a mi branch y merge con master
+//asi traigo lo de master para trabajar en mi branch
