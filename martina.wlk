@@ -1,9 +1,14 @@
 object martina {
-    var property position = game.center()
+  var property position = game.center()
+
   method image() = ""
   
   method moverA(nuevaDireccion){
     self.position(nuevaDireccion)
+  }
+
+  method direccionDeMartina(){
+
   }
 }
 
