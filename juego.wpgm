@@ -1,8 +1,11 @@
 import wollok.game.*
+import martina.*
 program catastrofico{
     game.height(10)
     game.width(10)
     game.cellSize(50)
     game.title("Cat-astrofico")
+    game.addVisual(martina)
+    config.configTeclas()
     game.start()
 }
