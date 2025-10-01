@@ -7,12 +7,19 @@ object martina {
   }
   
   method moverA(nuevaDireccion){
-    self.position(nuevaDireccion)
+    if(!self.estaEnBorde(nuevaDireccion)){
+      self.position(nuevaDireccion)
+    }
+    
   }
 
   method direccionDeMartina(direccion){
     estadoDeMartina = direccion
   }
+  
+  method estaEnBorde(positionDestino){
+		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
+	}
 }
 
 object config{
