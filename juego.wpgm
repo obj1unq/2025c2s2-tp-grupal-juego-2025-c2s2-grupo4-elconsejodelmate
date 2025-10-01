@@ -1,11 +1,15 @@
 import wollok.game.*
 import martina.*
+import enemigos.*
 program catastrofico{
     game.height(15)
     game.width(15)
     game.cellSize(30)
     game.title("Cat-astrofico")
     game.addVisual(martina)
+    game.addVisual(enemigo1)
     config.configTeclas()
+    game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
     game.start()
 }
