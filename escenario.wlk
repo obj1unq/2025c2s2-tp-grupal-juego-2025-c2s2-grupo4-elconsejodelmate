@@ -267,10 +267,10 @@ object paredHorizontal{
     }
 }
 object paredVertical{
-    var property position = game.at(15,0) 
+    var property position = game.at(14,0) 
 
     method image(){
-        return "escenario-muro-vertical.png"
+        return "muro-arreglado.png"
     }
 }
 object paredVerticalPuerta{

@@ -27,7 +27,7 @@ object config{
     keyboard.w().onPressDo({martina.moverA(martina.position().up(1))
                               martina.direccionDeMartina("up")})
     keyboard.a().onPressDo({martina.moverA(martina.position().left(1))
-                            martina.direccionDeMartina("lef")})
+                            martina.direccionDeMartina("left")})
     keyboard.s().onPressDo({martina.moverA(martina.position().down(1))
                             martina.direccionDeMartina("down")})
     keyboard.d().onPressDo({martina.moverA(martina.position().right(1))
