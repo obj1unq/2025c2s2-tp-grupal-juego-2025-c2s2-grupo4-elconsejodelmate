@@ -4,14 +4,20 @@ object martina {
   var property cantDeVidas = 1
 
   method image(){
-    if (cantDeVidas == 0){
-      return "martina-death.png"
-    }else{
-    return "martina-" + estadoDeMartina + ".png"}
+    if (self.estaMuerta()){
+       estadoDeMartina == "death"
+    }
+    return "martina-" + estadoDeMartina + ".png"
+  }
+  method estaMuerta(){
+    return self.cantDeVidas() == 0
+  }
+  method estaViva(){
+    return self.cantDeVidas() > 0
   }
   
   method moverA(nuevaDireccion){
-    if(!self.estaEnBorde(nuevaDireccion)){
+    if(!self.estaEnBorde(nuevaDireccion) && self.estaViva()){
       self.position(nuevaDireccion)
     }
   }

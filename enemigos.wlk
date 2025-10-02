@@ -2,9 +2,10 @@ import martina.*
 object trampa{
     var property position =game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
     method lastimarAMartina(){
-        if (self.position() ==martina.position()){
-            martina.cantDeVidas(martina.cantDeVidas()-1)
-        }
+        martina.cantDeVidas(martina.cantDeVidas()-1)
+    }
+    method image(){
+        return "extras-trampa.png"
     }
 }
 object enemigo1{
