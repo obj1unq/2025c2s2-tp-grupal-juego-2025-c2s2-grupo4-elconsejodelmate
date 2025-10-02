@@ -1,3 +1,13 @@
+import martina.*
+object trampa{
+    var property position =game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
+    method lastimarAMartina(){
+        martina.cantDeVidas() = martina.cantDeVidas()-1
+    } // trampa no entiende tiene un problema con los numeros
+    method image(){
+        return "extras-trampa.png"
+    }
+}
 object enemigo1{
     var property position = game.at(2,2)
     var property direccion = derecha
