@@ -72,13 +72,13 @@ program catastrofico{
 
     game.addVisual(enemigo1)
     game.addVisual(martina)
-   // game.addVisual(enemigo2)
+    game.addVisual(enemigo2)
     game.addVisual(proyectil)
 
     config.configTeclas()
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-   // game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
     keyboard.k().onPressDo {proyectil.arrojarse()}
     game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
     game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()})
