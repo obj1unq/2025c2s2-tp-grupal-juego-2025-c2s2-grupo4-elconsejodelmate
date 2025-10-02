@@ -10,7 +10,6 @@ object martina {
     if(!self.estaEnBorde(nuevaDireccion)){
       self.position(nuevaDireccion)
     }
-    
   }
 
   method direccionDeMartina(direccion){
@@ -18,7 +17,7 @@ object martina {
   }
   
   method estaEnBorde(positionDestino){
-		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
+		return positionDestino.x() == -1 || positionDestino.x() == 14 || positionDestino.y() == -1 || positionDestino.y() == 14
 	}
 }
 
