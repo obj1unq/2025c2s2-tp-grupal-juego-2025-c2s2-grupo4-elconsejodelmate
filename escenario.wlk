@@ -229,12 +229,269 @@ object suelo56{
     var property position = game.at(12,14)
     var property image = "escenario-suelo.png"
 }
+////////////////////////////////////////////////////
+object suelo57{
+    var property position = game.at(-1,0)
+    var property image = "escenario-suelo.png"
+}
+object suelo58{
+    var property position = game.at(-1,2)
+    var property image = "escenario-suelo.png"
+}
+object suelo59{
+    var property position = game.at(-1,4)
+    var property image = "escenario-suelo.png"
+}
+object suelo60{
+    var property position = game.at(-1,6)
+    var property image = "escenario-suelo.png"
+}
+object suelo61{
+    var property position = game.at(-1,8)
+    var property image = "escenario-suelo.png"
+}
+object suelo62{
+    var property position = game.at(-1,10)
+    var property image = "escenario-suelo.png"
+}
+object suelo63{
+    var property position = game.at(-1,12)
+    var property image = "escenario-suelo.png"
+}
+object suelo64{
+    var property position = game.at(-1,14)
+    var property image = "escenario-suelo.png"
+}
+
+
 //PAREDES 
+//PARED VERTICAL IZQ 
 object paredVertical{
     var property position = game.at(0,0)
     var property image = "escenario-muro-der.png"
 }
 object paredVertical2{
-  var property position = game.at(14,0)
+  var property position = game.at(0,1)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical3{
+  var property position = game.at(0,2)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical4{
+  var property position = game.at(0,3)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical5{
+  var property position = game.at(0,4)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical6{
+  var property position = game.at(0,5)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical7{
+  var property position = game.at(0,6)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical8{
+  var property position = game.at(0,8)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical9{
+  var property position = game.at(0,9)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical10{
+  var property position = game.at(0,10)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical11{
+  var property position = game.at(0,11)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical12{
+  var property position = game.at(0,12)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical13{
+  var property position = game.at(0,13)
+  var property image = "escenario-muro-der.png" 
+}
+object paredVertical14{
+  var property position = game.at(0,14)
+  var property image = "escenario-muro-der.png" 
+}
+//PARED VERTICAL DER 
+object paredVertical15{
+    var property position = game.at(14,0)
+    var property image = "escenario-muro-izq.png"
+}
+object paredVertical16{
+  var property position = game.at(14,1)
   var property image = "escenario-muro-izq.png" 
 }
+object paredVertical17{
+  var property position = game.at(14,2)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical18{
+  var property position = game.at(14,3)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical19{
+  var property position = game.at(14,4)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical20{
+  var property position = game.at(14,5)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical21{
+  var property position = game.at(14,6)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical22{
+  var property position = game.at(14,8)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical23{
+  var property position = game.at(14,9)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical24{
+  var property position = game.at(14,10)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical25{
+  var property position = game.at(14,11)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical26{
+  var property position = game.at(14,12)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical27{
+  var property position = game.at(14,13)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredVertical28{
+  var property position = game.at(14,14)
+  var property image = "escenario-muro-izq.png" 
+}
+//PAREDES HORIZONTALES 
+object paredHorizontal{
+    var property position = game.at(1,0)
+    var property image = "escenario-muro-izq.png"
+}
+object paredHorizontal2{
+  var property position = game.at(2,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal3{
+  var property position = game.at(3,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal4{
+  var property position = game.at(4,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal5{
+  var property position = game.at(5,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal6{
+  var property position = game.at(6,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal7{
+  var property position = game.at(8,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal8{
+  var property position = game.at(9,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal9{
+  var property position = game.at(10,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal10{
+  var property position = game.at(11,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal11{
+  var property position = game.at(12,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal12{
+  var property position = game.at(13,0)
+  var property image = "escenario-muro-izq.png" 
+}
+object paredHorizontal13{
+  var property position = game.at(14,14)
+  var property image = "escenario-muro-der.png" 
+}
+///BORDE SUPERIOR 
+object paredHorizontal14{
+    var property position = game.at(1,14)
+    var property image = "escenario-muro-der.png"
+}
+object paredHorizontal15{
+  var property position = game.at(2,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal16{
+  var property position = game.at(3,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal17{
+  var property position = game.at(4,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal18{
+  var property position = game.at(5,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal19{
+  var property position = game.at(6,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal20{
+  var property position = game.at(8,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal21{
+  var property position = game.at(9,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal22{
+  var property position = game.at(10,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal23{
+  var property position = game.at(11,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal24{
+  var property position = game.at(12,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal25{
+  var property position = game.at(13,14)
+  var property image = "escenario-muro-der.png" 
+}
+object paredHorizontal26{
+  var property position = game.at(14,14)
+  var property image = "escenario-muro-der.png" 
+}
+//PROBANDO ASSETS 
+object cofre{
+    var property position = game.at(7,8)
+    var property image ="extras-cofre.png"
+}
+object trampa{
+    var property position = game.at(10,9)
+    var property image = "extras-trampa.png"
+}
+
