@@ -154,6 +154,6 @@ program catastrofico{
     game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
     keyboard.k().onPressDo {proyectil.arrojarse()}
     game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
-    game.onCollideDo(trampa, {trampa.lastimarAMartina()})
+    game.whenCollideDo(trampa, {trampa.lastimarAMartina()})
     game.start()
 }
