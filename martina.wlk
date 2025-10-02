@@ -10,9 +10,8 @@ object martina {
     if (!self.estaViva()){
       self.estadoDeMartina("death") 
       // PARA ACTUALIZAR EL ESTADODEMARTINA NECESITO USAR EL SETTER NO USAR COMO VARIABLE
-      return "martina-" + estadoDeMartina + ".png"
     }
-    else {return "martina-" + estadoDeMartina + ".png"}
+    return "martina-" + estadoDeMartina + ".png"
   }
   method estaMuerta(){
     return self.cantDeVidas() <= 0
