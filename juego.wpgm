@@ -69,6 +69,7 @@ program catastrofico{
     
     game.addVisual(cofre)
     game.addVisual(trampa)
+    game.addVisual(caja)
 
     game.addVisual(enemigo1)
     game.addVisual(martina)
@@ -81,6 +82,10 @@ program catastrofico{
     game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
     keyboard.k().onPressDo {proyectil.arrojarse()}
     game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
-    game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()})
+    game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()}) //no cambiar 
+    game.whenCollideDo(enemigo1, {x => enemigo1.lastimarAMartina()})//no cambiar 
+    game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
+    game.whenCollideDo(caja, {c => })
+
     game.start()
 }

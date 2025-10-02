@@ -25,6 +25,9 @@ object enemigo1{
     method estaEnBorde(positionDestino){
 		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
 	}
+    method lastimarAMartina(){
+        martina.actualizarVidasDeMartina()
+    }
 }
 object enemigo2{
     var property position = game.at(3,3)
@@ -44,23 +47,25 @@ object enemigo2{
 
     if (distancia > 0) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
         self.position(
-        game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
-        )
+        game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia)))
+        }
     }
-}
 
 method raizCuadradaIter(n, x, iter) {
     if (iter == 0) {
         return x
     } else {
         return self.raizCuadradaIter(n, (x + n / x) / 2, iter - 1)
+        }
     }
-}
 //calculo de raiz cuadrada con el metodo de newton raphson, que es aproximarse a la raiz cuadrada,se hacen 10 recursiones para que el calculo sea lo mas exacto posible.
 method raizCuadrada(n) {
     return self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
-}
+    }
 
+method lastimarAMartina(){
+        martina.actualizarVidasDeMartina()
+    }
 
 }
 object derecha {

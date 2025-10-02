@@ -8,12 +8,12 @@ object martina {
   }
   method image(){
     if (self.estaMuerta()){
-       estadoDeMartina == "death"
+        self.estadoDeMartina("death")
     }
     return "martina-" + estadoDeMartina + ".png"
   }
   method estaMuerta(){
-    return self.cantDeVidas() < 0
+    return self.cantDeVidas() <= 0
   }
   method estaViva(){
     return self.cantDeVidas() > 0
