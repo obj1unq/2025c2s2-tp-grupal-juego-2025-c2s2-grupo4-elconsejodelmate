@@ -33,7 +33,7 @@ object enemigo2{
 
     if (distancia > 0) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
         self.position(
-        game.at(self.position().x() + (dx / distancia),self.position().y() + (dy / distancia))
+        game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
         )
     }
 }
