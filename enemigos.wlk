@@ -22,12 +22,16 @@ object enemigo2{
         return "enemy-" + direccion.name() + ".png"
     }
     method perseguir(objetivo) {
-    const dx = objetivo.position().x() - self.position().x()
-    const dy = objetivo.position().y() - self.position().y()
+        // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
+        //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
+        // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
+        //asi logramos que el enemigo se mueva solo un paso, porque sino se "teletransportaria" a martina.
+    const direccionEnX = objetivo.position().x() - self.position().x()
+    const direccionEnY = objetivo.position().y() - self.position().y()
 
-    const distancia = self.raizCuadrada(dx*dx + dy*dy)
+    const distancia = self.raizCuadrada((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY))
 
-    if (distancia > 0) {
+    if (distancia > 0) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
         self.position(
         game.at(self.position().x() + (dx / distancia),self.position().y() + (dy / distancia))
         )
@@ -41,7 +45,7 @@ method raizCuadradaIter(n, x, iter) {
         return self.raizCuadradaIter(n, (x + n / x) / 2, iter - 1)
     }
 }
-
+//calculo de raiz cuadrada con el metodo de newton raphson, que es aproximarse a la raiz cuadrada,se hacen 10 recursiones para que el calculo sea lo mas exacto posible.
 method raizCuadrada(n) {
     return self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
 }
