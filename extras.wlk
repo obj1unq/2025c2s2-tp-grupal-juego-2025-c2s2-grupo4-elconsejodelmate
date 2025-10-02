@@ -23,4 +23,12 @@ object proyectil {
         } else {return izquierda}
     }
 }
+object caja{
+    var property position = game.at(8,7)
+    var property image = "extras-caja.png"
 
+}
+object cofre{
+    var property position = game.at(7,8)
+    var property image ="extras-cofre.png"
+}

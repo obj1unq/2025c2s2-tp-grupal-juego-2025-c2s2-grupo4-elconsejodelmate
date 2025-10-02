@@ -486,12 +486,4 @@ object paredHorizontal26{
   var property image = "escenario-muro-der.png" 
 }
 //PROBANDO ASSETS 
-object cofre{
-    var property position = game.at(7,8)
-    var property image ="extras-cofre.png"
-}
-object trampa{
-    var property position = game.at(10,9)
-    var property image = "extras-trampa.png"
-}
 
