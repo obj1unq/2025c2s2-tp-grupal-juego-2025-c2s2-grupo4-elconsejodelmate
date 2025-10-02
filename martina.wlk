@@ -7,13 +7,15 @@ object martina {
     cantDeVidas = cantDeVidas -1
   }
   method image(){
-    if (self.estaMuerta()){
-       estadoDeMartina == "death"
+    if (!self.estaViva()){
+      self.estadoDeMartina("death") 
+      // PARA ACTUALIZAR EL ESTADODEMARTINA NECESITO USAR EL SETTER NO USAR COMO VARIABLE
+      return "martina-" + estadoDeMartina + ".png"
     }
-    return "martina-" + estadoDeMartina + ".png"
+    else {return "martina-" + estadoDeMartina + ".png"}
   }
   method estaMuerta(){
-    return self.cantDeVidas() < 0
+    return self.cantDeVidas() <= 0
   }
   method estaViva(){
     return self.cantDeVidas() > 0

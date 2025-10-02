@@ -4,6 +4,7 @@ object trampa{
     //game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
     method lastimarAMartina(){
         martina.actualizarVidasDeMartina()
+        
     } // trampa no entiende tiene un problema con los numeros
     method image(){
         return "extras-trampa.png"
@@ -25,6 +26,10 @@ object enemigo1{
     method estaEnBorde(positionDestino){
 		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
 	}
+    method lastimarAMartina(){
+        martina.actualizarVidasDeMartina()
+        
+    }
 }
 object enemigo2{
     var property position = game.at(3,3)
@@ -47,7 +52,11 @@ object enemigo2{
         game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
         )
     }
+  
 }
+method lastimarAMartina(){
+        martina.actualizarVidasDeMartina()
+    }
 
 method raizCuadradaIter(n, x, iter) {
     if (iter == 0) {

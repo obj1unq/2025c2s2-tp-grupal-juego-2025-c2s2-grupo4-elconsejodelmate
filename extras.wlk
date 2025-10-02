@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-object caja {
-  var property position = game.origin() 
-  method image() = "extras-caja.png"
-}
-
-object cofre{
-    var property position = game.at(10,10)
-    method image() = "extras-cofre.png"
-}
-=======
 import enemigos.*
 import martina.*
 object proyectil {
@@ -35,4 +24,13 @@ object proyectil {
     }
 }
 
->>>>>>> master
+
+
+object caja {
+    var property position = game.at(7,7)
+  method image(){
+    return "extras-caja.png"
+  } 
+
+}
+
