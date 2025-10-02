@@ -8,78 +8,6 @@ program catastrofico{
     game.width(15)
     game.cellSize(16)
     game.title("Cat-astrofico")
-    //SUELO
-    game.addVisual(suelo)
-    game.addVisual(suelo2)
-    game.addVisual(suelo3)
-    game.addVisual(suelo4)
-    game.addVisual(suelo5)
-    game.addVisual(suelo6)
-    game.addVisual(suelo7)
-    game.addVisual(suelo8)
-
-    game.addVisual(suelo9)
-    game.addVisual(suelo10)
-    game.addVisual(suelo11)
-    game.addVisual(suelo12)
-    game.addVisual(suelo13)
-    game.addVisual(suelo14)
-    game.addVisual(suelo15)
-    game.addVisual(suelo16)
-
-    game.addVisual(suelo17)
-    game.addVisual(suelo18)
-    game.addVisual(suelo19)
-    game.addVisual(suelo20)
-    game.addVisual(suelo21)
-    game.addVisual(suelo22)
-    game.addVisual(suelo23)
-    game.addVisual(suelo24)
-
-    game.addVisual(suelo25)
-    game.addVisual(suelo26)
-    game.addVisual(suelo27)
-    game.addVisual(suelo28)
-    game.addVisual(suelo29)
-    game.addVisual(suelo30)
-    game.addVisual(suelo31)
-    game.addVisual(suelo32)
-
-    game.addVisual(suelo33)
-    game.addVisual(suelo34)
-    game.addVisual(suelo35)
-    game.addVisual(suelo36)
-    game.addVisual(suelo37)
-    game.addVisual(suelo38)
-    game.addVisual(suelo39)
-    game.addVisual(suelo40)
-
-    game.addVisual(suelo41)
-    game.addVisual(suelo42)
-    game.addVisual(suelo43)
-    game.addVisual(suelo44)
-    game.addVisual(suelo45)
-    game.addVisual(suelo46)
-    game.addVisual(suelo47)
-    game.addVisual(suelo48)
-
-    game.addVisual(suelo49)
-    game.addVisual(suelo50)
-    game.addVisual(suelo51)
-    game.addVisual(suelo52)
-    game.addVisual(suelo53)
-    game.addVisual(suelo54)
-    game.addVisual(suelo55)
-    game.addVisual(suelo56)
-
-    game.addVisual(suelo57)
-    game.addVisual(suelo58)
-    game.addVisual(suelo59)
-    game.addVisual(suelo60)
-    game.addVisual(suelo61)
-    game.addVisual(suelo62)
-    game.addVisual(suelo63)
-    game.addVisual(suelo64)
     //PAREDES
     game.addVisual(paredVertical)
     game.addVisual(paredVertical2)
@@ -139,19 +67,26 @@ program catastrofico{
     game.addVisual(paredHorizontal25)
     game.addVisual(paredHorizontal26)
     
-
-
     game.addVisual(cofre)
     game.addVisual(trampa)
 
     game.addVisual(enemigo1)
     game.addVisual(martina)
-    game.addVisual(enemigo2)
+   // game.addVisual(enemigo2)
     game.addVisual(proyectil)
+
+
+
+
+
+
+
+
+
     config.configTeclas()
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+   // game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
     keyboard.k().onPressDo {proyectil.arrojarse()}
     game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
     game.start()
