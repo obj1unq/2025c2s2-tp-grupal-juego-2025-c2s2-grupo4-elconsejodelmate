@@ -3,6 +3,9 @@ object martina {
   var property estadoDeMartina =  "up"
   var property cantDeVidas = 1
 
+  method actualizarVidasDeMartina(){
+    cantDeVidas = cantDeVidas -1
+  }
   method image(){
     if (self.estaMuerta()){
        estadoDeMartina == "death"
@@ -10,7 +13,7 @@ object martina {
     return "martina-" + estadoDeMartina + ".png"
   }
   method estaMuerta(){
-    return self.cantDeVidas() == 0
+    return self.cantDeVidas() < 0
   }
   method estaViva(){
     return self.cantDeVidas() > 0

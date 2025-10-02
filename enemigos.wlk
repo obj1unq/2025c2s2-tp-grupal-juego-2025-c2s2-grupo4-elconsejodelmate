@@ -1,8 +1,9 @@
 import martina.*
 object trampa{
-    var property position =game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
+    var property position = game.at(3,1)
+    //game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
     method lastimarAMartina(){
-        martina.cantDeVidas() = martina.cantDeVidas()-1
+        martina.actualizarVidasDeMartina()
     } // trampa no entiende tiene un problema con los numeros
     method image(){
         return "extras-trampa.png"
