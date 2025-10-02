@@ -1,9 +1,13 @@
 object martina {
   var property position = game.center()
   var property estadoDeMartina =  "up"
+  var property cantDeVidas = 1
 
   method image(){
-    return "martina-" + estadoDeMartina + ".png"
+    if (cantDeVidas == 0){
+      return "martina-death.png"
+    }else{
+    return "martina-" + estadoDeMartina + ".png"}
   }
   
   method moverA(nuevaDireccion){
