@@ -16,54 +16,66 @@ program catastrofico{
     //BORDE INFERIOR
     (0..6).forEach({x => 
         const muro = new Muro(position = game.at(x,0))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({x => 
         const muro = new Muro(position = game.at(x,0))
-        game.addVisual(muro)
+        escenario.muros.add(muro)
+        game.addVisual(muro)   
     })
     //BORDE IZQUIERDO 
     (0..6).forEach({y => 
         const muro = new Muro(position = game.at(0,y))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({ y => 
         const muro = new Muro(position = game.at(0,y))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     //BORDE SUPERIOR 
     (0..6).forEach({x => 
         const muro = new Muro(position = game.at(x,14))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({x => 
         const muro = new Muro(position = game.at(x,14))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     //BORDE DERECHO 
     (0..6).forEach({y => 
         const muro = new Muro(position = game.at(14,y))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({ y => 
         const muro = new Muro(position = game.at(14,y))
+        escenario.muros.add(muro)
         game.addVisual(muro)
     })
+    game.addVisual(martina)
     game.addVisual(trampa)
     
 
-   /* game.addVisual(enemigo1)
-    
-    
+    game.addVisual(enemigo1)
+   // game.addVisual(enemigo2)
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
-    keyboard.k().onPressDo {proyectil.arrojarse()}
-    game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
-    game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()}) //no cambiar 
-    game.whenCollideDo(enemigo1, {x => enemigo1.lastimarAMartina()})//no cambiar 
+    //game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    //keyboard.k().onPressDo {proyectil.arrojarse()}
+    //game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
+    //game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()}) //no cambiar 
+    game.whenCollideDo(martina, {x => 
+            enemigo1.lastimarAMartina()
+    })
+    
+    //no cambiar 
     game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
-    game.whenCollideDo(caja, {c => })*/
+    //game.whenCollideDo(caja, {c => })*/
     
 
     game.start()

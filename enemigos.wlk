@@ -3,13 +3,15 @@ object enemigo1{
     var property position = game.at(2,2)
     var property direccion = derecha
     method image(){
-        return "enemigo-" + direccion.name() + ".png"
+        return "troll" + direccion.name() + ".png"
     }
+    //randomizer de movimiento 
     method cambiarDireccion(){
         direccion = [derecha,izquierda,abajo,arriba].anyOne()
+         //direccion = [izquierda].anyOne()
     }
     method avanzar(){
-        if(!self.estaEnBorde(direccion.siguientePosition(position)))
+        if(!self.hayMuroEn(direccion.siguientePosition(position)))
         self.position(direccion.siguientePosition(self.position()))
     }
     method estaEnBorde(positionDestino){
@@ -18,12 +20,15 @@ object enemigo1{
     method lastimarAMartina(){
         martina.actualizarVidasDeMartina()
     }
+    method hayMuroEn(positionDestino){
+      return(escenario.muros.any({muro => muro.position() == positionDestino}))
+    }
 }
 object enemigo2{
     var property position = game.at(3,3)
     var property direccion = arriba
     method image(){
-        return "enemy-" + direccion.name() + ".png"
+        return "wendingo" + direccion.name() + ".png"
     }
     method perseguir(objetivo) {
         // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
@@ -50,17 +55,20 @@ method raizCuadradaIter(n, x, iter) {
     }
 //calculo de raiz cuadrada con el metodo de newton raphson, que es aproximarse a la raiz cuadrada,se hacen 10 recursiones para que el calculo sea lo mas exacto posible.
 method raizCuadrada(n) {
-    return self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
+    return n.squareRoot()//self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
     }
 
 method lastimarAMartina(){
         martina.actualizarVidasDeMartina()
+       /* if(martina.cantDeVidas() == 0){
+            game.stop()
+        }*/  //preguntarle al profe 
     }
 
 }
 object derecha {
     method name(){
-        return "right"
+        return ""
     }
     method mover(enemigo){
         enemigo.position(self.siguientePosition(enemigo.position()))
@@ -72,7 +80,7 @@ object derecha {
 }
 object izquierda {
     method name(){
-        return "left"
+        return ""
     }
     method mover(enemigo){
         enemigo.position(self.siguientePosition(enemigo.position()))
@@ -83,7 +91,7 @@ object izquierda {
 }
 object abajo {
     method name() {
-        return "up-down"
+        return ""
     }
     method mover(enemigo){
         enemigo.position(self.siguientePosition(enemigo.position()))
@@ -94,7 +102,7 @@ object abajo {
 }
 object arriba {
    method name() {
-        return "up-down"
+        return "-derecha"
     }
     method mover(enemigo){
         enemigo.position(self.siguientePosition(enemigo.position()))
@@ -108,5 +116,6 @@ object arriba {
 //voy al master y pull
 //voy a mi branch y merge con master
 //asi traigo lo de master para trabajar en mi branch
-
 //para subir mi rama a master, hago merge desde master y eligo mi rama*/
+
+//IMPLEMENTACION DE CLASES ENEMIGOS 

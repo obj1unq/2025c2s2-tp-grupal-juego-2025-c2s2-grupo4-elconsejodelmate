@@ -21,3 +21,6 @@ class Cofre{
   var property position = game.at(6,9)
   var property image = "cofre.png"  
 }
+//PARA HACER QUE COLISIONEN LOS PERSONAJES; ESTOS DEBEN SABER TODAS LAS POSICIONES DE LOS OBJETOS CON LOS QUE PUEDEN COLISIONAR 
+//ARRAY DE MUROS; SE VAN AGREGANDO DESDE EL WPGM 
+const muros = []

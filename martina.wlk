@@ -3,6 +3,7 @@ object martina {
   var property estadoDeMartina =  ""
   var property cantDeVidas = 1 
 
+
   method actualizarVidasDeMartina(){
     cantDeVidas = cantDeVidas -1
   }
@@ -17,20 +18,19 @@ object martina {
   }
   
   method moverA(nuevaDireccion){
-    if(!self.estaEnBorde(nuevaDireccion) && self.estaViva()){
+    if(self.estaViva() && not self.hayMuroEn(nuevaDireccion)){
       self.position(nuevaDireccion)
     }
   }
-
+  //CAMBIA EL PNG 
   method direccionDeMartina(direccion){
     estadoDeMartina = direccion
   }
   
-  method estaEnBorde(positionDestino){
-		return positionDestino.x() == -1 || positionDestino.x() == 14 || positionDestino.y() == -1 || positionDestino.y() == 14
-	}
+  method hayMuroEn(nuevaDireccion){
+    return escenario.muros.any({muro => muro.position() == nuevaDireccion})
+  }
 }
-
 object config{
   method configTeclas(){
     keyboard.w().onPressDo({martina.moverA(martina.position().up(1))
