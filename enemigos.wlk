@@ -6,10 +6,10 @@ object trampa{
         martina.actualizarVidasDeMartina()
     } // trampa no entiende tiene un problema con los numeros
     method image(){
-        return "extras-trampa.png"
+        return "trampa.png"
     }
 }
-object enemigo1{
+/*object enemigo1{
     var property position = game.at(2,2)
     var property direccion = derecha
     method image(){
@@ -119,4 +119,4 @@ object arriba {
 //voy a mi branch y merge con master
 //asi traigo lo de master para trabajar en mi branch
 
-//para subir mi rama a master, hago merge desde master y eligo mi rama
+//para subir mi rama a master, hago merge desde master y eligo mi rama*/

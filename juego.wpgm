@@ -17,6 +17,8 @@ program catastrofico{
     game.addVisual(ataud)
     game.addVisual(cofre)
     game.addVisual(martina)
+    game.addVisual(cofre2)
+    game.addVisual(trampa2)
     
 
    /* game.addVisual(enemigo1)

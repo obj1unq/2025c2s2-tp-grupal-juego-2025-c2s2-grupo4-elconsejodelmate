@@ -1,6 +1,6 @@
 import enemigos.*
 import martina.*
-object proyectil {
+/*object proyectil {
     var property position = martina.position()
     var property direccion = self.nombre(martina.estadoDeMartina())
     method image(){
@@ -22,13 +22,4 @@ object proyectil {
             return derecha
         } else {return izquierda}
     }
-}
-object caja{
-    var property position = game.at(8,7)
-    var property image = "extras-caja.png"
-
-}
-object cofre{
-    var property position = game.at(7,8)
-    var property image ="extras-cofre.png"
-}
+}*/
