@@ -1,5 +1,4 @@
 import martina.*
-
 class Muro{
   var property position = game.origin()
   var property image = "pared1.png"  
@@ -12,4 +11,13 @@ class Trampa{
     martina.actualizarVidasDeMartina()
   }
 }
-const trampa = new Trampa()
+const trampa = new Trampa() // prueba de trampa
+class Obstaculo{
+  var property position = game.at(4,8)
+  var property image = "barril.png"
+  //puede ser un barril o ataud, la clase se inicializara con un barril 
+}
+class Cofre{
+  var property position = game.at(6,9)
+  var property image = "cofre.png"  
+}

@@ -50,6 +50,7 @@ program catastrofico{
         game.addVisual(muro)
     })
     game.addVisual(trampa)
+    
 
    /* game.addVisual(enemigo1)
     
