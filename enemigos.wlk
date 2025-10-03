@@ -1,19 +1,9 @@
 import martina.*
-object trampa{
-    var property position = game.at(3,1)
-    //game.at(0.randomUpTo(game.width()).truncate(0),0.randomUpTo(game.height()).truncate(0))
-    method lastimarAMartina(){
-        martina.actualizarVidasDeMartina()
-    } // trampa no entiende tiene un problema con los numeros
-    method image(){
-        return "trampa.png"
-    }
-}
-/*object enemigo1{
+object enemigo1{
     var property position = game.at(2,2)
     var property direccion = derecha
     method image(){
-        return "enemy-" + direccion.name() + ".png"
+        return "enemigo-" + direccion.name() + ".png"
     }
     method cambiarDireccion(){
         direccion = [derecha,izquierda,abajo,arriba].anyOne()
