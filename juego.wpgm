@@ -10,16 +10,45 @@ program catastrofico{
     game.title("Cat-astrofico")
  
     config.configTeclas()
-
-    game.addVisual(suelo)
-    game.addVisual(muro)
-    game.addVisual(trampa)
-    game.addVisual(ataud)
-    game.addVisual(cofre)
-    game.addVisual(martina)
-    game.addVisual(cofre2)
-    game.addVisual(trampa2)
-    
+    //SUELO 
+    game.ground("suelo.png")
+    //PAREDES 
+    //BORDE INFERIOR
+    (0..6).forEach({x => 
+        const muro = new Muro(position = game.at(x,0))
+        game.addVisual(muro)
+    })
+    (8..15).forEach({x => 
+        const muro = new Muro(position = game.at(x,0))
+        game.addVisual(muro)
+    })
+    //BORDE IZQUIERDO 
+    (0..6).forEach({y => 
+        const muro = new Muro(position = game.at(0,y))
+        game.addVisual(muro)
+    })
+    (8..15).forEach({ y => 
+        const muro = new Muro(position = game.at(0,y))
+        game.addVisual(muro)
+    })
+    //BORDE SUPERIOR 
+    (0..6).forEach({x => 
+        const muro = new Muro(position = game.at(x,14))
+        game.addVisual(muro)
+    })
+    (8..15).forEach({x => 
+        const muro = new Muro(position = game.at(x,14))
+        game.addVisual(muro)
+    })
+    //BORDE DERECHO 
+    (0..6).forEach({y => 
+        const muro = new Muro(position = game.at(14,y))
+        game.addVisual(muro)
+    })
+    (8..15).forEach({ y => 
+        const muro = new Muro(position = game.at(14,y))
+        game.addVisual(muro)
+    })
 
    /* game.addVisual(enemigo1)
     
