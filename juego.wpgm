@@ -5,10 +5,10 @@ import escenario.*
 program catastrofico{
     game.height(15)
     game.width(15)
-    game.cellSize(16)
+    game.cellSize(32)
     game.title("Cat-astrofico")
     //SUELO
-    game.addVisual(suelo)
+   /* game.addVisual(suelo)
     game.addVisual(suelo2)
     game.addVisual(suelo3)
     game.addVisual(suelo4)
@@ -136,17 +136,23 @@ program catastrofico{
     game.addVisual(paredHorizontal23)
     game.addVisual(paredHorizontal24)
     game.addVisual(paredHorizontal25)
-    game.addVisual(paredHorizontal26)
+    game.addVisual(paredHorizontal26)*/
     
 
 
     game.addVisual(cofre)
     game.addVisual(trampa)
+    game.addVisual(suelo)
+    game.addVisual(ataud)
+    game.addVisual(muro)
 
-    game.addVisual(enemigo1)
     game.addVisual(martina)
     config.configTeclas()
+
+   /* game.addVisual(enemigo1)
+    
+    
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
-    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})*/
     game.start()
 }

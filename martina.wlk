@@ -1,9 +1,9 @@
 object martina {
   var property position = game.center()
-  var property estadoDeMartina =  "up"
+  var property estadoDeMartina =  ""
 
   method image(){
-    return "martina-" + estadoDeMartina + ".png"
+    return "martina" + estadoDeMartina + ".png"
   }
   
   method moverA(nuevaDireccion){
@@ -24,12 +24,12 @@ object martina {
 object config{
   method configTeclas(){
     keyboard.w().onPressDo({martina.moverA(martina.position().up(1))
-                              martina.direccionDeMartina("up")})
+                              martina.direccionDeMartina("")})
     keyboard.a().onPressDo({martina.moverA(martina.position().left(1))
-                            martina.direccionDeMartina("left")})
+                            martina.direccionDeMartina("")})
     keyboard.s().onPressDo({martina.moverA(martina.position().down(1))
-                            martina.direccionDeMartina("down")})
+                            martina.direccionDeMartina("")})
     keyboard.d().onPressDo({martina.moverA(martina.position().right(1))
-                            martina.direccionDeMartina("right")})
+                            martina.direccionDeMartina("-derecha")})
   }
 }

@@ -1,5 +1,34 @@
-//CADA UNIDAD DEL EJE = 8 TILES; CADA TILE OCUPA 2x2
+object ataud{
+    var property position = game.at(8,7)
+    var property image = "ataud.png"
+}
+object cofre{
+    var property position = game.at(10,2)
+    var property image = "cofre-nuevo.png"
+}
+object trampa{
+    var property position = game.at(11,11)
+    var property image = "trampa-nuevo.png"
+}
+object muro{
+    var property position = game.origin()
+    var property image = "pared1.png" 
+}
 object suelo{
+    var property position = game.at(1,1)
+    var property image = "suelo-nuevo.png"
+}
+
+
+
+
+
+
+
+
+
+//CADA UNIDAD DEL EJE = 8 TILES; CADA TILE OCUPA 2x2
+/*object suelo{
     var property position = game.at(0,0)
     var property image = "escenario-suelo.png"
 }
@@ -494,4 +523,4 @@ object trampa{
     var property position = game.at(10,9)
     var property image = "extras-trampa.png"
 }
-
+*/
