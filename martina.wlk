@@ -43,5 +43,6 @@ object config{
                             martina.direccionDeMartina("")})
     keyboard.d().onPressDo({martina.moverA(martina.position().right(1))
                             martina.direccionDeMartina("-derecha")})
+                            
   }
 }

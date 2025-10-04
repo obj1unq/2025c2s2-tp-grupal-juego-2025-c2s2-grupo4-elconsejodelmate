@@ -57,29 +57,41 @@ program catastrofico{
         escenario.muros.add(muro)
         game.addVisual(muro)
     })
+
+    //---------------Visuales---------------
     game.addVisual(martina)
     game.addVisual(trampa)
     game.addVisual(posionVida)
-
     game.addVisual(enemigo1)
-   // game.addVisual(enemigo2)
+    game.addVisual(enemigo2)
+
+    //---------------ticks---------------
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    //game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+
+    //---------------Proyectiles---------------
     //keyboard.k().onPressDo {proyectil.arrojarse()}
     //game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
-    //game.whenCollideDo(trampa, {x => trampa.lastimarAMartina()}) //no cambiar 
-    game.whenCollideDo(martina, {x => 
+
+    //---------------Colsiones---------------
+    game.whenCollideDo(martina, {otro => otro.lastimarAMartina()
+                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+                                
+    game.onCollideDo(posionVida, {posion => posionVida.interactuarConMartina()
+                                    game.removeVisual(posionVida)
+                                    game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+    
+    /*en teoria esto de arriba soluciona cualquier colision no declarada, osea cualquier colision va a preguntarle al objeto
+    con el que se esta colisionando por el method lastimarAMartina (pensandolo rapido esto no rompe con las cajas u otros objetos de estilo decorativo pq martina calcula si puede moverse antes de moverse por lo tanto no hay colisiones en esas instancias y en caso de colisiones con objetos recolectables usamos al obj como el "a ser chocado"), puse para que diga las vidas pq sino me olvidaba dsps se borra dont worry*/
+
+    /*game.whenCollideDo(enemigo1, {x => 
             enemigo1.lastimarAMartina()
     })
-    
-    //no cambiar 
+    no cambiar 
     game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
-    game.onCollideDo(martina, {posion => posionVida.interactuarConMartina()
-                                game.removeVisual(posionVida)
-                                game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
-    //el gamesay es solo para probarlo
-    
+    */
+
 
     game.start()
 }

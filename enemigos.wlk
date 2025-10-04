@@ -18,7 +18,7 @@ object enemigo1{
 		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
 	}
     method lastimarAMartina(){
-        martina.actualizarVidasDeMartina()
+        martina.decrementarEnUnoVidasDeMartina()
     }
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
@@ -59,7 +59,7 @@ method raizCuadrada(n) {
     }
 
 method lastimarAMartina(){
-        martina.actualizarVidasDeMartina()
+        martina.decrementarEnUnoVidasDeMartina()
        /* if(martina.cantDeVidas() == 0){
             game.stop()
         }*/  //preguntarle al profe 
