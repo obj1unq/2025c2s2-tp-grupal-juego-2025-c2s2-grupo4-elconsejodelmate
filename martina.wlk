@@ -4,7 +4,7 @@ object martina {
   var property cantDeVidas = 1 
 
 
-  method actualizarVidasDeMartina(){
+  method decrementarEnUnoVidasDeMartina(){
     cantDeVidas = cantDeVidas -1
   }
   method image(){

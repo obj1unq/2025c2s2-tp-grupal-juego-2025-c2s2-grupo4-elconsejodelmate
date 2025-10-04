@@ -8,7 +8,7 @@ class Trampa{
   var property image = "trampa.png"
 
   method lastimarAMartina(){
-    martina.actualizarVidasDeMartina()
+    martina.decrementarEnUnoVidasDeMartina()
   }
 }
 const trampa = new Trampa() // prueba de trampa
