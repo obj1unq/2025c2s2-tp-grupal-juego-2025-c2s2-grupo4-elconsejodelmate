@@ -23,3 +23,14 @@ import martina.*
         } else {return izquierda}
     }
 }*/
+
+object posionVida {
+    const personaje = martina
+    var property position = game.at(8,8)
+    method image(){
+        return "ataud.png" //es de prueba
+    }
+    method interactuarConMartina(){
+        personaje.incrementarEnUnoVidasDeMartina()
+    }
+}

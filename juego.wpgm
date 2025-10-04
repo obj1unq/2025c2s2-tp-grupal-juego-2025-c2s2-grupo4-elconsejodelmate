@@ -59,7 +59,7 @@ program catastrofico{
     })
     game.addVisual(martina)
     game.addVisual(trampa)
-    
+    game.addVisual(posionVida)
 
     game.addVisual(enemigo1)
    // game.addVisual(enemigo2)
@@ -75,7 +75,10 @@ program catastrofico{
     
     //no cambiar 
     game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
-    //game.whenCollideDo(caja, {c => })*/
+    game.onCollideDo(martina, {posion => posionVida.interactuarConMartina()
+                                game.removeVisual(posionVida)
+                                game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+    //el gamesay es solo para probarlo
     
 
     game.start()
