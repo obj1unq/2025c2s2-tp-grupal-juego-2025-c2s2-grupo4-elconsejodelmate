@@ -1,0 +1,97 @@
+import extras.*
+import wollok.game.*
+import martina.*
+import enemigos.*
+import escenario.*
+program catastrofico{
+    game.height(15)
+    game.width(15)
+    game.cellSize(32)
+    game.title("Cat-astrofico")
+ 
+    config.configTeclas()
+    //SUELO 
+    game.ground("suelo.png")
+    //PAREDES 
+    //BORDE INFERIOR
+    (0..6).forEach({x => 
+        const muro = new Muro(position = game.at(x,0))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    (8..15).forEach({x => 
+        const muro = new Muro(position = game.at(x,0))
+        escenario.muros.add(muro)
+        game.addVisual(muro)   
+    })
+    //BORDE IZQUIERDO 
+    (0..6).forEach({y => 
+        const muro = new Muro(position = game.at(0,y))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    (8..15).forEach({ y => 
+        const muro = new Muro(position = game.at(0,y))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    //BORDE SUPERIOR 
+    (0..6).forEach({x => 
+        const muro = new Muro(position = game.at(x,14))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    (8..15).forEach({x => 
+        const muro = new Muro(position = game.at(x,14))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    //BORDE DERECHO 
+    (0..6).forEach({y => 
+        const muro = new Muro(position = game.at(14,y))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+    (8..15).forEach({ y => 
+        const muro = new Muro(position = game.at(14,y))
+        escenario.muros.add(muro)
+        game.addVisual(muro)
+    })
+
+    //---------------Visuales---------------
+    game.addVisual(martina)
+    game.addVisual(trampa)
+    game.addVisual(posionVida)
+    game.addVisual(enemigo1)
+    game.addVisual(enemigo2)
+
+    //---------------ticks---------------
+    game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
+    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+
+    //---------------Proyectiles---------------
+    //keyboard.k().onPressDo {proyectil.arrojarse()}
+    //game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
+
+    //---------------Colsiones---------------
+    game.whenCollideDo(martina, {otro => otro.lastimarAMartina()
+                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+                                
+    game.onCollideDo(posionVida, {posion => posionVida.interactuarConMartina()
+                                    game.removeVisual(posionVida)
+                                    game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+    
+    /*en teoria esto de arriba soluciona cualquier colision no declarada, osea cualquier colision va a preguntarle al objeto
+    con el que se esta colisionando por el method lastimarAMartina (pensandolo rapido esto no rompe con las cajas u otros objetos de estilo decorativo pq martina calcula si puede moverse antes de moverse por lo tanto no hay colisiones en esas instancias y en caso de colisiones con objetos recolectables usamos al obj como el "a ser chocado"), puse para que diga las vidas pq sino me olvidaba dsps se borra dont worry*/
+
+    /*game.whenCollideDo(enemigo1, {x => 
+            enemigo1.lastimarAMartina()
+    })
+    no cambiar 
+    game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
+    */
+
+
+    game.start()
+}
