@@ -26,12 +26,12 @@ program catastrofico{
     })
     //BORDE IZQUIERDO 
     (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(0,y))
+        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
         escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(0,y))
+        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
         escenario.muros.add(muro)
         game.addVisual(muro)
     })
@@ -48,12 +48,12 @@ program catastrofico{
     })
     //BORDE DERECHO 
     (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(14,y))
+        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
         escenario.muros.add(muro)
         game.addVisual(muro)
     })
     (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(14,y))
+        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
         escenario.muros.add(muro)
         game.addVisual(muro)
     })
@@ -61,7 +61,7 @@ program catastrofico{
     //---------------Visuales---------------
     game.addVisual(martina)
     game.addVisual(trampa)
-    game.addVisual(posionVida)
+    game.addVisual(pocionVida)
     game.addVisual(enemigo1)
     game.addVisual(enemigo2)
 
@@ -78,8 +78,8 @@ program catastrofico{
     game.whenCollideDo(martina, {otro => otro.lastimarAMartina()
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
                                 
-    game.onCollideDo(posionVida, {posion => posionVida.interactuarConMartina()
-                                    game.removeVisual(posionVida)
+    game.onCollideDo(pocionVida, {pocion => pocionVida.interactuarConMartina()
+                                    game.removeVisual(pocionVida)
                                     game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
     
     /*en teoria esto de arriba soluciona cualquier colision no declarada, osea cualquier colision va a preguntarle al objeto
