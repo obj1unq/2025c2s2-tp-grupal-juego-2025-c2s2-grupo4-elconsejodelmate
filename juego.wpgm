@@ -62,8 +62,8 @@ program catastrofico{
     game.addVisual(martina)
     game.addVisual(trampa)
     game.addVisual(pocionVida)
-    game.addVisual(enemigo1)
-    game.addVisual(enemigo2)
+    //game.addVisual(enemigo1)
+    //game.addVisual(enemigo2)
 
     //---------------ticks---------------
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
@@ -81,6 +81,8 @@ program catastrofico{
     game.onCollideDo(pocionVida, {pocion => pocionVida.interactuarConMartina()
                                     game.removeVisual(pocionVida)
                                     game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+
+    game.onCollideDo(trampa, {trampa => trampa.lastimarAMartina()})
     
     /*en teoria esto de arriba soluciona cualquier colision no declarada, osea cualquier colision va a preguntarle al objeto
     con el que se esta colisionando por el method lastimarAMartina (pensandolo rapido esto no rompe con las cajas u otros objetos de estilo decorativo pq martina calcula si puede moverse antes de moverse por lo tanto no hay colisiones en esas instancias y en caso de colisiones con objetos recolectables usamos al obj como el "a ser chocado"), puse para que diga las vidas pq sino me olvidaba dsps se borra dont worry*/
