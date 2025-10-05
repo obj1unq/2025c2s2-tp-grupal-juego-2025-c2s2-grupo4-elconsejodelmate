@@ -61,6 +61,8 @@ program catastrofico{
     //---------------Visuales---------------
     game.addVisual(martina)
     game.addVisual(trampa)
+    game.addVisual(barril)
+    game.addVisual(ataud)
     game.addVisual(pocionVida)
     game.addVisual(enemigo1)
     game.addVisual(enemigo2)
@@ -77,10 +79,6 @@ program catastrofico{
     //---------------Colsiones---------------
     game.whenCollideDo(martina, {enemigo => enemigo.interactuarCon(martina)
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
-                                
-    /*game.onCollideDo(martina, {pocion => pocion.interactuarCon(martina)
-                                    game.removeVisual(pocionVida)
-                                    game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})*/
 
     game.onCollideDo(pocionVida, {pj => pocionVida.interactuarCon(pj)
                                     game.removeVisual(pocionVida)
@@ -90,15 +88,9 @@ program catastrofico{
     //game.onCollideDo(trampa, {trampa => trampa.lastimarAMartina()})
     
     /*en teoria esto de arriba soluciona cualquier colision no declarada, osea cualquier colision va a preguntarle al objeto
-    con el que se esta colisionando por el method lastimarAMartina (pensandolo rapido esto no rompe con las cajas u otros objetos de estilo decorativo pq martina calcula si puede moverse antes de moverse por lo tanto no hay colisiones en esas instancias y en caso de colisiones con objetos recolectables usamos al obj como el "a ser chocado"), puse para que diga las vidas pq sino me olvidaba dsps se borra dont worry*/
-
-    /*game.whenCollideDo(enemigo1, {x => 
-            enemigo1.lastimarAMartina()
-    })
-    no cambiar 
-    game.whenCollideDo(enemigo2, {x => enemigo2.lastimarAMartina()})//no cambiar 
-    */
-
+    con el que se esta colisionando por el method lastimarAMartina (pensandolo rapido esto no rompe con las cajas u otros objetos de estilo decorativo pq martina calcula si puede moverse 
+    antes de moverse por lo tanto no hay colisiones en esas instancias y en caso de colisiones con objetos recolectables usamos al obj como el "a ser chocado"), puse para que diga las vidas 
+    pq sino me olvidaba dsps se borra dont worry*/
 
     game.start()
 }

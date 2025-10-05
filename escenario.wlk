@@ -24,3 +24,7 @@ class Cofre{
 //PARA HACER QUE COLISIONEN LOS PERSONAJES; ESTOS DEBEN SABER TODAS LAS POSICIONES DE LOS OBJETOS CON LOS QUE PUEDEN COLISIONAR 
 //ARRAY DE MUROS; SE VAN AGREGANDO DESDE EL WPGM 
 const muros = []
+const obstaculos =[barril, ataud]
+//IMPLEMENTACION DE COISIONES CON OBJETOS DEL ESCENARIO
+const barril = new Obstaculo()
+const ataud = new Obstaculo(position = game.at(6,7), image = "ataud.png")

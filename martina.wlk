@@ -1,5 +1,5 @@
 object martina {
-  var property position = game.center()
+  var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 1 
 
@@ -20,7 +20,7 @@ object martina {
   }
   
   method moverA(nuevaDireccion){
-    if(self.estaViva() && not self.hayMuroEn(nuevaDireccion)){
+    if(self.estaViva() && self.puedeMoverseA(nuevaDireccion)){
       self.position(nuevaDireccion)
     }
   }
@@ -31,6 +31,12 @@ object martina {
   
   method hayMuroEn(nuevaDireccion){
     return escenario.muros.any({muro => muro.position() == nuevaDireccion})
+  }
+  method hayObstaculoEn(nuevaDireccion){
+    return escenario.obstaculos.any({obstaculo => obstaculo.position() == nuevaDireccion})
+  }
+  method puedeMoverseA(nuevaDireccion){
+    return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
   }
 }
 object config{
