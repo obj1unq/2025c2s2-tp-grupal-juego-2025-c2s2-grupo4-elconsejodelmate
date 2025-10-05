@@ -25,12 +25,15 @@ import martina.*
 }*/
 
 object pocionVida {
-    const personaje = martina
+    //const personaje = martina
     var property position = game.at(8,8)
     method image(){
         return "pocion.png" //es de prueba
     }
-    method interactuarConMartina(){
+    /*method interactuarConMartina(){
         personaje.incrementarEnUnoVidasDeMartina()
+    }*/
+    method interactuarCon(pj){
+        pj.incrementarEnUnoVidasDeMartina()
     }
 }

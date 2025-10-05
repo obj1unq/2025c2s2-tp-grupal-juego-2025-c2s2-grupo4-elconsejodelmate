@@ -7,8 +7,8 @@ class Trampa{
   var property position = game.at(3,1)
   var property image = "trampa.png"
 
-  method lastimarAMartina(){
-    martina.decrementarEnUnoVidasDeMartina()
+  method interactuarCon(pj){
+    pj.decrementarEnUnoVidasDeMartina()
   }
 }
 const trampa = new Trampa() // prueba de trampa

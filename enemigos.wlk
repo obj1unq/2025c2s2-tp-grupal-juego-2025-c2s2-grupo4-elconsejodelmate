@@ -17,8 +17,8 @@ object enemigo1{
     method estaEnBorde(positionDestino){
 		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
 	}
-    method lastimarAMartina(){
-        martina.decrementarEnUnoVidasDeMartina()
+    method interactuarCon(pj){
+        pj.decrementarEnUnoVidasDeMartina()
     }
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
@@ -58,8 +58,8 @@ method raizCuadrada(n) {
     return n.squareRoot()//self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
     }
 
-method lastimarAMartina(){
-        martina.decrementarEnUnoVidasDeMartina()
+method interactuarCon(pj){
+        pj.decrementarEnUnoVidasDeMartina()
        /* if(martina.cantDeVidas() == 0){
             game.stop()
         }*/  //preguntarle al profe 
