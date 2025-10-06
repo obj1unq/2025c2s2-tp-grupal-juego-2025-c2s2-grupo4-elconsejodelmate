@@ -14,9 +14,7 @@ object enemigo1{
         if(!self.hayMuroEn(direccion.siguientePosition(position)))
         self.position(direccion.siguientePosition(self.position()))
     }
-    method estaEnBorde(positionDestino){
-		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
-	}
+
     method interactuarCon(pj){
         pj.decrementarEnUnoVidasDeMartina()
     }
