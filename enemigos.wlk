@@ -28,6 +28,9 @@ object enemigo2{
     method image(){
         return "wendingo" + direccion.name() + ".png"
     }
+    method hayMuroEn(positionDestino){
+      return(escenario.muros.any({muro => muro.position() == positionDestino}))
+    }
     method perseguir(objetivo) {
         // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
         //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
@@ -36,18 +39,16 @@ object enemigo2{
     const direccionEnX = objetivo.position().x() - self.position().x()
     const direccionEnY = objetivo.position().y() - self.position().y()
 
-    const distancia = self.raizCuadrada((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY))
-
-    if (distancia > 0) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
-        self.position(
-        game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia)))
+//    const distancia = ((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY)).squareRoot()
+    const distancia = objetivo.position().distance(self.position())
+    var posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
+    if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
+        self.position(posicionSiguiente)
         }
+    
     }
     //Pensamos que se puede simplificar usando distance()
 
-method raizCuadrada(n) {
-    return n.squareRoot()//self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
-    }
 
 method interactuarCon(pj){
     pj.decrementarEnUnoVidasDeMartina()
