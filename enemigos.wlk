@@ -36,23 +36,22 @@ object enemigo2{
         //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
         // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
         //asi logramos que el enemigo se mueva solo un paso, porque sino se "teletransportaria" a martina.
-    const direccionEnX = objetivo.position().x() - self.position().x()
-    const direccionEnY = objetivo.position().y() - self.position().y()
+    const distanciaEnX = objetivo.position().x() - self.position().x()
+    const distanciaEnY = objetivo.position().y() - self.position().y()
 
 //    const distancia = ((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY)).squareRoot()
     const distancia = objetivo.position().distance(self.position())
-    var posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
-    if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
+    const posicionSiguiente = game.at(self.position().x() + (distanciaEnX / distancia),self.position().y() + (distanciaEnY / distancia))
+    if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) { 
         self.position(posicionSiguiente)
-        posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
         }
-    
+    // osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
     }
     //Pensamos que se puede simplificar usando distance()
 
 
-method interactuarCon(pj){
-    pj.decrementarEnUnoVidasDeMartina()
+method interactuarCon(martina){
+    martina.decrementarEnUnoVidasDeMartina()
     }
 
 }

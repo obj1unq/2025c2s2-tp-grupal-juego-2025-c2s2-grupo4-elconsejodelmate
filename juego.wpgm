@@ -81,5 +81,6 @@ program catastrofico{
     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
 
+
     game.start()
 }
