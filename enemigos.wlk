@@ -59,10 +59,7 @@ method raizCuadrada(n) {
     }
 
 method interactuarCon(pj){
-        pj.decrementarEnUnoVidasDeMartina()
-       /* if(martina.cantDeVidas() == 0){
-            game.stop()
-        }*/  //preguntarle al profe 
+    pj.decrementarEnUnoVidasDeMartina()
     }
 
 }
