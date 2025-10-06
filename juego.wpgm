@@ -77,8 +77,14 @@ program catastrofico{
     //game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
 
     //---------------Colsiones---------------
+
+    game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
+                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+
+    /*
     game.whenCollideDo(enemigo1, {martina => enemigo1.interactuarCon(martina)
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+
 
     game.whenCollideDo(enemigo2, {martina => enemigo2.interactuarCon(martina)
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
@@ -88,7 +94,7 @@ program catastrofico{
                                     game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")
     })
 
-    /*game.onCollideDo(trampa, {martina => trampa.interactuarCon(martina)
+    game.onCollideDo(trampa, {martina => trampa.interactuarCon(martina)
                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
     
 */

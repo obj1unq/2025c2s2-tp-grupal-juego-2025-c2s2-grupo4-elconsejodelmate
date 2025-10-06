@@ -35,5 +35,6 @@ object pocionVida {
     }*/
     method interactuarCon(pj){
         pj.incrementarEnUnoVidasDeMartina()
+        game.removeVisual(self)
     }
 }
