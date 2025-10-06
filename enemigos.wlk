@@ -44,14 +44,6 @@ object enemigo2{
         }
     }
 
-method raizCuadradaIter(n, x, iter) {
-    if (iter == 0) {
-        return x
-    } else {
-        return self.raizCuadradaIter(n, (x + n / x) / 2, iter - 1)
-        }
-    }
-//calculo de raiz cuadrada con el metodo de newton raphson, que es aproximarse a la raiz cuadrada,se hacen 10 recursiones para que el calculo sea lo mas exacto posible.
 method raizCuadrada(n) {
     return n.squareRoot()//self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
     }
