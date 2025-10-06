@@ -43,6 +43,7 @@ object enemigo2{
         game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia)))
         }
     }
+    //Pensamos que se puede simplificar usando distance()
 
 method raizCuadrada(n) {
     return n.squareRoot()//self.raizCuadradaIter(n, n / 2.0, 10)   // empezamos con n/2 y 10 pasos
