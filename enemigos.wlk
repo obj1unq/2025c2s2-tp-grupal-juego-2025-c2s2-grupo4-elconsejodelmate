@@ -31,7 +31,7 @@ object enemigo2{
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
-    method perseguir(objetivo) {
+    /*method perseguir(objetivo) {
         // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
         //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
         // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
@@ -47,8 +47,19 @@ object enemigo2{
         posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
         }
     
-    }
+    }*/
     //Pensamos que se puede simplificar usando distance()
+     method perseguir(objetivo){
+        const posXObj = objetivo.position().x() - self.position().x()
+        const posYObj = objetivo.position().y() - self.position().y()
+
+        const distancia = objetivo.position().distance(self.position()).squareRoot()
+        const posicionSiguiente = game.at(self.position().x() + posXObj.div(distancia), self.position().y() + posYObj.div(distancia))
+
+        if(distancia > 0 && (self.hayMuroEn(posicionSiguiente)).negate()){
+            self.position(posicionSiguiente)
+        }
+    }
 
 
 method interactuarCon(pj){
@@ -109,3 +120,18 @@ object arriba {
 //para subir mi rama a master, hago merge desde master y eligo mi rama*/
 
 //IMPLEMENTACION DE CLASES ENEMIGOS 
+/*
+    Se puede utilizar para otro enemigo, que te persiga solo cuando te ve
+    (el personaje debe estar en el eje x o y del enemigo)
+
+    method perseguir(objetivo){
+        const posXObj = objetivo.position().x() - self.position().x()
+        const posYObj = objetivo.position().y() - self.position().y()
+
+        const distancia = objetivo.position().distance(self.position())
+        const posicionSiguiente = game.at(self.position().x() + posXObj.div(distancia), self.position().y() + posYObj.div(distancia))
+
+        if(distancia > 0 && (self.hayMuroEn(posicionSiguiente)).negate()){
+            self.position(posicionSiguiente)
+        }
+    }*/
