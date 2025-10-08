@@ -31,6 +31,8 @@ object enemigo2{
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
+    //esto se podria borrar si se usa el obj movimientoPersecutor
+    
     method perseguir(objetivo) {
        movimientoPersecutor.perseguirConA(self, martina)
 
