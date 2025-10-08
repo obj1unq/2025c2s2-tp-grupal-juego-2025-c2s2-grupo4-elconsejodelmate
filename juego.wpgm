@@ -70,7 +70,7 @@ program catastrofico{
     //---------------ticks---------------
     game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    game.onTick(1000, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    game.onTick(700, "perseguirAMartina", {enemigo2.perseguir(martina)})
 
     //---------------Proyectiles---------------
     //keyboard.k().onPressDo {proyectil.arrojarse()}

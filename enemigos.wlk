@@ -32,7 +32,7 @@ object enemigo2{
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
     //esto se podria borrar si se usa el obj movimientoPersecutor
-    
+
     method perseguir(objetivo) {
        movimientoPersecutor.perseguirConA(self, martina)
 
@@ -70,25 +70,21 @@ object movimientoPersecutor {
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     } 
-    method esMayorQue(direccion1, direccion2){
-        return direccion1 > direccion2
-    }
-    method esMenorQue(direccion1, direccion2){
-        return direccion1 < direccion2
-    }
+
     method perseguirConA(persecutor , perseguido){
         const posPr = persecutor.position()
         const posPs = perseguido.position()
+        
 
-        if(self.esMayorQue(posPr.y() , posPs.y()) && !self.hayMuroEn(posPr.down(1))){
+        if(posPr.y() > posPs.y() && !self.hayMuroEn(posPr.down(1))){
             persecutor.position(posPr.down(1))
-       }else if(self.esMenorQue(posPr.y() , posPs.y()) && !self.hayMuroEn(posPr.up(1))) {
+       }else if(posPr.y() < posPs.y() && !self.hayMuroEn(posPr.up(1))) {
             persecutor.position(posPr.up(1))
        }
 
-       if(self.esMayorQue(posPr.x() , posPs.x()) && !self.hayMuroEn(posPr.left(1))){
+       if(posPr.x() > posPs.x() && !self.hayMuroEn(posPr.left(1))){
             persecutor.position(posPr.left(1))
-       }else if(self.esMenorQue(posPr.x() , posPs.x()) && !self.hayMuroEn(posPr.right(1))) {
+       }else if(posPr.x() < posPs.x()&& !self.hayMuroEn(posPr.right(1))) {
             persecutor.position(posPr.right(1))
        }
     }
