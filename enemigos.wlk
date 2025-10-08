@@ -32,28 +32,59 @@ object enemigo2{
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
     method perseguir(objetivo) {
-        // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
-        //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
-        // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
-        //asi logramos que el enemigo se mueva solo un paso, porque sino se "teletransportaria" a martina.
-    const distanciaEnX = objetivo.position().x() - self.position().x()
-    const distanciaEnY = objetivo.position().y() - self.position().y()
+       //movimientoPersecutor.perseguirConA(self, martina)
+       /*Bueno lo de arriba llama al objeto que ejecuta el method perseguirConA(a,b) hace exactamente lo de abajo, lo de abajo deberia borrarlo
+       pero por si lo quieren probar, esto de aca abajo permite al wendingo moverse en diagonales, si se preguntan por que este si y el otro no, no tengo la
+       mas palida idea pero bueno, el del objeto movimientoPersecutor no tiene diagonal y el de este method perseguir si tiene diagonales temas para el
+       futuro bye */
+       const direccionY = objetivo.position().y()
+       const direccionX = objetivo.position().x()
 
-//    const distancia = ((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY)).squareRoot()
-    const distancia = objetivo.position().distance(self.position())
-    const posicionSiguiente = game.at(self.position().x() + (distanciaEnX / distancia),self.position().y() + (distanciaEnY / distancia))
-    if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) { 
-        self.position(posicionSiguiente)
+       if(direccionY > self.position().y() && !self.hayMuroEn(self.position().up(1))){
+            self.position(self.position().up(1))
+       }else if(direccionY < self.position().y() && !self.hayMuroEn(self.position().down(1))) {
+            self.position(self.position().down(1))
+       }
+
+       if(direccionX > self.position().x() && !self.hayMuroEn(self.position().right(1))){
+            self.position(self.position().right(1))
+       }else if(direccionX < self.position().x() && !self.hayMuroEn(self.position().left(1))) {
+            self.position(self.position().left(1))
+       }
+    }
+
+    method interactuarCon(martina){
+        martina.decrementarEnUnoVidasDeMartina()
         }
-    // osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
+
+}
+
+object movimientoPersecutor {
+    method hayMuroEn(positionDestino){
+      return(escenario.muros.any({muro => muro.position() == positionDestino}))
+    } 
+    method esMayorQue(direccion1, direccion2){
+        return direccion1 > direccion2
     }
-    //Pensamos que se puede simplificar usando distance()
-
-
-method interactuarCon(martina){
-    martina.decrementarEnUnoVidasDeMartina()
+    method esMenorQue(direccion1, direccion2){
+        return direccion1 < direccion2
     }
+    method perseguirConA(persecutor , perseguido){
+        const posPr = persecutor.position()
+        const posPs = perseguido.position()
 
+        if(self.esMayorQue(posPr.y() , posPs.y()) && !self.hayMuroEn(posPr.down(1))){
+            persecutor.position(posPr.down(1))
+       }else if(self.esMenorQue(posPr.y() , posPs.y()) && !self.hayMuroEn(posPr.up(1))) {
+            persecutor.position(posPr.up(1))
+       }
+
+       if(self.esMayorQue(posPr.x() , posPs.x()) && !self.hayMuroEn(posPr.left(1))){
+            persecutor.position(posPr.left(1))
+       }else if(self.esMenorQue(posPr.x() , posPs.x()) && !self.hayMuroEn(posPr.right(1))) {
+            persecutor.position(posPr.right(1))
+       }
+    }
 }
 object derecha {
     method name(){
