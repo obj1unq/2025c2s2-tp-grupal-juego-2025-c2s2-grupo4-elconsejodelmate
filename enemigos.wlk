@@ -31,7 +31,7 @@ object enemigo2{
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
-    /*method perseguir(objetivo) {
+   /* method perseguir(objetivo) {
         // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
         //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
         // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
@@ -39,25 +39,38 @@ object enemigo2{
     const direccionEnX = objetivo.position().x() - self.position().x()
     const direccionEnY = objetivo.position().y() - self.position().y()
 
-//    const distancia = ((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY)).squareRoot()
-    const distancia = objetivo.position().distance(self.position())
-    var posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
+    const distancia = (direccionEnX.square() + direccionEnY.square()).squareRoot()
+
+    const posicionSiguiente = game.at(direccionEnX.div(distancia), direccionEnY.div(distancia))
+    
     if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) {// osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
         self.position(posicionSiguiente)
-        posicionSiguiente = game.at(self.position().x() + (direccionEnX / distancia),self.position().y() + (direccionEnY / distancia))
         }
     
     }*/
     //Pensamos que se puede simplificar usando distance()
-     method perseguir(objetivo){
-        const posXObj = objetivo.position().x() - self.position().x()
-        const posYObj = objetivo.position().y() - self.position().y()
+    method perseguir(objetivo){
+        const distanciaX = objetivo.position().x() - self.position().x()
+        const distanciaY = objetivo.position().y() - self.position().y()
 
-        const distancia = objetivo.position().distance(self.position()).squareRoot()
-        const posicionSiguiente = game.at(self.position().x() + posXObj.div(distancia), self.position().y() + posYObj.div(distancia))
-
-        if(distancia > 0 && (self.hayMuroEn(posicionSiguiente)).negate()){
-            self.position(posicionSiguiente)
+        if(distanciaX > distanciaY){
+            self.moverseEnX(distanciaX)
+        }else{
+            self.moverseEnY(distanciaY)
+        }
+    } 
+    method moverseEnX(_distancia){
+        if(_distancia > 0){
+            self.position(self.position().right(1))
+        }else{
+            self.position(self.position().left(1))
+        }
+    }
+    method moverseEnY(_distancia){
+        if(_distancia > 0){
+            self.position(self.position().up(1))
+        }else{
+            self.position(self.position().down(1))
         }
     }
 
@@ -135,3 +148,4 @@ object arriba {
             self.position(posicionSiguiente)
         }
     }*/
+//pensar movimiento del wendingo como cuadrantes 
