@@ -1,7 +1,7 @@
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
-  var property cantDeVidas = 1 
+  var property cantDeVidas = 3
 
   method incrementarEnUnoVidasDeMartina(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
@@ -15,6 +15,7 @@ object martina {
   method estaMuerta(){
     return self.cantDeVidas() <= 0
   }
+  // que el juego termine en decrementarEnUnoVidasDeMartina
   method estaViva(){
     return self.cantDeVidas() > 0
   }

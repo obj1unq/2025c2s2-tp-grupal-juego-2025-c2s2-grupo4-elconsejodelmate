@@ -81,22 +81,6 @@ program catastrofico{
     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
                                  game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
 
-    /*
-    game.whenCollideDo(enemigo1, {martina => enemigo1.interactuarCon(martina)
-                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
 
-
-    game.whenCollideDo(enemigo2, {martina => enemigo2.interactuarCon(martina)
-                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
-
-    game.onCollideDo(pocionVida, {pj => pocionVida.interactuarCon(pj)
-                                    game.removeVisual(pocionVida)
-                                    game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")
-    })
-
-    game.onCollideDo(trampa, {martina => trampa.interactuarCon(martina)
-                                game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
-    
-*/
     game.start()
 }

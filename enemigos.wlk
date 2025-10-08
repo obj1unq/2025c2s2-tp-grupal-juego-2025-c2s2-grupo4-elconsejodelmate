@@ -28,33 +28,30 @@ object enemigo2{
     method image(){
         return "wendingo" + direccion.name() + ".png"
     }
-    method perseguir(objetivo){
-        const posXObj = objetivo.position().x() - self.position().x()
-        const posYObj = objetivo.position().y() - self.position().y()
-
-        const distancia = objetivo.position().distance(self.position()).squareRoot()
-    
-        const posicionSiguiente = game.at(self.position().x() + posXObj.div(posXObj.abs()), self.position().y() + posYObj.div(posYObj.abs()))
-        
-        if(distancia > 0 && (self.hayMuroEn(posicionSiguiente)).negate()){
-            self.position(posicionSiguiente)
-        }
-    }
-
-    method validarNumero(numero1 , numero2){
-        if(numero1 - numero2 == 0){
-            return 0
-        } else{
-            return 
-        }
-    }
-
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
     }
-    
-method interactuarCon(pj){
-    pj.decrementarEnUnoVidasDeMartina()
+    method perseguir(objetivo) {
+        // idea: calculamos el vector entre los dos puntos, y eso nos va a dar la direccion en la que nos queremos mover, como calculamos el vector? en cada coordenada, hacemos la direccion de martina menos la direccion del enemigo
+        //ahora que tenemos la direccion, calculamos la que distancia, que es hacer el cuadrado de las coordenadas calculadas en el paso anterior, sumanrlas y a eso, les aplicamos la raiz cuadrada. Como wollok cuando puse repeat o while, me ponia error, lo hice con recursion.
+        // ahora que tenemos la direccion y la distancia, queda normalizarlo, que es a cada vector resultante del primer paso, dividirlo por la distancia calculada en el segundo paso.
+        //asi logramos que el enemigo se mueva solo un paso, porque sino se "teletransportaria" a martina.
+    const distanciaEnX = objetivo.position().x() - self.position().x()
+    const distanciaEnY = objetivo.position().y() - self.position().y()
+
+//    const distancia = ((direccionEnX * direccionEnX) + (direccionEnY*direccionEnY)).squareRoot()
+    const distancia = objetivo.position().distance(self.position())
+    const posicionSiguiente = game.at(self.position().x() + (distanciaEnX / distancia),self.position().y() + (distanciaEnY / distancia))
+    if (distancia > 0 && !self.hayMuroEn(posicionSiguiente)) { 
+        self.position(posicionSiguiente)
+        }
+    // osea si no estan en el mismo punto (distancia = 0), si estan en el mismo punto el enemigo se queda quieto (si, pense que podia ser negativa la distancia pero no es posible, solo puede ser 0 o mayor a cero)
+    }
+    //Pensamos que se puede simplificar usando distance()
+
+
+method interactuarCon(martina){
+    martina.decrementarEnUnoVidasDeMartina()
     }
 
 }
