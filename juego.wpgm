@@ -68,7 +68,7 @@ program catastrofico{
     game.addVisual(enemigo2)
 
     //---------------ticks---------------
-    game.onTick(2000, "movimientoEnemigo", {enemigo1.avanzar()})
+    game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
     game.onTick(700, "perseguirAMartina", {enemigo2.perseguir(martina)})
 
