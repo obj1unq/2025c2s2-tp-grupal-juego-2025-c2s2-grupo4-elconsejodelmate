@@ -38,3 +38,12 @@ object pocionVida {
         game.removeVisual(self)
     }
 }
+class PocionVida{
+    var property position = game.origin()
+    var property image = "pocion.png"
+
+    method interactuarCon(pj){
+        pj.incrementarEnUnoVidas()
+        game.removeVisual(self)
+    }
+}

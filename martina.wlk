@@ -3,10 +3,10 @@ object martina {
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
 
-  method incrementarEnUnoVidasDeMartina(){
+  method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
   }
-  method decrementarEnUnoVidasDeMartina(){
+  method decrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas -1
   }
   method image(){
