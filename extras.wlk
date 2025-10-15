@@ -24,23 +24,30 @@ import martina.*
     }
 }*/
 
-object pocionVida {
-    //const personaje = martina
+/*object pocionVida {
+    const personaje = martina
     var property position = game.at(8,8)
     method image(){
         return "pocion.png" //es de prueba
     }
-    /*method interactuarConMartina(){
+    method interactuarConMartina(){
         personaje.incrementarEnUnoVidasDeMartina()
-    }*/
-    method interactuarCon(pj){
-        pj.incrementarEnUnoVidasDeMartina()
         game.removeVisual(self)
     }
+    
+    method interactuarCon(pj){
+        pj.incrementarEnUnoVidasDeMartina()
+        
+    }
+    
 }
+*/
+
+const pocion1 = new PocionVida(position = game.at(4,6))
 class PocionVida{
     var property position = game.origin()
     var property image = "pocion.png"
+
 
     method interactuarCon(pj){
         pj.incrementarEnUnoVidas()

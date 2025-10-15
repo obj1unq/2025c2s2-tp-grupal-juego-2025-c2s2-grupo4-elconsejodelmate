@@ -16,7 +16,7 @@ object enemigo1{
     }
 
     method interactuarCon(pj){
-        pj.decrementarEnUnoVidasDeMartina()
+        pj.decrementarEnUnoVidas()
     }
     method hayMuroEn(positionDestino){
       return(escenario.muros.any({muro => muro.position() == positionDestino}))
@@ -60,8 +60,8 @@ object enemigo2{
        }*/
     }
 
-    method interactuarCon(martina){
-        martina.decrementarEnUnoVidasDeMartina()
+    method interactuarCon(pj){
+        pj.decrementarEnUnoVidas()
         }
 
 }

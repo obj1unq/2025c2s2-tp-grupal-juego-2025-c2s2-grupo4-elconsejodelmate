@@ -63,7 +63,7 @@ program catastrofico{
     game.addVisual(trampa)
     game.addVisual(barril)
     game.addVisual(ataud)
-    game.addVisual(pocionVida)
+    game.addVisual(pocion1)
     game.addVisual(enemigo1)
     game.addVisual(enemigo2)
 

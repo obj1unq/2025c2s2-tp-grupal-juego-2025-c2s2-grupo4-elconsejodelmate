@@ -8,7 +8,7 @@ class Trampa{
   var property image = "trampa.png"
 
   method interactuarCon(pj){
-    pj.decrementarEnUnoVidasDeMartina()
+    pj.decrementarEnUnoVidas()
   }
 }
 const trampa = new Trampa() // prueba de trampa
