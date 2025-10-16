@@ -1,7 +1,13 @@
+import escenario.*
+
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
+
+  var property nivel = nivel1
+  var property obstaculosNivel = nivel.obtenerObstaculos()
+  var property murosNivel = nivel.obtenerMuros()
 
   method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
@@ -31,10 +37,10 @@ object martina {
   }
   
   method hayMuroEn(nuevaDireccion){
-    return escenario.muros.any({muro => muro.position() == nuevaDireccion})
+    return murosNivel.any({muro => muro.position() == nuevaDireccion})
   }
   method hayObstaculoEn(nuevaDireccion){
-    return escenario.obstaculos.any({obstaculo => obstaculo.position() == nuevaDireccion})
+    return obstaculosNivel.any({obstaculo => obstaculo.position() == nuevaDireccion})
   }
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)

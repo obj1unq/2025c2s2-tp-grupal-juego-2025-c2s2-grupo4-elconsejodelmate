@@ -1,19 +1,34 @@
 import martina.*
 import enemigos.*
 object nivel1{
+  const muros = []
+  method obtenerMuros(){
+    return muros
+  } 
+  const obstaculos = []
+  method obtenerObstaculos(){
+    return obstaculos
+  }
+  const trampas = []
+  method obtenerTrmpas(){
+    return trampas 
+  }
   method iniciar(){
   /*se va a agregar una const, entre 0 y 10 para determinar la cantidad de instancias que se 
   van a crear 
   Para los enemigos, se eligira un numero entre 1 y 3
   Para los obstaculos, se elegira un numero entre 5 y 10
   */
+  
   //ARRAYS
-  const muros = []
+
   //INSTANCIAS 
   const enemigosACrear = 1.randomUpTo(3)
   const obstaculosACrear = 5.randomUpTo(10)
-  //VISUALS
-
+  const trampasACrear = 0.randomUpTo(15)
+  //PERSONAJE
+  game.addVisual(martina)
+  config.configTeclas()
   //SUELO 
     game.ground("suelo.png")
 
@@ -58,20 +73,23 @@ object nivel1{
         muros.add(muro)
         game.addVisual(muro)
     })
-    obstaculosACrear.times()
-    
+    obstaculosACrear.times({i =>
+        const barril = new Obstaculo(image ="barril.png")
+        obstaculos.add(barril)
+        game.addVisual(barril)
+    })
+    obstaculosACrear.times({i =>
+        const ataud = new Obstaculo(image = "ataud.png")
+        obstaculos.add(ataud)
+        game.addVisual(ataud)
+    })
+    obstaculosACrear.times({i =>
+        const trampa = new Trampa()
+        trampas.add(trampa)
+        game.addVisual(trampa)
+    })
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 class Muro{
@@ -79,7 +97,7 @@ class Muro{
   var property image = "pared1.png"  
 }
 class Trampa{
-  var property position = game.at(3,1)
+  var property position = game.at((1..13).anyOne(),(1..13).anyOne())
   var property image = "trampa.png"
 
   method interactuarCon(pj){
@@ -88,9 +106,9 @@ class Trampa{
 }
 
 class Obstaculo{
-  var property position = game.at(4,8)
-  var property image = "barril.png"
-  //puede ser un barril o ataud, la clase se inicializara con un barril 
+  var property position = game.at((1..13).anyOne(),(1..13).anyOne())
+  var property image 
+  
 }
 class Cofre{
   var property position = game.at(6,9)
@@ -99,12 +117,8 @@ class Cofre{
   //se modelaran WKO para los estados del cofre 
 
 }
-//PARA HACER QUE COLISIONEN LOS PERSONAJES; ESTOS DEBEN SABER TODAS LAS POSICIONES DE LOS OBJETOS CON LOS QUE PUEDEN COLISIONAR 
-//ARRAY DE MUROS; SE VAN AGREGANDO DESDE EL WPGM 
 
-const obstaculos =[barril, ataud]
-//IMPLEMENTACION DE COISIONES CON OBJETOS DEL ESCENARIO
-const barril = new Obstaculo()
-const ataud = new Obstaculo(position = game.at(6,7), image = "ataud.png")
+
+
 
 

@@ -9,7 +9,7 @@ program catastrofico{
     game.cellSize(32)
     game.title("Cat-astrofico")
  
-    config.configTeclas()
+    //config.configTeclas()
     nivel1.iniciar()
 
 
