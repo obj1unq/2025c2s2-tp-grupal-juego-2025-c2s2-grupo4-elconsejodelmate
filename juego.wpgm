@@ -10,53 +10,12 @@ program catastrofico{
     game.title("Cat-astrofico")
  
     config.configTeclas()
-    //SUELO 
-    game.ground("suelo.png")
-    //PAREDES 
-    //BORDE INFERIOR
-    (0..6).forEach({x => 
-        const muro = new Muro(position = game.at(x,0))
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({x => 
-        const muro = new Muro(position = game.at(x,0))
-        escenario.muros.add(muro)
-        game.addVisual(muro)   
-    })
-    //BORDE IZQUIERDO 
-    (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    //BORDE SUPERIOR 
-    (0..6).forEach({x => 
-        const muro = new Muro(position = game.at(x,14))
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({x => 
-        const muro = new Muro(position = game.at(x,14))
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    //BORDE DERECHO 
-    (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
-        escenario.muros.add(muro)
-        game.addVisual(muro)
-    })
+    nivel1.iniciar()
+
+
+/*    
+
+
 
     //---------------Visuales---------------
     game.addVisual(martina)
@@ -79,7 +38,7 @@ program catastrofico{
     //---------------Colsiones---------------
 
     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
-                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})*/
 
 
     game.start()
