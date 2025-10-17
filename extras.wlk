@@ -50,7 +50,34 @@ class PocionVida{
 
 
     method interactuarCon(pj){
-        pj.incrementarEnUnoVidas()
-        game.removeVisual(self)
+        if(pj.cantDeVidas() < 3){
+            pj.incrementarEnUnoVidas()
+            game.removeVisual(self)
+        }else{
+            pj.añadirAInventario(self)
+        }
+    }
+}
+class ObjetoQueDaPuntos{
+  var property position 
+  var property image 
+  var property puntos
+
+  method interactuarCon(pj){
+    pj.sumarPuntos(puntos)
+  }
+}
+
+
+class Espada{
+  var property position
+  var property image = "espada.png"
+}
+class Llave{
+    var property position = game.at((1..13).anyOne(),(1..13).anyOne())
+    var property image = "llave.png"
+    
+    method interactuarCon(pj){
+        pj.añadirAInventario(self)
     }
 }

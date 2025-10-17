@@ -1,5 +1,6 @@
 import martina.*
 import enemigos.*
+import extras.*
 object nivel1{
   //ARRAYS
   const muros = []
@@ -26,6 +27,7 @@ object nivel1{
   const enemigosACrear = 1.randomUpTo(3)
   const obstaculosACrear = 5.randomUpTo(10)
   const trampasACrear = 0.randomUpTo(15)
+  const cofresACrear = 1.randomUpTo(3)
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
@@ -92,6 +94,10 @@ object nivel1{
         trampas.add(trampa)
         game.addVisual(trampa)
     })
+    cofresACrear.times({i => 
+        const cofre = new Cofre()
+        game.addVisual(cofre)
+    })
     //TICKS 
     game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
@@ -122,14 +128,35 @@ class Obstaculo{
   var property image 
   
 }
+//SE VA A NECESITAR UNA LLAVE PARA ABRIR EL COFRE
 class Cofre{
   var property position = game.at(6,9)
-  var property image = "cofre.png"  
+  var property image = estado.image()  
   var property contenido = []
-  //se modelaran WKO para los estados del cofre 
+  var property estado = cerrado
+  
+  method interactuarCon(pj){
+    if(pj.tieneLlave()){
+      estado.cambiarEstado()
+      self.dropearItem()
+    }
+  }
+  method dropearItem(){
+    const elementoElegido = contenido.anyOne()
+    game.addVisual(elementoElegido)
+  }
+
 }
+//ESTADOS DEL COFRE 
+object cerrado{
+  var property image ="cofre.png"
 
-
-
+  method cambiarEstado(){
+    return abierto
+  }
+}
+object abierto{
+  var property image = "cofre-abierto.png"
+}
 
 

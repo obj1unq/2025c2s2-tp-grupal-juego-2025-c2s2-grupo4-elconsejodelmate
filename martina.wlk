@@ -1,9 +1,11 @@
 import escenario.*
-
+import extras.*
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
+  var property puntos = 0
+  var property inventario = []
 /* Al mover el escenario a un WKO, se perdio la referencia global, ahora los enemigos y el pj
 guardan en variables el nivel donde se encuentran, y todos los objetos con los que pueden colisionar*/
   var property nivel = nivel1
@@ -45,6 +47,16 @@ guardan en variables el nivel donde se encuentran, y todos los objetos con los q
   }
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+  }
+  /*method tieneLLave(){
+    return inventario.any({objeto => objeto == llave})
+  }*/
+  method añadirAInventario(objeto){
+    inventario.add(objeto)
+    game.removeVisual(objeto)
+  }
+  method sumarPuntos(_puntos){
+    puntos = _puntos + puntos 
   }
 }
 object config{
