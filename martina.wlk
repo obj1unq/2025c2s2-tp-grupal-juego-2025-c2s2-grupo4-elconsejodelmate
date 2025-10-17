@@ -4,7 +4,8 @@ object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
-
+/* Al mover el escenario a un WKO, se perdio la referencia global, ahora los enemigos y el pj
+guardan en variables el nivel donde se encuentran, y todos los objetos con los que pueden colisionar*/
   var property nivel = nivel1
   var property obstaculosNivel = nivel.obtenerObstaculos()
   var property murosNivel = nivel.obtenerMuros()

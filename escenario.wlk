@@ -1,7 +1,10 @@
 import martina.*
 import enemigos.*
 object nivel1{
+  //ARRAYS
   const muros = []
+  //estos getters se usaran para que todos los objetos que se muevan conozcan los objetos 
+  //con los que podrian colisionar 
   method obtenerMuros(){
     return muros
   } 
@@ -19,10 +22,7 @@ object nivel1{
   Para los enemigos, se eligira un numero entre 1 y 3
   Para los obstaculos, se elegira un numero entre 5 y 10
   */
-  
-  //ARRAYS
-
-  //INSTANCIAS 
+  //Randomizer de numeros
   const enemigosACrear = 1.randomUpTo(3)
   const obstaculosACrear = 5.randomUpTo(10)
   const trampasACrear = 0.randomUpTo(15)
@@ -108,6 +108,7 @@ class Muro{
   var property image = "pared1.png"  
 }
 class Trampa{
+  //se les dio una posicion random a las trampas y obstaculos, falta fixear que no se superpongan 
   var property position = game.at((1..13).anyOne(),(1..13).anyOne())
   var property image = "trampa.png"
 
