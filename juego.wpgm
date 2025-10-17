@@ -9,37 +9,6 @@ program catastrofico{
     game.cellSize(32)
     game.title("Cat-astrofico")
  
-    //config.configTeclas()
     nivel1.iniciar()
-
-
-/*    
-
-
-
-    //---------------Visuales---------------
-    game.addVisual(martina)
-    game.addVisual(trampa)
-    game.addVisual(barril)
-    game.addVisual(ataud)
-    game.addVisual(pocion1)
-    game.addVisual(enemigo1)
-    game.addVisual(enemigo2)
-
-    //---------------ticks---------------
-    game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
-    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    game.onTick(700, "perseguirAMartina", {enemigo2.perseguir(martina)})
-
-    //---------------Proyectiles---------------
-    //keyboard.k().onPressDo {proyectil.arrojarse()}
-    //game.onTick(800, "arrojarProyectil",{proyectil.arrojarse()})
-
-    //---------------Colsiones---------------
-
-    game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
-                                 game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})*/
-
-
     game.start()
 }

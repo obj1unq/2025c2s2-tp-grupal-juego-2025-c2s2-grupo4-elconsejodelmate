@@ -29,6 +29,9 @@ object nivel1{
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
+  //VISUALS 
+    game.addVisual(enemigo1)
+    game.addVisual(enemigo2)
   //SUELO 
     game.ground("suelo.png")
 
@@ -73,6 +76,7 @@ object nivel1{
         muros.add(muro)
         game.addVisual(muro)
     })
+    //OBJETOS DEL ESCENARIO
     obstaculosACrear.times({i =>
         const barril = new Obstaculo(image ="barril.png")
         obstaculos.add(barril)
@@ -88,6 +92,13 @@ object nivel1{
         trampas.add(trampa)
         game.addVisual(trampa)
     })
+    //TICKS 
+    game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
+    game.onTick(800, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    //COLISIONES 
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
+                      game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
   }
 }
 
@@ -115,7 +126,6 @@ class Cofre{
   var property image = "cofre.png"  
   var property contenido = []
   //se modelaran WKO para los estados del cofre 
-
 }
 
 
