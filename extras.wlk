@@ -1,19 +1,53 @@
 import enemigos.*
 import martina.*
-/*object proyectil {
+import escenario.*
+object cofre{
+  var property position = game.at(6,9)
+  var property image = "cofre.png"  
+  var property contenido = [arco]
+  //se modelaran WKO para los estados del cofre 
+ 
+  method interactuarCon(personaje){
+    self.image("cofre-abierto.png") 
+    martina.mochila().add(arco)
+    self.contenido().clear()
+  }
+}
+object arco{
+    method dispararFlechas(){
+    if (!martina.mochila.null()){
+        game.addVisual(Flecha)
+      game.onTick(800, "DispararFlechasConArcoEquipado", {new Flecha().arrojarse()})
+    }
+  }
+
+}
+class Flecha {
     var property position = martina.position()
-    var property direccion = self.nombre(martina.estadoDeMartina())
+    var property direccion = martina.estadoDeMartina()
+    var property murosNivel = nivel1.obtenerMuros()
+    var property obstaculosNivel =nivel1.obtenerObstaculos()
     method image(){
-        return "martina-proyectil.png"
+        return "flecha.png"
     }
     method arrojarse(){
-        if(!self.estaEnBorde(direccion.siguientePosition(position)))
-        self.position(direccion.siguientePosition(self.position()))
+        if(!self.hayMuroEn(direccion.siguientePosition(position))
+        || !self.hayObstaculoEn(direccion.siguientePosition(position))){
+          self.position(direccion.siguientePosition(self.position()))  
+        } else {
+            game.removeVisual(Flecha)
+        }
+        
     }
-    method estaEnBorde(positionDestino){
-		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
+    
+    method hayMuroEn(positionDestino){
+      return(murosNivel.any({muro => muro.position() == positionDestino}))
     }
-    method nombre(direccionDada){
+    method hayObstaculoEn(positionDestino){
+      return(obstaculosNivel.any({obstaculo => obstaculo.position() == positionDestino}))
+    }
+
+    /* method nombre(direccionDada){
         if (direccionDada == "up"){
         return arriba}
         else if (direccionDada == "down"){
@@ -21,8 +55,8 @@ import martina.*
         } else if (direccionDada == "right"){
             return derecha
         } else {return izquierda}
-    }
-}*/
+    }*/
+}
 
 /*object pocionVida {
     const personaje = martina

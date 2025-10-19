@@ -1,3 +1,4 @@
+import extras.*
 import martina.*
 import enemigos.*
 object nivel1{
@@ -26,12 +27,15 @@ object nivel1{
   const enemigosACrear = 1.randomUpTo(3)
   const obstaculosACrear = 5.randomUpTo(10)
   const trampasACrear = 0.randomUpTo(15)
+  const cofresACrear = 1
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
   //VISUALS 
     game.addVisual(enemigo1)
     game.addVisual(enemigo2)
+    game.addVisual(cofre)
+    /* aveces el cofre sale abajo de algun obstaculo y no puedo acceder*/
   //SUELO 
     game.ground("suelo.png")
 
@@ -122,12 +126,7 @@ class Obstaculo{
   var property image 
   
 }
-class Cofre{
-  var property position = game.at(6,9)
-  var property image = "cofre.png"  
-  var property contenido = []
-  //se modelaran WKO para los estados del cofre 
-}
+
 
 
 
