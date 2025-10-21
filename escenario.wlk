@@ -27,7 +27,7 @@ object nivel1{
   const enemigosACrear = 1.randomUpTo(3)
   const obstaculosACrear = 5.randomUpTo(10)
   const trampasACrear = 0.randomUpTo(15)
-  const cofresACrear = 1
+  const cofresACrear = 1 // esta const no tiene sentido, tu cofre es un WKO
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
@@ -35,7 +35,9 @@ object nivel1{
     game.addVisual(enemigo1)
     game.addVisual(enemigo2)
     game.addVisual(cofre)
-    /* aveces el cofre sale abajo de algun obstaculo y no puedo acceder*/
+    /* aveces el cofre sale abajo de algun obstaculo y no puedo acceder
+    ACLARACION: es normal, eso se tiene que fixear, esta en el comentario mas abajo, veo que tenes 
+    un problema entre distinguir WKO y clases, y como estas se instancian*/
   //SUELO 
     game.ground("suelo.png")
 
