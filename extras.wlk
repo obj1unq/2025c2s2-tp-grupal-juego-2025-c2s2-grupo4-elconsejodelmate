@@ -21,7 +21,7 @@ object arco{
     if (!martina.mochila().null()){
         game.addVisual(Flecha)
       // hacer un boton que dispare, agregar el visual, y que se instancie con la posicion y direccion de martina
-      game.onTick(800, "DispararFlecha", {flechas.lista().arrojarse()})
+      
       /*esto deberia ser una subtarea de la que se encarga martina; ejemplo disparar, mi idea era hacer
       que el proyectil recorra x cant de celdas y si no colisiona con nada desaparece
       Lo del proyectil podria calcularse en una var dentro del method arrojarse, que si llega por ej 
@@ -38,21 +38,21 @@ object arco{
 
 }
 object flechas{
-  var lista= [] /* todas las flechas en el juego
+  const property lista= [] /* todas las flechas en el juego
   /*que el tick se haga sobre este objeto flechas*/
+
 }
 class Flecha {
   // pasar la posicion y la direccion cuando creo la inicializacion del new flecha
-    var property position = martina.position()
-    var property direccion = martina.estadoDeMartina()
+    var property position 
+    var property direccion 
     var property murosNivel = nivel1.obtenerMuros()
-    var property obstaculosNivel =nivel1.obtenerObstaculos()
+    var property obstaculosNivel = nivel1.obtenerObstaculos()
     method image(){
         return "flecha.png"
     }
     method arrojarse(){
-        if(!self.hayMuroEn(direccion.siguientePosition(position))
-        || !self.hayObstaculoEn(direccion.siguientePosition(position))){
+        if(self.puedeMoverseA(direccion.siguientePosicion(self.position()))){
           self.position(direccion.siguientePosition(self.position()))  
         } else {
             game.removeVisual(Flecha)
@@ -66,36 +66,12 @@ class Flecha {
     method hayObstaculoEn(positionDestino){
       return(obstaculosNivel.any({obstaculo => obstaculo.position() == positionDestino}))
     }
-
-    /* method nombre(direccionDada){
-        if (direccionDada == "up"){
-        return arriba}
-        else if (direccionDada == "down"){
-            return abajo 
-        } else if (direccionDada == "right"){
-            return derecha
-        } else {return izquierda}
-    }*/
+    method puedeMoverseA(nuevaDireccion){
+      return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+  }
 }
 
-/*object pocionVida {
-    const personaje = martina
-    var property position = game.at(8,8)
-    method image(){
-        return "pocion.png" //es de prueba
-    }
-    method interactuarConMartina(){
-        personaje.incrementarEnUnoVidasDeMartina()
-        game.removeVisual(self)
-    }
-    
-    method interactuarCon(pj){
-        pj.incrementarEnUnoVidasDeMartina()
-        
-    }
-    
-}
-*/
+
 
 const pocion1 = new PocionVida(position = game.at(4,6))
 class PocionVida{

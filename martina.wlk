@@ -1,10 +1,12 @@
 import escenario.*
+import  extras.*
 
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina = ""
   var property cantDeVidas = 3
-  var property mochila = []
+  var property inventario = []
+  const property ultimaDireccion = arriba
 /* Al mover el escenario a un WKO, se perdio la referencia global, ahora los enemigos y el pj
 guardan en variables el nivel donde se encuentran, y todos los objetos con los que pueden colisionar*/
   var property nivel = nivel1
@@ -34,11 +36,14 @@ guardan en variables el nivel donde se encuentran, y todos los objetos con los q
       self.position(nuevaDireccion)
     }
   }
-  //CAMBIA EL PNG 
-  method direccionDeMartina(_direccion){
-    estadoDeMartina = _direccion.name()
+  method disparar(){
+    if(self.verificarQueTiene_EnElInventario(arco)){
+      const flecha = new Flecha(position = self.position(),direccion= self.ultimaDireccion())
+      flechas.lista().add(flecha)
+      game.onTick(800, "DispararFlecha", {flechas.lista().forEach({flecha => flecha.arrojarse()})})
+    }
   }
-  
+  //VALIDACIONES
   method hayMuroEn(nuevaDireccion){
     return murosNivel.any({muro => muro.position() == nuevaDireccion})
   }
@@ -47,6 +52,9 @@ guardan en variables el nivel donde se encuentran, y todos los objetos con los q
   }
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+  }
+  method verificarQueTiene_EnElInventario(cosa){
+    return self.inventario().contains(cosa)
   }
 }
 object config{
@@ -68,6 +76,7 @@ object derecha{
     if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
       pj.position(self.siguientePosicion(pj.position()))
       pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
     }
   }
   method siguientePosicion(posicion){
@@ -84,6 +93,7 @@ object izquierda{
     if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
       pj.position(self.siguientePosicion(pj.position()))
       pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
     }
   }
   method siguientePosicion(posicion){
@@ -98,6 +108,7 @@ object arriba{
     if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
       pj.position(self.siguientePosicion(pj.position()))
       pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
     }
   }
   method siguientePosicion(posicion){
@@ -112,6 +123,7 @@ object abajo{
     if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
       pj.position(self.siguientePosicion(pj.position()))
       pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
     }
   }
   method siguientePosicion(posicion){
