@@ -83,6 +83,7 @@ object nivel1{
         game.addVisual(muro)
     })
     //OBJETOS DEL ESCENARIO
+    
     obstaculosACrear.times({i =>
         const barril = new Obstaculo(image ="barril.png")
         obstaculos.add(barril)
@@ -98,10 +99,12 @@ object nivel1{
         trampas.add(trampa)
         game.addVisual(trampa)
     })
+    
     //TICKS 
     game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
     game.onTick(800, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    game.onTick(800, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})

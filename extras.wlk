@@ -11,14 +11,16 @@ object cofre{
   method interactuarCon(personaje){
     self.image("cofre-abierto.png") /*cambiar a WKO, si no sabes como hacerlo te lo explico
                                     tambien cambia el cofre a una clase con la posicion randomizada*/
-    martina.mochila().add(arco)
+    martina.inventario().add(arco)
     self.contenido().clear()
   }
 }
+
+
 object arco{
     method dispararFlecha(){
       // validacion si martina tiene el arco
-    if (!martina.mochila().null()){
+    if (!martina.inventario().null()){
         game.addVisual(Flecha)
       // hacer un boton que dispare, agregar el visual, y que se instancie con la posicion y direccion de martina
       
@@ -36,9 +38,20 @@ object arco{
     }
   }
 
+
 }
+
+
 object flechas{
-  const property lista= [] /* todas las flechas en el juego
+  const property lista= []
+  method moverFlechas(){
+    lista.forEach({flecha => flecha.arrojarse()})
+
+  }
+  method agregar(flecha){
+    lista.add(flecha)
+    game.addVisual(flecha)
+  } /* todas las flechas en el juego
   /*que el tick se haga sobre este objeto flechas*/
 
 }
@@ -52,11 +65,11 @@ class Flecha {
         return "flecha.png"
     }
     method arrojarse(){
-        if(self.puedeMoverseA(direccion.siguientePosicion(self.position()))){
-          self.position(direccion.siguientePosition(self.position()))  
-        } else {
-            game.removeVisual(Flecha)
-        }
+        //self.puedeMoverseA(direccion.siguientePosicion(self.position()))
+          self.position(direccion.siguientePosicion(self.position()))  
+      //  } else {
+       //     game.removeVisual(Flecha)
+     //   }
         
     }
     

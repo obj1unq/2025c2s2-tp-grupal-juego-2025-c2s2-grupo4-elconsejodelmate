@@ -5,8 +5,8 @@ object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina = ""
   var property cantDeVidas = 3
-  var property inventario = []
-  const property ultimaDireccion = arriba
+  var property inventario = [arco]
+  var property ultimaDireccion = arriba
 /* Al mover el escenario a un WKO, se perdio la referencia global, ahora los enemigos y el pj
 guardan en variables el nivel donde se encuentran, y todos los objetos con los que pueden colisionar*/
   var property nivel = nivel1
@@ -39,10 +39,12 @@ guardan en variables el nivel donde se encuentran, y todos los objetos con los q
   method disparar(){
     if(self.verificarQueTiene_EnElInventario(arco)){
       const flecha = new Flecha(position = self.position(),direccion= self.ultimaDireccion())
-      flechas.lista().add(flecha)
-      game.onTick(800, "DispararFlecha", {flechas.lista().forEach({flecha => flecha.arrojarse()})})
+      flechas.agregar(flecha)
+      
     }
   }
+
+
   //VALIDACIONES
   method hayMuroEn(nuevaDireccion){
     return murosNivel.any({muro => muro.position() == nuevaDireccion})
@@ -62,8 +64,9 @@ object config{
     keyboard.w().onPressDo({arriba.mover(martina)})
     keyboard.a().onPressDo({izquierda.mover(martina)})
     keyboard.s().onPressDo({abajo.mover(martina)})
-   // keyboard.f().onPressDo({martina.dispararFlecha()})
     keyboard.d().onPressDo({derecha.mover(martina)})
+    keyboard.f().onPressDo({martina.disparar()})
+   
 
                             
   }
