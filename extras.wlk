@@ -16,10 +16,12 @@ object cofre{
   }
 }
 object arco{
-    method dispararFlechas(){
-    if (!martina.mochila.null()){
+    method dispararFlecha(){
+      // validacion si martina tiene el arco
+    if (!martina.mochila().null()){
         game.addVisual(Flecha)
-      game.onTick(800, "DispararFlechasConArcoEquipado", {new Flecha().arrojarse()})
+      // hacer un boton que dispare, agregar el visual, y que se instancie con la posicion y direccion de martina
+      game.onTick(800, "DispararFlecha", {flechas.lista().arrojarse()})
       /*esto deberia ser una subtarea de la que se encarga martina; ejemplo disparar, mi idea era hacer
       que el proyectil recorra x cant de celdas y si no colisiona con nada desaparece
       Lo del proyectil podria calcularse en una var dentro del method arrojarse, que si llega por ej 
@@ -35,7 +37,12 @@ object arco{
   }
 
 }
+object flechas{
+  var lista= [] /* todas las flechas en el juego
+  /*que el tick se haga sobre este objeto flechas*/
+}
 class Flecha {
+  // pasar la posicion y la direccion cuando creo la inicializacion del new flecha
     var property position = martina.position()
     var property direccion = martina.estadoDeMartina()
     var property murosNivel = nivel1.obtenerMuros()

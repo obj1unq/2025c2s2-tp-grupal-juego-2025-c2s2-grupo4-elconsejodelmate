@@ -2,7 +2,7 @@ import martina.*
 import escenario.*
 object enemigo1{
     var property position = game.at(2,2)
-    var property direccion = derecha
+    var property direccion = derechaEnemigo
     var property murosNivel = nivel1.obtenerMuros()
 
     method image(){
@@ -10,7 +10,7 @@ object enemigo1{
     }
     //randomizer de movimiento 
     method cambiarDireccion(){
-        direccion = [derecha,izquierda,abajo,arriba].anyOne()
+        direccion = [derechaEnemigo,izquierdaEnemigo,abajoEnemigo,arribaEnemigo].anyOne()
     }
     method avanzar(){
         if(!self.hayMuroEn(direccion.siguientePosition(position)))
@@ -70,9 +70,9 @@ object movimientoPersecutor {
        }
     }
 }
-object derecha {
+object derechaEnemigo {
     method name(){
-        return ""
+        return "-derecha"
     }
     method mover(enemigo){
         enemigo.position(self.siguientePosition(enemigo.position()))
@@ -82,7 +82,7 @@ object derecha {
     }
  
 }
-object izquierda {
+object izquierdaEnemigo {
     method name(){
         return ""
     }
@@ -93,7 +93,7 @@ object izquierda {
         return game.at(position.x()-1,position.y())
     }
 }
-object abajo {
+object abajoEnemigo {
     method name() {
         return ""
     }
@@ -104,7 +104,7 @@ object abajo {
         return game.at(position.x(),position.y()-1)
     }
 }
-object arriba {
+object arribaEnemigo {
    method name() {
         return "-derecha"
     }
