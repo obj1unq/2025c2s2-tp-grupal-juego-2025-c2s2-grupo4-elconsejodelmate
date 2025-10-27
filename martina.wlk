@@ -5,7 +5,7 @@ object martina {
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
 
-  var property nivel = nivel1
+  var property nivel = nivel0
   var property obstaculosNivel = nivel.obtenerObstaculos()
   var property murosNivel = nivel.obtenerMuros()
 

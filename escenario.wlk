@@ -2,7 +2,7 @@ import martina.*
 import enemigos.*
 import extras.*
 
-object siguienteNivel{
+/*object siguienteNivel{
   const listaDeNiveles = [nivel0, nivel1, nivel2, nivel4]
 
   var property nivelActual = nivel0 
@@ -11,9 +11,9 @@ object siguienteNivel{
   method cambiarNivel(){
     index = index + 1 
     nivelActual = listaDeNiveles.get(index)
-    
+
   }
-}
+}*/
 
 
 
@@ -35,6 +35,9 @@ object nivel0{
   method obtenerTrmpas(){
     return trampas 
   }
+  const enemigosPatrulla = []
+  const enemigosPerseguidores = []
+
   method iniciar(){
 
   //INSTANCIAS 
@@ -44,9 +47,7 @@ object nivel0{
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
-  //VISUALS 
-    game.addVisual(enemigo1)
-    game.addVisual(enemigo2)
+
   //SUELO 
     game.ground("suelo.png")
 
@@ -107,10 +108,22 @@ object nivel0{
         trampas.add(trampa)
         game.addVisual(trampa)
     })
+    //ENEMIGOS 
+    enemigosACrear.times({i => 
+        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
+        game.addVisual(enemigo)
+        enemigosPatrulla.add(enemigo)
+    })
+    enemigosACrear.times({i => 
+        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
+        game.addVisual(enemigo)
+        enemigosPerseguidores.add(enemigo)
+    })
+   
     //TICKS 
-    game.onTick(800, "movimientoEnemigo", {enemigo1.avanzar()})
-    game.onTick(6000, "cambioDireccionEnemigo", {enemigo1.cambiarDireccion()})
-    game.onTick(800, "perseguirAMartina", {enemigo2.perseguir(martina)})
+    game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
+    game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
@@ -142,14 +155,14 @@ class Cofre{
   var property contenido = []
   //se modelaran WKO para los estados del cofre 
 }
-class Puerta{
+/*class Puerta{
   var property position 
   var property image 
 
   method interactuarCon(pj){
     siguienteNivel.cambiarNivel()
   }
-}
+}*/
 
 
 
