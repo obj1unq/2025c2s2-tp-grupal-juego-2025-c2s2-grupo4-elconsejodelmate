@@ -1,9 +1,10 @@
 import escenario.*
-
+import extras.*
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
+  var property ultimaDireccion = arriba 
 
   var property nivel = nivel0
   var property obstaculosNivel = nivel.obtenerObstaculos()
@@ -31,9 +32,10 @@ object martina {
       self.position(nuevaDireccion)
     }
   }
-  //CAMBIA EL PNG 
-  method direccionDeMartina(direccion){
-    estadoDeMartina = direccion
+
+  method disparar(){
+    const flecha = new Flecha(position = self.position(),direccion= self.ultimaDireccion())
+    flechas.agregar(flecha)
   }
   
   method hayMuroEn(nuevaDireccion){
@@ -48,14 +50,72 @@ object martina {
 }
 object config{
   method configTeclas(){
-    keyboard.w().onPressDo({martina.moverA(martina.position().up(1))
-                              martina.direccionDeMartina("")})
-    keyboard.a().onPressDo({martina.moverA(martina.position().left(1))
-                            martina.direccionDeMartina("")})
-    keyboard.s().onPressDo({martina.moverA(martina.position().down(1))
-                            martina.direccionDeMartina("")})
-    keyboard.d().onPressDo({martina.moverA(martina.position().right(1))
-                            martina.direccionDeMartina("-derecha")})
-                            
+    keyboard.w().onPressDo({arriba.mover(martina)})
+    keyboard.a().onPressDo({izquierda.mover(martina)})
+    keyboard.s().onPressDo({abajo.mover(martina)})
+    keyboard.d().onPressDo({derecha.mover(martina)})
+    keyboard.f().onPressDo({martina.disparar()})
+  }
+}
+object derecha{
+  method name(){
+    return "-derecha"
+  }
+  method mover(pj){
+    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
+      pj.position(self.siguientePosicion(pj.position()))
+      pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
+    }
+  }
+  method siguientePosicion(posicion){
+    return game.at(posicion.x() + 1 , posicion.y())
+  }
+   
+    
+}
+object izquierda{
+  method name(){
+    return ""
+  }
+  method mover(pj){
+    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
+      pj.position(self.siguientePosicion(pj.position()))
+      pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
+    }
+  }
+  method siguientePosicion(posicion){
+    return game.at(posicion.x() - 1 , posicion.y())
+  }
+}
+object arriba{
+  method name(){
+    return ""
+  }
+  method mover(pj){
+    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
+      pj.position(self.siguientePosicion(pj.position()))
+      pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
+    }
+  }
+  method siguientePosicion(posicion){
+    return game.at(posicion.x(), posicion.y() + 1)
+  }
+}
+object abajo{
+  method name(){
+    return ""
+  }
+  method mover(pj){
+    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
+      pj.position(self.siguientePosicion(pj.position()))
+      pj.estadoDeMartina(self.name()) 
+      pj.ultimaDireccion(self)
+    }
+  }
+  method siguientePosicion(posicion){
+    return game.at(posicion.x(), posicion.y() -1)
   }
 }
