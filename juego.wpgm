@@ -8,7 +8,7 @@ program catastrofico{
     game.width(15)
     game.cellSize(32)
     game.title("Cat-astrofico")
- 
-    nivel1.iniciar()
+    
+    nivel0.iniciar()
     game.start()
 }

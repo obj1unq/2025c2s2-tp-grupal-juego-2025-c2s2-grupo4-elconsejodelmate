@@ -1,6 +1,28 @@
 import martina.*
 import enemigos.*
-object nivel1{
+import extras.*
+
+object siguienteNivel{
+  const listaDeNiveles = [nivel0, nivel1, nivel2, nivel4]
+
+  var property nivelActual = nivel0 
+  var property index = 0 // se va a usar para recorrer la lista con la funcion get 
+
+  method cambiarNivel(){
+    index = index + 1 
+    nivelActual = listaDeNiveles.get(index)
+    
+  }
+}
+
+
+
+
+
+
+
+object nivel0{
+
   const muros = []
   method obtenerMuros(){
     return muros
@@ -14,18 +36,11 @@ object nivel1{
     return trampas 
   }
   method iniciar(){
-  /*se va a agregar una const, entre 0 y 10 para determinar la cantidad de instancias que se 
-  van a crear 
-  Para los enemigos, se eligira un numero entre 1 y 3
-  Para los obstaculos, se elegira un numero entre 5 y 10
-  */
-  
-  //ARRAYS
 
   //INSTANCIAS 
   const enemigosACrear = 1.randomUpTo(3)
-  const obstaculosACrear = 5.randomUpTo(10)
-  const trampasACrear = 0.randomUpTo(15)
+  const obstaculosACrear = 1.randomUpTo(3)
+  const trampasACrear = 1.randomUpTo(3)
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
@@ -78,17 +93,17 @@ object nivel1{
     })
     //OBJETOS DEL ESCENARIO
     obstaculosACrear.times({i =>
-        const barril = new Obstaculo(image ="barril.png")
+        const barril = new Obstaculo(image ="barril.png", position = randomizer.emptyPosition())
         obstaculos.add(barril)
         game.addVisual(barril)
     })
     obstaculosACrear.times({i =>
-        const ataud = new Obstaculo(image = "ataud.png")
+        const ataud = new Obstaculo(image = "ataud.png", position = randomizer.emptyPosition())
         obstaculos.add(ataud)
         game.addVisual(ataud)
     })
     obstaculosACrear.times({i =>
-        const trampa = new Trampa()
+        const trampa = new Trampa(position = randomizer.emptyPosition())
         trampas.add(trampa)
         game.addVisual(trampa)
     })
@@ -108,7 +123,7 @@ class Muro{
   var property image = "pared1.png"  
 }
 class Trampa{
-  var property position = game.at((1..13).anyOne(),(1..13).anyOne())
+  var property position 
   var property image = "trampa.png"
 
   method interactuarCon(pj){
@@ -117,7 +132,7 @@ class Trampa{
 }
 
 class Obstaculo{
-  var property position = game.at((1..13).anyOne(),(1..13).anyOne())
+  var property position 
   var property image 
   
 }
@@ -127,7 +142,14 @@ class Cofre{
   var property contenido = []
   //se modelaran WKO para los estados del cofre 
 }
+class Puerta{
+  var property position 
+  var property image 
 
+  method interactuarCon(pj){
+    siguienteNivel.cambiarNivel()
+  }
+}
 
 
 
