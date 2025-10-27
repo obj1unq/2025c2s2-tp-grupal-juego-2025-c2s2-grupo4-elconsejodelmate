@@ -16,9 +16,9 @@ class PocionVida{
 
 object flechas{
   const property lista= []
+  
   method moverFlechas(){
     lista.forEach({flecha => flecha.arrojarse()})
-
   }
   method agregar(flecha){
     lista.add(flecha)
@@ -31,16 +31,12 @@ class Flecha {
     var property direccion 
     var property murosNivel = nivel.obtenerMuros()
     var property obstaculosNivel = nivel.obtenerObstaculos()
+
     method image(){
         return "flecha.png"
     }
     method arrojarse(){
-        //self.puedeMoverseA(direccion.siguientePosicion(self.position()))
-          self.position(direccion.siguientePosicion(self.position()))  
-      //  } else {
-       //     game.removeVisual(Flecha)
-     //   }
-        
+      self.position(direccion.siguientePosicion(self.position()))         
     }
     
     method hayMuroEn(positionDestino){
@@ -53,11 +49,6 @@ class Flecha {
       return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
   }
 }
-
-
-
-
-
 //implementacion de randomizer para las posiciones 
 object randomizer{
 

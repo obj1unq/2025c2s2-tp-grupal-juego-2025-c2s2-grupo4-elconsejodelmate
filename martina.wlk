@@ -5,6 +5,7 @@ object martina {
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
   var property ultimaDireccion = arriba 
+  const property inventario = []
 
   var property nivel = nivel0
   var property obstaculosNivel = nivel.obtenerObstaculos()
@@ -26,13 +27,11 @@ object martina {
   method estaViva(){
     return self.cantDeVidas() > 0
   }
-  
   method moverA(nuevaDireccion){
     if(self.estaViva() && self.puedeMoverseA(nuevaDireccion)){
       self.position(nuevaDireccion)
     }
   }
-
   method disparar(){
     const flecha = new Flecha(position = self.position(),direccion= self.ultimaDireccion())
     flechas.agregar(flecha)
@@ -71,8 +70,6 @@ object derecha{
   method siguientePosicion(posicion){
     return game.at(posicion.x() + 1 , posicion.y())
   }
-   
-    
 }
 object izquierda{
   method name(){

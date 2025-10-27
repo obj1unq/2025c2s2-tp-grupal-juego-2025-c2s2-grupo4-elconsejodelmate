@@ -2,7 +2,7 @@ import martina.*
 import escenario.*
 
 class PlantillaEnemigo{
-    var property image  
+    var property image 
     var property position
     var property nivel 
     var property murosNivel = nivel.obtenerMuros() 
