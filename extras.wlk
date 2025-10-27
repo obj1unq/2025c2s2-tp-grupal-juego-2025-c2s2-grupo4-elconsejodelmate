@@ -1,47 +1,6 @@
 import enemigos.*
 import martina.*
-/*object proyectil {
-    var property position = martina.position()
-    var property direccion = self.nombre(martina.estadoDeMartina())
-    method image(){
-        return "martina-proyectil.png"
-    }
-    method arrojarse(){
-        if(!self.estaEnBorde(direccion.siguientePosition(position)))
-        self.position(direccion.siguientePosition(self.position()))
-    }
-    method estaEnBorde(positionDestino){
-		return positionDestino.x() == -1 || positionDestino.x() == 15 || positionDestino.y() == -1 || positionDestino.y() == 15
-    }
-    method nombre(direccionDada){
-        if (direccionDada == "up"){
-        return arriba}
-        else if (direccionDada == "down"){
-            return abajo 
-        } else if (direccionDada == "right"){
-            return derecha
-        } else {return izquierda}
-    }
-}*/
 
-/*object pocionVida {
-    const personaje = martina
-    var property position = game.at(8,8)
-    method image(){
-        return "pocion.png" //es de prueba
-    }
-    method interactuarConMartina(){
-        personaje.incrementarEnUnoVidasDeMartina()
-        game.removeVisual(self)
-    }
-    
-    method interactuarCon(pj){
-        pj.incrementarEnUnoVidasDeMartina()
-        
-    }
-    
-}
-*/
 
 const pocion1 = new PocionVida(position = game.at(4,6))
 class PocionVida{
@@ -53,4 +12,20 @@ class PocionVida{
         pj.incrementarEnUnoVidas()
         game.removeVisual(self)
     }
+}
+//implementacion de randomizer para las posiciones 
+object randomizer{
+
+  method position(){
+    return game.at((0..game.width() - 2).anyOne(), (0.. game.height() - 2).anyOne())
+  }
+  
+  method emptyPosition(){
+    const position = self.position()
+    if(game.getObjectsIn(position).isEmpty()){
+      return position 
+    }else{
+      return self.emptyPosition()
+    }
+  }
 }
