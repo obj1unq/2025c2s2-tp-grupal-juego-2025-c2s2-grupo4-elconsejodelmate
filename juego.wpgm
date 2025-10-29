@@ -12,3 +12,4 @@ program catastrofico{
     nivel0.iniciar()
     game.start()
 }
+

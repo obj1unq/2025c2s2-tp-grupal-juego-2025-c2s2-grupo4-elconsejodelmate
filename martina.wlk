@@ -46,6 +46,7 @@ object martina {
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
   }
+  
 }
 object config{
   method configTeclas(){

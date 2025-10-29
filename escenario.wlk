@@ -16,11 +16,6 @@ import extras.*
 }*/
 
 
-
-
-
-
-
 object nivel0{
 
   const muros = []
@@ -137,6 +132,9 @@ object nivel0{
 class Muro{
   var property position = game.origin()
   var property image = "pared1.png"  
+  method chocarCon(objeto){
+    game.removeVisual(objeto)
+  }
 }
 class Trampa{
   var property position 
@@ -145,11 +143,17 @@ class Trampa{
   method interactuarCon(pj){
     pj.decrementarEnUnoVidas()
   }
+  method chocarCon(objeto){
+    
+  }
 }
 
 class Obstaculo{
   var property position 
   var property image 
+  method chocarCon(objeto){
+    
+  }
   
 }
 class Cofre{
@@ -157,6 +161,9 @@ class Cofre{
   var property image = "cofre.png"  
   var property contenido = []
   //se modelaran WKO para los estados del cofre 
+  method chocarCon(objeto){
+    
+  }
 }
 /*class Puerta{
   var property position 

@@ -36,7 +36,8 @@ class Flecha {
         return "flecha.png"
     }
     method arrojarse(){
-      self.position(direccion.siguientePosicion(self.position()))         
+      self.position(direccion.siguientePosicion(self.position()))    
+      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)}))     
     }
     
     method hayMuroEn(positionDestino){
@@ -47,6 +48,9 @@ class Flecha {
     }
     method puedeMoverseA(nuevaDireccion){
       return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+  }
+  method interactuarCon(pj){
+
   }
 }
 //implementacion de randomizer para las posiciones 

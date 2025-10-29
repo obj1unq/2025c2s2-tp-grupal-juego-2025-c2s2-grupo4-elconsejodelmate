@@ -14,6 +14,10 @@ class PlantillaEnemigo{
     method hayMuroEn(positionDestino){
       return(murosNivel.any({muro => muro.position() == positionDestino}))
     }
+    method chocarCon(objeto) {
+      game.removeVisual(self)
+      game.removeVisual(objeto)
+    }
 }
 class EnemigoPatrulla inherits PlantillaEnemigo{
 
