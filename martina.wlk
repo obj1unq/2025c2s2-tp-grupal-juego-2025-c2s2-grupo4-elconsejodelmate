@@ -16,14 +16,20 @@ object martina {
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
   }
   method decrementarEnUnoVidas(){
-    cantDeVidas = cantDeVidas -1
+    cantDeVidas = (cantDeVidas -1).max(0)
+    self.estaMuerta()
   }
   method image(){
     return "martina" + estadoDeMartina + ".png"
   }
   method estaMuerta(){
-    return self.cantDeVidas() <= 0
+    if( self.cantDeVidas() == 0 ){
+      game.addVisual(cartelDeMuerte)
+      
+      //Preguntar como resetear el nivel con una tecla :P intente llamando al nivel0.inicio en un press do pero nop
+    }
   }
+  
   // que el juego termine en decrementarEnUnoVidasDeMartina
   method estaViva(){
     return self.cantDeVidas() > 0
