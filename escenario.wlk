@@ -38,9 +38,11 @@ object nivel0{
   method iniciar(){
 
   //INSTANCIAS 
-  const enemigosACrear = 1.randomUpTo(3)
-  const obstaculosACrear = 1.randomUpTo(3)
-  const trampasACrear = 1.randomUpTo(3)
+  // se van a setear en 0 para probar las nuevas features 
+  const enemigosACrear = 0//1.randomUpTo(3)
+  const obstaculosACrear = 0//1.randomUpTo(3)
+  const trampasACrear = 1 // solo creo una para testear una funcionalidad de pocion //1.randomUpTo(3)
+  
   //PERSONAJE
   game.addVisual(martina)
   config.configTeclas()
@@ -91,16 +93,16 @@ object nivel0{
     })
     //OBJETOS DEL ESCENARIO
     obstaculosACrear.times({i =>
-        const barril = new Obstaculo(image ="barril.png", position = randomizer.emptyPosition())
+        const barril = new Barril(position = randomizer.emptyPosition())
         obstaculos.add(barril)
         game.addVisual(barril)
     })
     obstaculosACrear.times({i =>
-        const ataud = new Obstaculo(image = "ataud.png", position = randomizer.emptyPosition())
+        const ataud = new Ataud(position = randomizer.emptyPosition())
         obstaculos.add(ataud)
         game.addVisual(ataud)
     })
-    obstaculosACrear.times({i =>
+    trampasACrear.times({i =>
         const trampa = new Trampa(position = randomizer.emptyPosition())
         trampas.add(trampa)
         game.addVisual(trampa)
@@ -116,6 +118,11 @@ object nivel0{
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
     })
+    const llave = new Llave(position = randomizer.emptyPosition())
+    game.addVisual(llave)
+    const cofre = new Cofre(position = randomizer.emptyPosition())
+    game.addVisual(cofre)
+   
    
     //TICKS 
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
@@ -123,11 +130,11 @@ object nivel0{
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
     game.onTick(800, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
-     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
-                      game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
+                     // game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+  
   }
 }
-
 
 class Muro{
   var property position = game.origin()
@@ -142,6 +149,8 @@ class Trampa{
 
   method interactuarCon(pj){
     pj.decrementarEnUnoVidas()
+    game.say(pj,"tengo "+ martina.cantDeVidas() + " vidas")
+  
   }
   method chocarCon(objeto){
     
@@ -149,20 +158,77 @@ class Trampa{
 }
 
 class Obstaculo{
-  var property position 
-  var property image 
+  var property position  
+  method image()
+  method chocarCon(objeto){
+    game.removeVisual(objeto)
+  }
+}
+class Ataud inherits Obstaculo{
+  override method image(){
+    return "ataud.png"
+  }
+}
+class Barril inherits Obstaculo{
+  override method image(){
+    return "barril.png"
+  }
+}
+
+class Cofre{
+  var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea  
+  const property poolDeObjetos = []
+  var property estado = cofreCerrado  
+
+  method image(){
+    return estado.image()
+  }
+  method abrir(){
+    estado = estado.siguienteEstado()
+  }
+
+  method inicializarPoolObjetos(){
+    //puedo inicializarlo y añadirlo directamente?
+    //poolDeObjetos.add(new PocionVida())
+    const pocionVida = new PocionVida(position = self.position())
+    const pocionVenenosa = new PocionVenenosa(position = self.position())
+    const anillo = new Anillo(position = self.position())
+    const collar = new Collar(position = self.position())
+    const llave = new Llave(position = self.position())
+    poolDeObjetos.add(pocionVida)
+    poolDeObjetos.add(pocionVenenosa)
+    poolDeObjetos.add(anillo)
+    poolDeObjetos.add(collar)
+    poolDeObjetos.add(llave)
+  }
+  method seleccionarObjeto(listaDeObjetos){
+    return poolDeObjetos.anyOne()
+  }
+  method interactuarCon(pj){
+    if(estado == cofreCerrado){ //preguntar si esto se puede mejorar 
+        self.inicializarPoolObjetos()
+        self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
+        self.abrir()
+    }
+  }
   method chocarCon(objeto){
     
   }
-  
 }
-class Cofre{
-  var property position = game.at(6,9)
-  var property image = "cofre.png"  
-  var property contenido = []
-  //se modelaran WKO para los estados del cofre 
-  method chocarCon(objeto){
-    
+object cofreCerrado{
+  method image(){
+    return "cofre.png"
+  }
+  method siguienteEstado(){
+    return cofreAbierto
+  }
+}
+object cofreAbierto{
+  method image(){
+    return "cofre-abierto.png"
+  }
+  method siguienteEstado(){
+    return self 
   }
 }
 /*class Puerta{
