@@ -61,11 +61,70 @@ class Flecha {
 
 class ObjetoRecolectable{
   method image()
-  method position()
+
+  method position(){
+    return randomizer.emptyPosition()
+  }
   method interactuarCon(pj)
 }
 class PocionVida inherits ObjetoRecolectable{
   override method image(){
     return "pocion.png"
+  }
+  override method interactuarCon(pj){
+    if(pj.cantDeVidas() == 3){
+      pj.añadirAlInventario(self)
+    }else{
+      pj.incrementarEnUnoVidas()
+    }
+  }
+}
+class PocionVenenosa inherits ObjetoRecolectable{
+  override method image(){
+    return "pocion-venenosa.png"
+  }
+  override method interactuarCon(pj){
+    pj.decrementarEnUnoVidas()
+  }
+}
+// a implementar mas tarde, solo para molestar jeje 
+class PocionInvisibilidad inherits ObjetoRecolectable{
+  override method image(){
+    return "pocion-invisibilidad.png"
+  }
+ /* override method interactuarCon(pj){
+    game.schedule(5000, game.removeVisual(pj))
+  }*/ 
+}
+class Llave inherits ObjetoRecolectable{
+  override method image(){
+    return "llave.png"
+  }
+  override method interactuarCon(pj){
+    pj.añadirAlInventario(self)
+    game.removeVisual(self)
+  }
+}
+class Joya inherits ObjetoRecolectable{
+  method puntos()
+  override method interactuarCon(pj){
+    pj.sumarPuntuacionDe(self)
+    game.removeVisual(self)
+  }
+}
+class Anillo inherits Joya{
+  override method puntos(){
+    return 50 
+  }
+  override method image(){
+    return "anillo.png"
+  }
+}
+class Collar inherits Joya{
+  override method puntos(){
+    return 100 
+  }
+  override method image(){
+    return "collar.png"
   }
 }

@@ -91,12 +91,12 @@ object nivel0{
     })
     //OBJETOS DEL ESCENARIO
     obstaculosACrear.times({i =>
-        const barril = new Obstaculo(image ="barril.png", position = randomizer.emptyPosition())
+        const barril = new Barril(position = randomizer.emptyPosition())
         obstaculos.add(barril)
         game.addVisual(barril)
     })
     obstaculosACrear.times({i =>
-        const ataud = new Obstaculo(image = "ataud.png", position = randomizer.emptyPosition())
+        const ataud = new Ataud(position = randomizer.emptyPosition())
         obstaculos.add(ataud)
         game.addVisual(ataud)
     })
@@ -149,21 +149,70 @@ class Trampa{
 }
 
 class Obstaculo{
-  var property position 
-  var property image 
+  var property position  
+  method image()
   method chocarCon(objeto){
-    
+
   }
-  
 }
+class Ataud inherits Obstaculo{
+  override method image(){
+    return "ataud.png"
+  }
+}
+class Barril inherits Obstaculo{
+  override method image(){
+    return "barril.png"
+  }
+}
+
 class Cofre{
-  var property position = game.at(6,9)
-  var property image = "cofre.png"  
-  var property contenido = []
-  //se modelaran WKO para los estados del cofre 
+  var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea 
+  var property image = estado.image()  
+  var property poolDeObjetos = []
+  var property estado = cofreCerrado  
+
+  method inicializarPoolObjetos(){
+    //puedo inicializarlo y añadirlo directamente?
+    //poolDeObjetos.add(new PocionVida())
+    const pocionVida = new PocionVida()
+    const pocionVenenosa = new PocionVenenosa()
+    const anillo = new Anillo()
+    const collar = new Collar()
+    const llave = new Llave()
+    poolDeObjetos.add(pocionVida)
+    poolDeObjetos.add(pocionVenenosa)
+    poolDeObjetos.add(anillo)
+    poolDeObjetos.add(collar)
+    poolDeObjetos.add(llave)
+  }
+  method seleccionarObjeto(listaDeObjetos){
+    return poolDeObjetos.anyOne()
+  }
+  method interactuarCon(pj){
+    self.inicializarPoolObjetos()
+    pj.añadirAlInventario(self.seleccionarObjeto(poolDeObjetos))
+  }
   method chocarCon(objeto){
     
   }
+}
+object cofreCerrado{
+  method image(){
+    return "cofre.png"
+  }
+  method siguienteEstado(){
+    return cofreAbierto
+  }
+}
+object cofreAbierto{
+  method image(){
+    return "cofre-abierto.png"
+  }
+  /*esto en caso de que pueda llegar a romper
+  method siguienteEstado(){
+    return self 
+  }*/
 }
 /*class Puerta{
   var property position 
