@@ -60,11 +60,8 @@ class Flecha {
 }
 
 class ObjetoRecolectable{
+  const property position  
   method image()
-
-  method position(){
-    return randomizer.emptyPosition()
-  }
   method interactuarCon(pj)
 }
 class PocionVida inherits ObjetoRecolectable{
@@ -74,8 +71,10 @@ class PocionVida inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     if(pj.cantDeVidas() == 3){
       pj.añadirAlInventario(self)
+      game.say(pj, "obtuve " + self)
     }else{
       pj.incrementarEnUnoVidas()
+      game.say(pj, "tengo " + pj.cantDeVidas() + "vidas")
     }
   }
 }
@@ -85,6 +84,7 @@ class PocionVenenosa inherits ObjetoRecolectable{
   }
   override method interactuarCon(pj){
     pj.decrementarEnUnoVidas()
+    game.say(pj, "tengo " + pj.cantDeVidas() + "vidas")
   }
 }
 // a implementar mas tarde, solo para molestar jeje 
@@ -103,6 +103,7 @@ class Llave inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     pj.añadirAlInventario(self)
     game.removeVisual(self)
+    game.say(pj, "obtuve " + self)
   }
 }
 class Joya inherits ObjetoRecolectable{
@@ -110,6 +111,7 @@ class Joya inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     pj.sumarPuntuacionDe(self)
     game.removeVisual(self)
+    game.say(pj, "obtuve " + self)
   }
 }
 class Anillo inherits Joya{

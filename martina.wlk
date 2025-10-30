@@ -6,6 +6,7 @@ object martina {
   var property cantDeVidas = 3
   var property ultimaDireccion = arriba 
   const property inventario = []
+  var property puntos = 0 
 
   var property nivel = nivel0
   var property obstaculosNivel = nivel.obtenerObstaculos()
@@ -45,6 +46,16 @@ object martina {
   }
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+  }
+  method añadirAlInventario(objeto){
+    inventario.add(objeto)
+    game.say(self, "Añadi al inventario " + objeto)
+  }
+  method sumarPuntuacionDe(objeto){
+    puntos = puntos + objeto.puntos()
+  }
+  method tieneObjeto(objeto){
+    return inventario.contains(objeto)
   }
   
 }
