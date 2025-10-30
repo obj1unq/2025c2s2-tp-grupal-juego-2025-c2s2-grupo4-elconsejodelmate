@@ -87,15 +87,15 @@ class PocionVenenosa inherits ObjetoRecolectable{
     game.say(pj, "tengo " + pj.cantDeVidas() + "vidas")
   }
 }
-// a implementar mas tarde, solo para molestar jeje 
+/* a implementar mas tarde, solo para molestar jeje 
 class PocionInvisibilidad inherits ObjetoRecolectable{
   override method image(){
     return "pocion-invisibilidad.png"
   }
- /* override method interactuarCon(pj){
+   override method interactuarCon(pj){
     game.schedule(5000, game.removeVisual(pj))
-  }*/ 
-}
+  }
+}*/
 class Llave inherits ObjetoRecolectable{
   override method image(){
     return "llave.png"

@@ -38,10 +38,11 @@ object nivel0{
   method iniciar(){
 
   //INSTANCIAS 
-  // se van a setear en 0 para probar las nuevas features 
-  const enemigosACrear = 0//1.randomUpTo(3)
-  const obstaculosACrear = 0//1.randomUpTo(3)
-  const trampasACrear = 1 // solo creo una para testear una funcionalidad de pocion //1.randomUpTo(3)
+ 
+  const enemigosACrear = 1.randomUpTo(3)
+  const obstaculosACrear = 1.randomUpTo(3)
+  const trampasACrear = 1.randomUpTo(3)
+  const cofresACrear = 1.randomUpTo(3)
   
   //PERSONAJE
   game.addVisual(martina)
@@ -118,10 +119,10 @@ object nivel0{
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
     })
-    const llave = new Llave(position = randomizer.emptyPosition())
-    game.addVisual(llave)
-    const cofre = new Cofre(position = randomizer.emptyPosition())
-    game.addVisual(cofre)
+    cofresACrear.times({i => 
+        const cofre = new Cofre(position = randomizer.emptyPosition())
+        game.addVisual(cofre)
+    })
    
    
     //TICKS 

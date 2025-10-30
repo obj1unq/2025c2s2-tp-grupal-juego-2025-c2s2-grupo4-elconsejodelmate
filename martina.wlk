@@ -57,6 +57,10 @@ object martina {
   method tieneObjeto(objeto){
     return inventario.contains(objeto)
   }
+  //falto agregarle el chocar al pj
+  method chocarCon(objeto){
+
+  }
   
 }
 object config{
