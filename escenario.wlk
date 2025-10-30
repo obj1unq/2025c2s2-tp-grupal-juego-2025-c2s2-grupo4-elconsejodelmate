@@ -131,9 +131,34 @@ object nivel0{
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
     game.onTick(800, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
-     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
-                     // game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
+                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
   
+  }
+}
+object cartelDeMuerte{
+  var property position = game.center()
+  method image(){
+    return "cartelMuerte.png"
+  }
+}
+
+object barraDeVidas{
+  var property position = game.at(12,14)
+  
+  method image(){
+    return "corazon" + self.vidasDe(martina) + ".png"
+  }
+  method vidasDe(personaje){
+    return personaje.cantDeVidas()
+  }
+}
+
+object cartelDePuntos{
+  method text() = "" + martina.puntos()
+  var property position = game.at(1,14)
+  method textColor(){
+    return "FFFFFFFF"
   }
 }
 
@@ -205,6 +230,7 @@ class Cofre{
   method seleccionarObjeto(listaDeObjetos){
     return poolDeObjetos.anyOne()
   }
+
   method interactuarCon(pj){
     if(estado == cofreCerrado){ //preguntar si esto se puede mejorar 
         self.inicializarPoolObjetos()

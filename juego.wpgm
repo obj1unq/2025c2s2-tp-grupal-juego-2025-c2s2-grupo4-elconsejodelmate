@@ -8,9 +8,11 @@ program catastrofico{
     game.width(15)
     game.cellSize(32)
     game.title("Cat-astrofico")
-    
+   
     
     nivel0.iniciar()
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
     game.start()
 }
 
