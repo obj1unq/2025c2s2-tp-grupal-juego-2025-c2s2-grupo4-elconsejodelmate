@@ -129,7 +129,7 @@ object nivel0{
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
     game.onTick(6000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
-    game.onTick(800, "DispararFlecha", {flechas.moverFlechas()})
+    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
                      // game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
