@@ -16,6 +16,7 @@ import extras.*
 }*/
 
 
+
 object nivel0{
 
   const muros = []
@@ -232,14 +233,15 @@ object cofreAbierto{
     return self 
   }
 }
-/*class Puerta{
+class Puerta{
   var property position 
   var property image 
+  var property nivelAIniciar
 
   method interactuarCon(pj){
-    siguienteNivel.cambiarNivel()
+    nivelAIniciar.iniciar()
   }
-}*/
+}
 
 
 
