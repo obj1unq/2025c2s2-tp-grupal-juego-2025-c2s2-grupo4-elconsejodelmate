@@ -152,7 +152,7 @@ class Obstaculo{
   var property position  
   method image()
   method chocarCon(objeto){
-
+    game.removeVisual(objeto)
   }
 }
 class Ataud inherits Obstaculo{
