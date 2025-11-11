@@ -4,7 +4,7 @@ import escenario.*
 class PlantillaEnemigo{
     var property image 
     var property position
-    var property nivel 
+    var property nivel = nivelInicial
     var property murosNivel = nivel.obtenerMuros() 
     var property direccion = derechaEnemigo
     
@@ -36,7 +36,7 @@ class EnemigoPerseguidor inherits PlantillaEnemigo{
     }
 }
 object movimientoPersecutor {
-    var property nivel = nivel0
+    var property nivel = nivelInicial
     var property murosNivel = nivel.obtenerMuros()
 
     method hayMuroEn(positionDestino){

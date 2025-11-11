@@ -8,8 +8,8 @@ object martina {
   const property inventario = []
   var property puntos = 0 
 
-  var property nivel = nivel0
-  var property obstaculosNivel = nivel.obtenerObstaculos()
+  var property nivel = nivelInicial
+  var obstaculosNivel = nivel.obtenerObstaculos()
   var property murosNivel = nivel.obtenerMuros()
 
   method incrementarEnUnoVidas(){

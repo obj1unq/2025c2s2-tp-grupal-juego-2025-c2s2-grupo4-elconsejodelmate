@@ -15,6 +15,156 @@ import extras.*
   }
 }*/
 
+object nivelInicial{
+
+  const muro = m
+  const ataud = a
+  const barril = b
+  const cofre = c
+  const nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, v],
+                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()
+  
+  method iniciar(){
+    game.ground("suelo.png")
+    self.construir()
+    self.enemigos()
+    self.martina()
+  }
+
+  method construir() {
+      game.height(nivel.size())
+      game.width(nivel.get(0).size())
+
+      (0 .. game.width() - 1).forEach({ x =>
+          (0 .. game.height() - 1).forEach({ y =>
+              nivel.get(y).get(x).dibujar(game.at(x, y))
+          })
+      })
+  }
+
+  method obtenerMuros(){
+    return muro.listaDeMuros()
+  }
+
+  method obtenerObstaculos(){
+    return ataud.listaDeAtaudes() + barril.listaDeBarriles()
+  }
+
+
+  method martina(){
+    game.addVisual(martina)
+    config.configTeclas()
+    //TICKS
+    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
+    //COLISIONES 
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
+                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+  }
+
+  method enemigos(){
+    const enemigosACrear = 1.randomUpTo(3)
+    const enemigosPatrulla = []
+    const enemigosPerseguidores = []  
+    enemigosACrear.times({i => 
+        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
+        game.addVisual(enemigo)
+        enemigosPatrulla.add(enemigo)
+    })
+    enemigosACrear.times({i => 
+        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
+        game.addVisual(enemigo)
+        enemigosPerseguidores.add(enemigo)
+    })
+    //Ticks
+    game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
+    game.onTick(6000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
+    game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
+  }
+
+  
+}
+
+object c {
+  const cofres = []
+  method dibujar(posicion){
+    const cofre = new Cofre(position = posicion)
+    game.addVisual(cofre)
+    cofres.add(cofre)
+  }
+  method listaDeCofres(){
+    return cofres
+  }
+}
+
+object b{
+  const barriles = []
+  method dibujar(posicion){
+    const barril = new Barril(position = posicion)
+    game.addVisual(barril)
+    barriles.add(barril)
+  }
+  method listaDeBarriles(){
+    return barriles
+  }
+}
+
+object a{
+  const ataudes= []
+  method dibujar(posicion){
+    const ataud = new Ataud(position = posicion)
+    game.addVisual(ataud)
+    ataudes.add(ataud)
+  }
+  method listaDeAtaudes(){
+    return ataudes
+  }
+}
+
+
+object t{
+  const trampas = []
+  method dibujar(posicion){
+    const trampa = new Trampa(position = posicion)
+    game.addVisual(trampa)
+    trampas.add(trampa)
+  }
+  method listaDeTrampas(){
+    return trampas
+  }
+}
+
+
+object m{
+  const muros = []
+  method dibujar(posicion){
+    const muro = new Muro(position = posicion)
+    game.addVisual(muro)
+    muros.add(muro)
+  }
+
+  method listaDeMuros(){
+    return muros
+  }
+}
+
+object v{
+  method dibujar(posicion){
+
+  }
+}
 
 object nivel0{
 
@@ -162,13 +312,15 @@ object cartelDePuntos{
   }
 }
 
+
 class Muro{
-  var property position = game.origin()
-  var property image = "pared1.png"  
+  var property position
+  var property image = "pared1.png"
   method chocarCon(objeto){
     game.removeVisual(objeto)
   }
 }
+
 class Trampa{
   var property position 
   var property image = "trampa.png"
@@ -190,11 +342,13 @@ class Obstaculo{
     game.removeVisual(objeto)
   }
 }
+
 class Ataud inherits Obstaculo{
   override method image(){
     return "ataud.png"
   }
 }
+
 class Barril inherits Obstaculo{
   override method image(){
     return "barril.png"

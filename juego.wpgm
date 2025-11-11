@@ -10,9 +10,12 @@ program catastrofico{
     game.title("Cat-astrofico")
    
     
-    nivel0.iniciar()
+    //nivel0.iniciar()
+    nivelInicial.iniciar()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     game.start()
+
+    
 }
 
