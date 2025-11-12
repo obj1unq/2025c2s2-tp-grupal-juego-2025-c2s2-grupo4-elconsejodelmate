@@ -71,10 +71,10 @@ class PocionVida inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     if(pj.cantDeVidas() == 3){
       pj.añadirAlInventario(self)
-      game.say(pj, "obtuve " + self)
+      game.say(pj, "Obtuve una pocion de vida que ira a mi inventario")
     }else{
       pj.incrementarEnUnoVidas()
-      game.say(pj, "tengo " + pj.cantDeVidas() + "vidas")
+      game.say(pj, "Recolecte una pocion de vida, incremento mi vida por que estaba baja")
     }
   }
 }
@@ -83,8 +83,15 @@ class PocionVenenosa inherits ObjetoRecolectable{
     return "pocion-venenosa.png"
   }
   override method interactuarCon(pj){
-    pj.decrementarEnUnoVidas()
-    game.say(pj, "tengo " + pj.cantDeVidas() + "vidas")
+    
+    if(pj.cantDeVidas() == 1){
+      pj.añadirAlInventario(self)
+      game.say(pj, "Obtuve una pocion venenosa, quedara en mi inventario ")
+
+    }else{
+      pj.decrementarEnUnoVidas()
+      game.say(pj, "Recolecte una pocion de venenosa, decrementara mi vida")
+    }
   }
 }
 /* a implementar mas tarde, solo para molestar jeje 
@@ -101,17 +108,19 @@ class Llave inherits ObjetoRecolectable{
     return "llave.png"
   }
   override method interactuarCon(pj){
+    game.say(pj, "Obtuve una llave, busquemos que puerta abre")
     pj.añadirAlInventario(self)
-    game.removeVisual(self)
-    game.say(pj, "obtuve " + self)
+    //game.removeVisual(self)
+    
   }
 }
 class Joya inherits ObjetoRecolectable{
   method puntos()
   override method interactuarCon(pj){
+    game.say(pj, "Obtuve una joya, incrementara mi puntuacion")
     pj.sumarPuntuacionDe(self)
-    game.removeVisual(self)
-    game.say(pj, "obtuve " + self)
+    //game.removeVisual(self)
+    
   }
 }
 class Anillo inherits Joya{

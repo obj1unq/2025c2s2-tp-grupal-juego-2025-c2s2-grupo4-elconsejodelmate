@@ -59,10 +59,10 @@ object nivelInicial{
     return muro.listaDeMuros()
   }
 
-  method obtenerObstaculos(){
-    return ataud.listaDeAtaudes() + barril.listaDeBarriles()
+  method obtenerObstaculos() {
+  return ataud.listaDeAtaudes()
+  //esto tendria que tener una lista conjunta entre la lista de ataudes y la lista de barriles pero no anda 
   }
-
 
   method martina(){
     game.addVisual(martina)
@@ -70,8 +70,7 @@ object nivelInicial{
     //TICKS
     game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
-     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
-                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
 
   method enemigos(){
@@ -119,6 +118,9 @@ object b{
   method listaDeBarriles(){
     return barriles
   }
+  method listaDePosicionesDeBarriles(){
+    return barriles.map({barril => barril.position()})
+  }
 }
 
 object a{
@@ -130,6 +132,10 @@ object a{
   }
   method listaDeAtaudes(){
     return ataudes
+  }
+
+  method listaDePosicionesDeAtaudes(){
+    return ataudes.map({ataud => ataud.position()})
   }
 }
 
@@ -293,6 +299,14 @@ object cartelDeMuerte{
   }
 }
 
+
+object inventario{
+  var property position = game.center()
+  method image(){
+    const primerObjDelInventario = martina.inventario().first() 
+    return primerObjDelInventario.image()
+  }
+}
 object barraDeVidas{
   var property position = game.at(12,14)
   
