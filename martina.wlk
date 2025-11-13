@@ -9,7 +9,7 @@ object martina {
   var property puntos = 0 
 
   var property nivel = nivelInicial
-  var property obstaculosNivel = nivel.obtenerObstaculos()
+  var property obstaculosNivel = nivel.listaDeObstaculos()
   var property murosNivel = nivel.obtenerMuros()
 
   method incrementarEnUnoVidas(){
