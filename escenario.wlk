@@ -21,6 +21,11 @@ object nivelActual{
     salaActual.iniciar()
   }
 
+  method dibujarNuevaSala(){
+    salaActual.dibujar()
+    
+  }
+
 }
 
 object salaInicial inherits Sala(
@@ -115,8 +120,12 @@ class Sala{
   method construir() {
       game.height(nivel.size())
       game.width(nivel.size()) // habia un get(0)
+      self.dibujar()
+      
+  }
 
-      (0 .. game.width() - 1).forEach({ x =>
+  method dibujar(){
+    (0 .. game.width() - 1).forEach({ x =>
           (0 .. game.height() - 1).forEach({ y =>
               nivel.get(y).get(x).dibujar(game.at(x, y))
           })
@@ -396,8 +405,10 @@ class Puerta{
   var property position 
   var property image = "baston.png"
 
+
   method interactuarCon(pj){
     nivelActual.cambiarDeNivel()
+    nivelActual.dibujarNuevaSala()
   }
 }
 
