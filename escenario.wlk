@@ -5,17 +5,20 @@ import extras.*
 //Poner todos los obstaculos en una misma lista 
 object nivelActual{
 
-  const property obstaculos = nivelActual.listaDeObstaculos()
-  const property muros = nivelActual.listaDeMuros()
+  const property obstaculos = salaActual.listaDeObstaculos()
+  const property muros = salaActual.muros()
 
-  var nivelActual = salaInicial
+  var salaActual = salaInicial
 
   method cambiarDeNivel(){
-   nivelActual = nivelActual.siguiente()
+   salaActual = salaActual.siguiente()
+  }
+  method salaActual(){
+    return salaActual
   }
 
   method iniciar(){
-    nivelActual.iniciar()
+    salaActual.iniciar()
   }
 
 }
@@ -86,6 +89,7 @@ class Sala{
   }
 
   const property listaDeObstaculos = []
+  const property muros  = []
 
   method agregar(objeto){
     listaDeObstaculos.add(objeto)
@@ -145,7 +149,7 @@ class Sala{
     })
     //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
-    game.onTick(6000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
+    game.onTick(1000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
   }
 
@@ -160,77 +164,87 @@ object p{
 }
 
 object c {
-  const cofres = []
+  //const cofres = []
   method dibujar(posicion){
     const cofre = new Cofre(position = posicion)
     game.addVisual(cofre)
-    cofres.add(cofre)
+    //cofres.add(cofre)
   }
-  method listaDeCofres(){
+ /* method listaDeCofres(){
     return cofres
-  }
+  }*/
 }
 
 object b{
-  const barriles = []
+  //const barriles = []
+  //pasarle el nivel actual 
+  var property listaAEscribir = nivelActual.salaActual()
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
+    listaAEscribir.agregar(barril)
     //barriles.add(barril)
     //nivelInicial.listaDeObstaculos.add(barril)
-    salaInicial.agregar(barril)
+    //salaInicial.agregar(barril)
   }
  /* method listaDeBarriles(){
     return barriles
   }*/
-  method listaDePosicionesDeBarriles(){
+ /* method listaDePosicionesDeBarriles(){
     return barriles.map({barril => barril.position()})
-  }
+  }*/
 }
 
 object a{
-  const ataudes= []
+  //pasarle el nivel actual 
+  var property listaAEscribir = nivelActual.salaActual()
+  //const ataudes= []
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
     game.addVisual(ataud)
+    listaAEscribir.agregar(ataud)
     //ataudes.add(ataud)
     //nivelInicial.listaDeObstaculos.add(ataud)
-    salaInicial.agregar(ataud)
+    //salaActual.agregar(ataud)
   }
  /* method listaDeAtaudes(){
     return ataudes
   }*/
 
-  method listaDePosicionesDeAtaudes(){
+  /*method listaDePosicionesDeAtaudes(){
     return ataudes.map({ataud => ataud.position()})
-  }
+  }*/
 }
 
 
 object t{
-  const trampas = []
+  //const trampas = []
   method dibujar(posicion){
     const trampa = new Trampa(position = posicion)
     game.addVisual(trampa)
-    trampas.add(trampa)
+    //trampas.add(trampa)
   }
-  method listaDeTrampas(){
+  /*method listaDeTrampas(){
     return trampas
-  }
+  }*/
 }
 
 
 object m{
-  const muros = []
+  //pasarle el nivel actual 
+  var property listaAEscribir = nivelActual.salaActual()
+  //const muros = []
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
-    muros.add(muro)
+    listaAEscribir.agregar(muro)
+    
+    //muros.add(muro)
   }
 
-  method listaDeMuros(){
+ /* method listaDeMuros(){
     return muros
-  }
+  }*/
 }
 
 object v{

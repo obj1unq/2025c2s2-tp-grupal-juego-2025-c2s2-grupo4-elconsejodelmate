@@ -5,7 +5,7 @@ class PlantillaEnemigo{
     var property image 
     var property position
     var property nivel = nivelActual
-    var property murosNivel = nivel.muros() 
+    var property murosNivel = nivel.listaDeObstaculos() 
     var property direccion = derechaEnemigo
     
     method interactuarCon(pj){
