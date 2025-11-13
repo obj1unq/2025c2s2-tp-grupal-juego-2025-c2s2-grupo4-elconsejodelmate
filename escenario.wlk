@@ -24,6 +24,7 @@ object nivelActual{
   method dibujarNuevaSala(){
     salaActual.dibujar()
     //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
+    //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
   }
 
 }
