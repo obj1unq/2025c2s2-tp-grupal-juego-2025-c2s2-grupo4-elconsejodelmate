@@ -8,9 +8,9 @@ object martina {
   const property inventario = []
   var property puntos = 0 
 
-  var property nivel = nivelInicial
-  var property obstaculosNivel = nivel.listaDeObstaculos()
-  var property murosNivel = nivel.obtenerMuros()
+  var property nivel = nivelActual
+  var property obstaculosNivel = nivel.obstaculos()
+  var property murosNivel = nivel.muros()
 
   method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer

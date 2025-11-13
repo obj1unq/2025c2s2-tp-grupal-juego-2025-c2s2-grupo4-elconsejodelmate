@@ -31,11 +31,11 @@ object flechas{
   } 
 }
 class Flecha {
-    var property nivel = nivel0
+    var property nivel = nivelActual
     var property position 
     var property direccion 
-    var property murosNivel = nivel.obtenerMuros()
-    var property obstaculosNivel = nivel.obtenerObstaculos()
+    var property murosNivel = nivel.muros()
+    var property obstaculosNivel = nivel.obstaculos()
 
     method image(){
         return "flecha.png"

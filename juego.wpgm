@@ -11,7 +11,7 @@ program catastrofico{
    
     
     //nivel0.iniciar()
-    nivelInicial.iniciar()
+    nivelActual.iniciar()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     game.start()

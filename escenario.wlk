@@ -2,21 +2,88 @@ import martina.*
 import enemigos.*
 import extras.*
 
-/*object siguienteNivel{
-  const listaDeNiveles = [nivel0, nivel1, nivel2, nivel4]
-
-  var property nivelActual = nivel0 
-  var property index = 0 // se va a usar para recorrer la lista con la funcion get 
-
-  method cambiarNivel(){
-    index = index + 1 
-    nivelActual = listaDeNiveles.get(index)
-
-  }
-}*/
 //Poner todos los obstaculos en una misma lista 
+object nivelActual{
 
-object nivelInicial{
+  const property obstaculos = nivelActual.listaDeObstaculos()
+  const property muros = nivelActual.listaDeMuros()
+
+  var nivelActual = salaInicial
+
+  method cambiarDeNivel(){
+   nivelActual = nivelActual.siguiente()
+  }
+
+  method iniciar(){
+    nivelActual.iniciar()
+  }
+
+}
+
+object salaInicial inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, p],
+                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()){
+                    override method siguiente(){
+                      return salaDerecha
+                    }
+                  }
+
+object salaDerecha inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){}
+
+
+object salaDeCofres inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
+                  [m, v, c, v, v, c, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                    
+                  }
+
+
+class Sala{
+
+  method siguiente(){
+    return 
+  }
 
   const property listaDeObstaculos = []
 
@@ -24,26 +91,12 @@ object nivelInicial{
     listaDeObstaculos.add(objeto)
   }
 
-
   const muro = m
-  const ataud = a
-  const barril = b
-  const cofre = c
-  const nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, v],
-                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()
+  // const ataud = a
+  // const barril = b
+  // const cofre = c
+
+  const nivel 
   
   method iniciar(){
     game.ground("suelo.png")
@@ -63,14 +116,9 @@ object nivelInicial{
       })
   }
 
-  method obtenerMuros(){
+  method listaDeMuros(){
     return muro.listaDeMuros()
   }
-
-  /*method obtenerObstaculos() {
-    return listaDeObstaculos
-  //esto tendria que tener una lista conjunta entre la lista de ataudes y la lista de barriles pero no anda 
-  }*/
 
   method martina(){
     game.addVisual(martina)
@@ -104,6 +152,13 @@ object nivelInicial{
   
 }
 
+object p{
+  method dibujar(posicion){
+    const puerta = new Puerta(position = posicion)
+    game.addVisual(puerta)
+  }
+}
+
 object c {
   const cofres = []
   method dibujar(posicion){
@@ -123,7 +178,7 @@ object b{
     game.addVisual(barril)
     //barriles.add(barril)
     //nivelInicial.listaDeObstaculos.add(barril)
-    nivelInicial.agregar(barril)
+    salaInicial.agregar(barril)
   }
  /* method listaDeBarriles(){
     return barriles
@@ -140,7 +195,7 @@ object a{
     game.addVisual(ataud)
     //ataudes.add(ataud)
     //nivelInicial.listaDeObstaculos.add(ataud)
-    nivelInicial.agregar(ataud)
+    salaInicial.agregar(ataud)
   }
  /* method listaDeAtaudes(){
     return ataudes
@@ -319,14 +374,15 @@ object cofreAbierto{
     return self 
   }
 }
-/*class Puerta{
+
+class Puerta{
   var property position 
-  var property image 
+  var property image = "baston.png"
 
   method interactuarCon(pj){
-    siguienteNivel.cambiarNivel()
+    nivelActual.cambiarDeNivel()
   }
-}*/
+}
 
 
 
