@@ -91,8 +91,11 @@ class Sala{
   const property listaDeObstaculos = []
   const property muros  = []
 
-  method agregar(objeto){
+  method agregarObstaculo(objeto){
     listaDeObstaculos.add(objeto)
+  }
+  method agregarMuro(objeto){
+    muros.add(objeto)
   }
 
   const muro = m
@@ -149,7 +152,7 @@ class Sala{
     })
     //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
-    game.onTick(1000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
+    game.onTick(2000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
   }
 
@@ -182,7 +185,7 @@ object b{
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
-    listaAEscribir.agregar(barril)
+    listaAEscribir.agregarObstaculo(barril)
     //barriles.add(barril)
     //nivelInicial.listaDeObstaculos.add(barril)
     //salaInicial.agregar(barril)
@@ -202,7 +205,7 @@ object a{
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
     game.addVisual(ataud)
-    listaAEscribir.agregar(ataud)
+    listaAEscribir.agregarObstaculo(ataud)
     //ataudes.add(ataud)
     //nivelInicial.listaDeObstaculos.add(ataud)
     //salaActual.agregar(ataud)
@@ -237,7 +240,7 @@ object m{
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
-    listaAEscribir.agregar(muro)
+    listaAEscribir.agregarMuro(muro)
     
     //muros.add(muro)
   }
