@@ -24,7 +24,9 @@ object martina {
   }
   method estaMuerta(){
     if( self.cantDeVidas() == 0 ){
-      game.addVisual(cartelDeMuerte)
+      game.removeVisual(self)
+      game.addVisual(imagenFinal)
+      game.addVisual(mensajeFinal)
       
       //Preguntar como resetear el nivel con una tecla :P intente llamando al nivel0.inicio en un press do pero nop
     }

@@ -15,6 +15,16 @@ import extras.*
   }
 }*/
 
+object imagenFinal{
+  method position() = game.at(0,0)
+  method image() = "PantallaFinal.png"
+}
+object mensajeFinal{
+  method position() = game.center()
+  method text() = "Puntos = "+martina.puntos()+ "Presiona H para reintentar"
+  method textColor() = "FFFFFFFF"
+
+}
 
 object nivel0{
 
@@ -136,12 +146,7 @@ object nivel0{
   
   }
 }
-object cartelDeMuerte{
-  var property position = game.center()
-  method image(){
-    return "cartelMuerte.png"
-  }
-}
+
 
 object barraDeVidas{
   var property position = game.at(12,14)
