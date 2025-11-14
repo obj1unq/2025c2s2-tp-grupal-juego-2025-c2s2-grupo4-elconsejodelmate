@@ -8,7 +8,7 @@ object martina {
   const property inventario = []
   var property puntos = 0 
 
-  var property nivel = nivelActual
+  var property nivel = managerListasDeSala
   var property obstaculosNivel = nivel.obstaculos()
   var property murosNivel = nivel.muros()
 
@@ -24,7 +24,9 @@ object martina {
   }
   method estaMuerta(){
     if( self.cantDeVidas() == 0 ){
+      game.removeVisual(self)
       game.addVisual(cartelDeMuerte)
+      game.addVisual(mensajeFinal)
       
       //Preguntar como resetear el nivel con una tecla :P intente llamando al nivel0.inicio en un press do pero nop
     }

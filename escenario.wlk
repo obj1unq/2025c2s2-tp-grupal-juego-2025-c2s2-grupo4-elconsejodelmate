@@ -2,10 +2,11 @@ import martina.*
 import enemigos.*
 import extras.*
 
+//Poner todos los obstaculos en una misma lista 
 object nivelActual{
 
-  const property obstaculos = salaActual.listaDeObstaculos()
-  const property muros = salaActual.muros()
+  // const property obstaculos = salaActual.listaDeObstaculos()
+  // const property muros = salaActual.muros()
 
   var salaActual = salaInicial
 
@@ -21,21 +22,56 @@ object nivelActual{
   }
 
   method dibujarNuevaSala(){
-    game.removeVisual(barraDeVidas)
-    game.removeVisual(cartelDePuntos)
-    game.removeVisual(martina)
-    
+    managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     martina.position(game.at(1,7))
     game.addVisual(martina)
-    
-    
     //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
     //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
   }
 
+}
+
+object managerListasDeSala{
+  var property obstaculos = []
+  var property muros  = []
+  var property listaDeCofres = []
+  var property listaDeTrampas = []
+  var property listaDePuertas = []
+
+  method agregarObstaculo(objeto){
+    obstaculos.add(objeto)
+  }
+  method agregarMuro(objeto){
+    muros.add(objeto)
+  }
+  method agregarCofre(objeto){
+    listaDeCofres.add(objeto)
+  }
+  method agregarTrampa(objeto){
+    listaDeTrampas.add(objeto)
+  }
+
+  method agregarPuerta(objeto){
+    listaDePuertas.add(objeto)
+  }
+
+  method removerVisualesDe(lista){
+    lista.foreach({elemento => game.removeVisual(elemento)})
+  }
+
+  method limpiarNivel(){
+    self.removerVisualesDe(obstaculos)
+    self.removerVisualesDe(muros)
+    self.removerVisualesDe(listaDeCofres)
+    self.removerVisualesDe(listaDeTrampas)
+    self.removerVisualesDe(listaDePuertas)
+    game.removeVisual(barraDeVidas)
+    game.removeVisual(cartelDePuntos)
+    game.removeVisual(martina)
+  }
 }
 
 object salaInicial inherits Sala(
@@ -97,24 +133,19 @@ object salaDeCofres inherits Sala(
                   }
 
 
+
+
+
+
+
 class Sala{
+
+  const manager = managerListasDeSala
 
   method siguiente(){
     return 
   }
-
-  const property listaDeObstaculos = []
-  const property muros  = []
-
-  method agregarObstaculo(objeto){
-    listaDeObstaculos.add(objeto)
-  }
-  method agregarMuro(objeto){
-    muros.add(objeto)
-  }
-
-  const muro = m
-
+  
   const nivel 
   
   method iniciar(){
@@ -126,7 +157,7 @@ class Sala{
 
   method construir() {
       game.height(nivel.size())
-      game.width(nivel.size()) 
+      game.width(nivel.size()) // habia un get(0)
       self.dibujar()
       
   }
@@ -137,10 +168,6 @@ class Sala{
               nivel.get(y).get(x).dibujar(game.at(x, y))
           })
       })
-  }
-
-  method listaDeMuros(){
-    return muro.listaDeMuros()
   }
 
   method martina(){
@@ -176,22 +203,29 @@ class Sala{
 }
 
 object p{
+  const sala = managerListasDeSala
+
   method dibujar(posicion){
     const puerta = new Puerta(position = posicion)
+
     game.addVisual(puerta)
+    sala.agregarPuerta(puerta)
   }
 }
 
-object c {  
+object c {
+  const sala = managerListasDeSala
+
   method dibujar(posicion){
     const cofre = new Cofre(position = posicion)
+
     game.addVisual(cofre)
+    sala.agregarCofre(cofre)
   }
 }
 
 object b{
-
-  var property listaAEscribir = nivelActual.salaActual()
+  var property listaAEscribir = managerListasDeSala
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
@@ -200,9 +234,11 @@ object b{
 }
 
 object a{
-  var property listaAEscribir = nivelActual.salaActual()
+  var property listaAEscribir = managerListasDeSala
+
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
+
     game.addVisual(ataud)
     listaAEscribir.agregarObstaculo(ataud)
   }
@@ -210,20 +246,29 @@ object a{
 
 
 object t{
+  //const trampas = []
+  var property sala = managerListasDeSala
   method dibujar(posicion){
     const trampa = new Trampa(position = posicion)
+
     game.addVisual(trampa)
+    sala.agregarTrampa(trampa)
   }
 }
 
 
 object m{
-  var property listaAEscribir = nivelActual.salaActual()
+  //pasarle el nivel actual 
+  var property listaAEscribir = managerListasDeSala
+  //const muros = []
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
     listaAEscribir.agregarMuro(muro)
+    
+    //muros.add(muro)
   }
+
 }
 
 object v{
@@ -237,6 +282,16 @@ object cartelDeMuerte{
   var property position = game.center()
   method image(){
     return "cartelMuerte.png"
+  }
+}
+
+object mensajeFinal{
+  var property position = game.center()
+  method text(){
+    return "Tu puntuacion: " + martina.puntos() + " aprete H para reiniciar"
+  }
+  method textColor(){
+    return "FFFFFFFF"
   }
 }
 
@@ -313,17 +368,18 @@ class Barril inherits Obstaculo{
 class Cofre{
   var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea  
   const property poolDeObjetos = []
-  var property estado = "-cerrado"
+  var property estado = cofreCerrado  
 
- 
- method image(){
-  return "cofre" + estado +".png"
- }
+  method image(){
+    return estado.image()
+  }
   method abrir(){
-    estado = "-abierto"
+    estado = estado.siguienteEstado()
   }
 
   method inicializarPoolObjetos(){
+    //puedo inicializarlo y añadirlo directamente?
+    //poolDeObjetos.add(new PocionVida())
     const pocionVida = new PocionVida(position = self.position())
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
@@ -340,7 +396,7 @@ class Cofre{
   }
 
   method interactuarCon(pj){
-    if(estado == "-cerrado"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
+    if(estado.image() == "cofre.png"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
         self.inicializarPoolObjetos()
         self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
         self.abrir()
@@ -350,11 +406,27 @@ class Cofre{
     
   }
 }
-
+object cofreCerrado{
+  method image(){
+    return "cofre.png"
+  }
+  method siguienteEstado(){
+    return cofreAbierto
+  }
+}
+object cofreAbierto{
+  method image(){
+    return "cofre-abierto.png"
+  }
+  method siguienteEstado(){
+    return self 
+  }
+}
 
 class Puerta{
   var property position 
   var property image = "baston.png"
+
 
   method interactuarCon(pj){
     nivelActual.cambiarDeNivel()

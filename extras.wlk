@@ -31,7 +31,7 @@ object flechas{
   } 
 }
 class Flecha {
-    var property nivel = nivelActual
+    var property nivel = managerListasDeSala
     var property position 
     var property direccion 
     var property murosNivel = nivel.muros()
