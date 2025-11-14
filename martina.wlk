@@ -9,7 +9,7 @@ object martina {
   const property inventario = []
   var property puntos = 0 
 
-  var property nivel = nivelActual
+  var property nivel = managerListasDeSala
   var property obstaculosNivel = nivel.obstaculos()
   var property murosNivel = nivel.muros()
 
