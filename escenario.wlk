@@ -2,12 +2,8 @@ import martina.*
 import enemigos.*
 import extras.*
 
-//Poner todos los obstaculos en una misma lista 
+
 object nivelActual{
-
-  // const property obstaculos = salaActual.listaDeObstaculos()
-  // const property muros = salaActual.muros()
-
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
@@ -24,12 +20,12 @@ object nivelActual{
   method dibujarNuevaSala(){
     managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
+    //salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     martina.position(game.at(1,7))
     game.addVisual(martina)
-    //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
-    //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
+
   }
 
 }
@@ -40,6 +36,7 @@ object managerListasDeSala{
   var property listaDeCofres = []
   var property listaDeTrampas = []
   var property listaDePuertas = []
+  var property listaDeEnemigos = []
 
   method agregarObstaculo(objeto){
     obstaculos.add(objeto)
@@ -59,7 +56,10 @@ object managerListasDeSala{
   }
 
   method removerVisualesDe(lista){
-    lista.foreach({elemento => game.removeVisual(elemento)})
+    lista.forEach({elemento => game.removeVisual(elemento)})
+  }
+  method agregarEnemigo(enemigo){
+    listaDeEnemigos.add(enemigo)
   }
 
   method limpiarNivel(){
@@ -68,6 +68,7 @@ object managerListasDeSala{
     self.removerVisualesDe(listaDeCofres)
     self.removerVisualesDe(listaDeTrampas)
     self.removerVisualesDe(listaDePuertas)
+    self.removerVisualesDe(listaDeEnemigos)
     game.removeVisual(barraDeVidas)
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
@@ -140,8 +141,6 @@ object salaDeCofres inherits Sala(
 
 class Sala{
 
-  const manager = managerListasDeSala
-
   method siguiente(){
     return 
   }
@@ -181,17 +180,20 @@ class Sala{
 
   method enemigos(){
     const enemigosACrear = 1.randomUpTo(3)
+    const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
     enemigosACrear.times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
         game.addVisual(enemigo)
+        manager.agregarEnemigo(enemigo)
         enemigosPatrulla.add(enemigo)
     })
     enemigosACrear.times({i => 
         const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
+        manager.agregarEnemigo(enemigo)
     })
     //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
@@ -396,7 +398,7 @@ class Cofre{
   }
 
   method interactuarCon(pj){
-    if(estado.image() == "cofre.png"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
+    if(estado.image() == "cofre-cerrado.png"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
         self.inicializarPoolObjetos()
         self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
         self.abrir()
@@ -408,7 +410,7 @@ class Cofre{
 }
 object cofreCerrado{
   method image(){
-    return "cofre.png"
+    return "cofre-cerrado.png"
   }
   method siguienteEstado(){
     return cofreAbierto

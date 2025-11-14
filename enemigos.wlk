@@ -5,7 +5,7 @@ class PlantillaEnemigo{
     var property image 
     var property position
     var property nivel = managerListasDeSala
-    var property murosNivel = nivel.muros() 
+    var property murosNivel = managerListasDeSala.muros() 
     var property direccion = derechaEnemigo
     
     method interactuarCon(pj){
