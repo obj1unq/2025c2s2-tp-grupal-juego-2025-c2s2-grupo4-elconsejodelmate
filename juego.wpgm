@@ -3,6 +3,7 @@ import wollok.game.*
 import martina.*
 import enemigos.*
 import escenario.*
+import interfaz.*
 program catastrofico{
     game.height(15)
     game.width(15)

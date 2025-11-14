@@ -1,5 +1,6 @@
 import escenario.*
 import extras.*
+import interfaz.*
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
@@ -25,7 +26,7 @@ object martina {
   method estaMuerta(){
     if( self.cantDeVidas() == 0 ){
       game.removeVisual(self)
-      game.addVisual(cartelDeMuerte)
+      game.addVisual(imagenFinal)
       game.addVisual(mensajeFinal)
       
       //Preguntar como resetear el nivel con una tecla :P intente llamando al nivel0.inicio en un press do pero nop
