@@ -8,9 +8,9 @@ object martina {
   const property inventario = []
   var property puntos = 0 
 
-  var property nivel = nivel0
-  var property obstaculosNivel = nivel.obtenerObstaculos()
-  var property murosNivel = nivel.obtenerMuros()
+  var property nivel = nivelActual
+  var property obstaculosNivel = nivel.obstaculos()
+  var property murosNivel = nivel.muros()
 
   method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
@@ -32,7 +32,6 @@ object martina {
     }
   }
   
-  // que el juego termine en decrementarEnUnoVidasDeMartina
   method estaViva(){
     return self.cantDeVidas() > 0
   }

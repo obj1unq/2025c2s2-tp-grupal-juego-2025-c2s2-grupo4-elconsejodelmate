@@ -2,123 +2,160 @@ import martina.*
 import enemigos.*
 import extras.*
 
-/*object siguienteNivel{
-  const listaDeNiveles = [nivel0, nivel1, nivel2, nivel4]
+object nivelActual{
 
-  var property nivelActual = nivel0 
-  var property index = 0 // se va a usar para recorrer la lista con la funcion get 
+  const property obstaculos = salaActual.listaDeObstaculos()
+  const property muros = salaActual.muros()
 
-  method cambiarNivel(){
-    index = index + 1 
-    nivelActual = listaDeNiveles.get(index)
+  var salaActual = salaInicial
 
+  method cambiarDeNivel(){
+   salaActual = salaActual.siguiente()
   }
-}*/
-
-object imagenFinal{
-  method position() = game.at(0,0)
-  method image() = "PantallaFinal.png"
-}
-object mensajeFinal{
-  method position() = game.center()
-  method text() = "Puntos = "+martina.puntos()+ "Presiona H para reintentar"
-  method textColor() = "FFFFFFFF"
-
-}
-
-object nivel0{
-
-  const muros = []
-  //estos getters se usaran para que todos los objetos que se muevan conozcan los objetos 
-  //con los que podrian colisionar 
-  method obtenerMuros(){
-    return muros
-  } 
-  const obstaculos = []
-  method obtenerObstaculos(){
-    return obstaculos
+  method salaActual(){
+    return salaActual
   }
-  const trampas = []
-  method obtenerTrmpas(){
-    return trampas 
-  }
-  const enemigosPatrulla = []
-  const enemigosPerseguidores = []
 
   method iniciar(){
+    salaActual.iniciar()
+  }
 
-  //INSTANCIAS 
- 
-  const enemigosACrear = 1.randomUpTo(3)
-  const obstaculosACrear = 1.randomUpTo(3)
-  const trampasACrear = 1.randomUpTo(3)
-  const cofresACrear = 1.randomUpTo(3)
+  method dibujarNuevaSala(){
+    game.removeVisual(barraDeVidas)
+    game.removeVisual(cartelDePuntos)
+    game.removeVisual(martina)
+    
+    salaActual.dibujar()
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
+    martina.position(game.at(1,7))
+    game.addVisual(martina)
+    
+    
+    //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
+    //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
+  }
+
+}
+
+object salaInicial inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, p],
+                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()){
+                    override method siguiente(){
+                      return salaDerecha
+                    }
+                  }
+
+object salaDerecha inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){}
+
+
+object salaDeCofres inherits Sala(
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
+                  [m, v, c, v, v, c, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                    
+                  }
+
+
+class Sala{
+
+  method siguiente(){
+    return 
+  }
+
+  const property listaDeObstaculos = []
+  const property muros  = []
+
+  method agregarObstaculo(objeto){
+    listaDeObstaculos.add(objeto)
+  }
+  method agregarMuro(objeto){
+    muros.add(objeto)
+  }
+
+  const muro = m
+
+  const nivel 
   
-  //PERSONAJE
-  game.addVisual(martina)
-  config.configTeclas()
-
-  //SUELO 
+  method iniciar(){
     game.ground("suelo.png")
+    self.construir()
+    self.enemigos()
+    self.martina()
+  }
 
-  //MUROS 
-    (0..6).forEach({x => 
-        const muro = new Muro(position = game.at(x,0))
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({x => 
-        const muro = new Muro(position = game.at(x,0))
-        muros.add(muro)
-        game.addVisual(muro)   
-    })
-    (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(0,y), image = "pared1-vertical.png")
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (0..6).forEach({x => 
-        const muro = new Muro(position = game.at(x,14))
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({x => 
-        const muro = new Muro(position = game.at(x,14))
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (0..6).forEach({y => 
-        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    (8..15).forEach({ y => 
-        const muro = new Muro(position = game.at(14,y), image = "pared1-vertical.png")
-        muros.add(muro)
-        game.addVisual(muro)
-    })
-    //OBJETOS DEL ESCENARIO
-    obstaculosACrear.times({i =>
-        const barril = new Barril(position = randomizer.emptyPosition())
-        obstaculos.add(barril)
-        game.addVisual(barril)
-    })
-    obstaculosACrear.times({i =>
-        const ataud = new Ataud(position = randomizer.emptyPosition())
-        obstaculos.add(ataud)
-        game.addVisual(ataud)
-    })
-    trampasACrear.times({i =>
-        const trampa = new Trampa(position = randomizer.emptyPosition())
-        trampas.add(trampa)
-        game.addVisual(trampa)
-    })
-    //ENEMIGOS 
+  method construir() {
+      game.height(nivel.size())
+      game.width(nivel.size()) 
+      self.dibujar()
+      
+  }
+
+  method dibujar(){
+    (0 .. game.width() - 1).forEach({ x =>
+          (0 .. game.height() - 1).forEach({ y =>
+              nivel.get(y).get(x).dibujar(game.at(x, y))
+          })
+      })
+  }
+
+  method listaDeMuros(){
+    return muro.listaDeMuros()
+  }
+
+  method martina(){
+    game.addVisual(martina)
+    config.configTeclas()
+    //TICKS
+    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
+    //COLISIONES 
+     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
+  }
+
+  method enemigos(){
+    const enemigosACrear = 1.randomUpTo(3)
+    const enemigosPatrulla = []
+    const enemigosPerseguidores = []  
     enemigosACrear.times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
         game.addVisual(enemigo)
@@ -129,25 +166,88 @@ object nivel0{
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
     })
-    cofresACrear.times({i => 
-        const cofre = new Cofre(position = randomizer.emptyPosition())
-        game.addVisual(cofre)
-    })
-   
-   
-    //TICKS 
+    //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
-    game.onTick(6000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
+    game.onTick(2000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
     game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
-    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
-    //COLISIONES 
-     game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)
-                       game.say(martina,"tengo "+ martina.cantDeVidas() + " vidas")})
+  }
+
   
+}
+
+object p{
+  method dibujar(posicion){
+    const puerta = new Puerta(position = posicion)
+    game.addVisual(puerta)
+  }
+}
+
+object c {  
+  method dibujar(posicion){
+    const cofre = new Cofre(position = posicion)
+    game.addVisual(cofre)
+  }
+}
+
+object b{
+
+  var property listaAEscribir = nivelActual.salaActual()
+  method dibujar(posicion){
+    const barril = new Barril(position = posicion)
+    game.addVisual(barril)
+    listaAEscribir.agregarObstaculo(barril)
+  }
+}
+
+object a{
+  var property listaAEscribir = nivelActual.salaActual()
+  method dibujar(posicion){
+    const ataud = new Ataud(position = posicion)
+    game.addVisual(ataud)
+    listaAEscribir.agregarObstaculo(ataud)
   }
 }
 
 
+object t{
+  method dibujar(posicion){
+    const trampa = new Trampa(position = posicion)
+    game.addVisual(trampa)
+  }
+}
+
+
+object m{
+  var property listaAEscribir = nivelActual.salaActual()
+  method dibujar(posicion){
+    const muro = new Muro(position = posicion)
+    game.addVisual(muro)
+    listaAEscribir.agregarMuro(muro)
+  }
+}
+
+object v{
+  method dibujar(posicion){
+
+  }
+}
+
+
+object cartelDeMuerte{
+  var property position = game.center()
+  method image(){
+    return "cartelMuerte.png"
+  }
+}
+
+
+object inventario{
+  var property position = game.center()
+  method image(){
+    const primerObjDelInventario = martina.inventario().first() 
+    return primerObjDelInventario.image()
+  }
+}
 object barraDeVidas{
   var property position = game.at(12,14)
   
@@ -167,13 +267,15 @@ object cartelDePuntos{
   }
 }
 
+
 class Muro{
-  var property position = game.origin()
-  var property image = "pared1.png"  
+  var property position
+  var property image = "pared1.png"
   method chocarCon(objeto){
     game.removeVisual(objeto)
   }
 }
+
 class Trampa{
   var property position 
   var property image = "trampa.png"
@@ -195,11 +297,13 @@ class Obstaculo{
     game.removeVisual(objeto)
   }
 }
+
 class Ataud inherits Obstaculo{
   override method image(){
     return "ataud.png"
   }
 }
+
 class Barril inherits Obstaculo{
   override method image(){
     return "barril.png"
@@ -209,18 +313,17 @@ class Barril inherits Obstaculo{
 class Cofre{
   var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea  
   const property poolDeObjetos = []
-  var property estado = cofreCerrado  
+  var property estado = "-cerrado"
 
-  method image(){
-    return estado.image()
-  }
+ 
+ method image(){
+  return "cofre" + estado +".png"
+ }
   method abrir(){
-    estado = estado.siguienteEstado()
+    estado = "-abierto"
   }
 
   method inicializarPoolObjetos(){
-    //puedo inicializarlo y añadirlo directamente?
-    //poolDeObjetos.add(new PocionVida())
     const pocionVida = new PocionVida(position = self.position())
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
@@ -237,7 +340,7 @@ class Cofre{
   }
 
   method interactuarCon(pj){
-    if(estado == cofreCerrado){ //preguntar si esto se puede mejorar 
+    if(estado == "-cerrado"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
         self.inicializarPoolObjetos()
         self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
         self.abrir()
@@ -247,30 +350,17 @@ class Cofre{
     
   }
 }
-object cofreCerrado{
-  method image(){
-    return "cofre.png"
-  }
-  method siguienteEstado(){
-    return cofreAbierto
-  }
-}
-object cofreAbierto{
-  method image(){
-    return "cofre-abierto.png"
-  }
-  method siguienteEstado(){
-    return self 
-  }
-}
-/*class Puerta{
+
+
+class Puerta{
   var property position 
-  var property image 
+  var property image = "baston.png"
 
   method interactuarCon(pj){
-    siguienteNivel.cambiarNivel()
+    nivelActual.cambiarDeNivel()
+    nivelActual.dibujarNuevaSala()
   }
-}*/
+}
 
 
 

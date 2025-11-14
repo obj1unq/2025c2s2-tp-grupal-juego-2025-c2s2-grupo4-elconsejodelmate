@@ -4,8 +4,8 @@ import escenario.*
 class PlantillaEnemigo{
     var property image 
     var property position
-    var property nivel 
-    var property murosNivel = nivel.obtenerMuros() 
+    var property nivel = nivelActual
+    var property murosNivel = nivel.muros() 
     var property direccion = derechaEnemigo
     
     method interactuarCon(pj){
@@ -36,8 +36,8 @@ class EnemigoPerseguidor inherits PlantillaEnemigo{
     }
 }
 object movimientoPersecutor {
-    var property nivel = nivel0
-    var property murosNivel = nivel.obtenerMuros()
+    var property nivel = nivelActual
+    var property murosNivel = nivel.muros()
 
     method hayMuroEn(positionDestino){
       return(murosNivel.any({muro => muro.position() == positionDestino}))
@@ -47,7 +47,7 @@ object movimientoPersecutor {
         const posPr = persecutor.position()
         const posPs = perseguido.position()
         
-
+        
         if(posPr.y() > posPs.y() && !self.hayMuroEn(posPr.down(1))){
             persecutor.position(posPr.down(1))
        }else if(posPr.y() < posPs.y() && !self.hayMuroEn(posPr.up(1))) {
