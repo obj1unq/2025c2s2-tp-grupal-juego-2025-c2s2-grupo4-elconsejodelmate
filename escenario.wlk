@@ -1,7 +1,8 @@
 import martina.*
 import enemigos.*
 import extras.*
-
+//como limpiar instancias de un nivel?
+//los niveles no se actualizan, hace falta borrar se podra usar allVisuals()
 object nivelActual{
 
   const property obstaculos = salaActual.listaDeObstaculos()
@@ -30,6 +31,7 @@ object nivelActual{
     game.addVisual(cartelDePuntos)
     martina.position(game.at(1,7))
     game.addVisual(martina)
+  
     
     
     //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
@@ -67,14 +69,21 @@ object salaDerecha inherits Sala(
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [p, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){}
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                   /* override method cantDeEnemigos(){
+                      return 1 
+                    } */
+                    override method siguiente(){
+                      return salaInicial
+                    }
+                  }
 
 
 object salaDeCofres inherits Sala(
@@ -152,20 +161,24 @@ class Sala{
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
 
+  method cantDeEnemigos(){
+    return 1 //cambiar a un numero positivo 
+  }
   method enemigos(){
-    const enemigosACrear = 1.randomUpTo(3)
+   // const enemigosACrear = 1.randomUpTo(3)
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
-    enemigosACrear.times({i => 
+    //dividir en subtareas 
+    self.cantDeEnemigos().times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
         game.addVisual(enemigo)
         enemigosPatrulla.add(enemigo)
     })
-    enemigosACrear.times({i => 
+   /* self.cantDeEnemigos().times({i => 
         const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
-    })
+    })*/
     //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
     game.onTick(2000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
@@ -363,5 +376,14 @@ class Puerta{
 }
 
 
+object imagenFinal{
+  method position() = game.at(0,0)
+  method image() = "PantallaFinal.png"
+}
+object mensajeFinal{
+  method position() = game.center()
+  method text() = " Puntos = "+martina.puntos() + " Presiona H para reintentar "
+  method textColor() = "FFFFFFFF"
 
+}
 
