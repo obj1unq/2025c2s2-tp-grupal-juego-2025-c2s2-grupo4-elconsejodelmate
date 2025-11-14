@@ -1,5 +1,6 @@
 import escenario.*
 import extras.*
+import interfaz.*
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
