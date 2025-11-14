@@ -119,8 +119,6 @@ class Joya inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     game.say(pj, "Obtuve una joya, incrementara mi puntuacion")
     pj.sumarPuntuacionDe(self)
-    //game.removeVisual(self)
-    
   }
 }
 class Anillo inherits Joya{

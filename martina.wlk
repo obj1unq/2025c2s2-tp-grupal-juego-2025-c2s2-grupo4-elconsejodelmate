@@ -30,7 +30,6 @@ object martina {
     }
   }
   
-  // que el juego termine en decrementarEnUnoVidasDeMartina
   method estaViva(){
     return self.cantDeVidas() > 0
   }

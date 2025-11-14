@@ -2,7 +2,6 @@ import martina.*
 import enemigos.*
 import extras.*
 
-//Poner todos los obstaculos en una misma lista 
 object nivelActual{
 
   const property obstaculos = salaActual.listaDeObstaculos()
@@ -31,6 +30,8 @@ object nivelActual{
     game.addVisual(cartelDePuntos)
     martina.position(game.at(1,7))
     game.addVisual(martina)
+    
+    
     //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
     //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
   }
@@ -113,9 +114,6 @@ class Sala{
   }
 
   const muro = m
-  // const ataud = a
-  // const barril = b
-  // const cofre = c
 
   const nivel 
   
@@ -128,7 +126,7 @@ class Sala{
 
   method construir() {
       game.height(nivel.size())
-      game.width(nivel.size()) // habia un get(0)
+      game.width(nivel.size()) 
       self.dibujar()
       
   }
@@ -184,88 +182,48 @@ object p{
   }
 }
 
-object c {
-  //const cofres = []
+object c {  
   method dibujar(posicion){
     const cofre = new Cofre(position = posicion)
     game.addVisual(cofre)
-    //cofres.add(cofre)
   }
- /* method listaDeCofres(){
-    return cofres
-  }*/
 }
 
 object b{
-  //const barriles = []
-  //pasarle el nivel actual 
+
   var property listaAEscribir = nivelActual.salaActual()
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
     listaAEscribir.agregarObstaculo(barril)
-    //barriles.add(barril)
-    //nivelInicial.listaDeObstaculos.add(barril)
-    //salaInicial.agregar(barril)
   }
- /* method listaDeBarriles(){
-    return barriles
-  }*/
- /* method listaDePosicionesDeBarriles(){
-    return barriles.map({barril => barril.position()})
-  }*/
 }
 
 object a{
-  //pasarle el nivel actual 
   var property listaAEscribir = nivelActual.salaActual()
-  //const ataudes= []
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
     game.addVisual(ataud)
     listaAEscribir.agregarObstaculo(ataud)
-    //ataudes.add(ataud)
-    //nivelInicial.listaDeObstaculos.add(ataud)
-    //salaActual.agregar(ataud)
   }
- /* method listaDeAtaudes(){
-    return ataudes
-  }*/
-
-  /*method listaDePosicionesDeAtaudes(){
-    return ataudes.map({ataud => ataud.position()})
-  }*/
 }
 
 
 object t{
-  //const trampas = []
   method dibujar(posicion){
     const trampa = new Trampa(position = posicion)
     game.addVisual(trampa)
-    //trampas.add(trampa)
   }
-  /*method listaDeTrampas(){
-    return trampas
-  }*/
 }
 
 
 object m{
-  //pasarle el nivel actual 
   var property listaAEscribir = nivelActual.salaActual()
-  //const muros = []
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
     listaAEscribir.agregarMuro(muro)
-    
-    //muros.add(muro)
   }
-
- /* method listaDeMuros(){
-    return muros
-  }*/
 }
 
 object v{
@@ -355,18 +313,17 @@ class Barril inherits Obstaculo{
 class Cofre{
   var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea  
   const property poolDeObjetos = []
-  var property estado = cofreCerrado  
+  var property estado = "-cerrado"
 
-  method image(){
-    return estado.image()
-  }
+ 
+ method image(){
+  return "cofre" + estado +".png"
+ }
   method abrir(){
-    estado = estado.siguienteEstado()
+    estado = "-abierto"
   }
 
   method inicializarPoolObjetos(){
-    //puedo inicializarlo y añadirlo directamente?
-    //poolDeObjetos.add(new PocionVida())
     const pocionVida = new PocionVida(position = self.position())
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
@@ -383,7 +340,7 @@ class Cofre{
   }
 
   method interactuarCon(pj){
-    if(estado.image() == "cofre.png"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
+    if(estado == "-cerrado"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
         self.inicializarPoolObjetos()
         self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
         self.abrir()
@@ -393,27 +350,11 @@ class Cofre{
     
   }
 }
-object cofreCerrado{
-  method image(){
-    return "cofre.png"
-  }
-  method siguienteEstado(){
-    return cofreAbierto
-  }
-}
-object cofreAbierto{
-  method image(){
-    return "cofre-abierto.png"
-  }
-  method siguienteEstado(){
-    return self 
-  }
-}
+
 
 class Puerta{
   var property position 
   var property image = "baston.png"
-
 
   method interactuarCon(pj){
     nivelActual.cambiarDeNivel()
