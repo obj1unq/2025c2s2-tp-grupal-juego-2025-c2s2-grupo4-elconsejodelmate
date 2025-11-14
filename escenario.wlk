@@ -22,7 +22,15 @@ object nivelActual{
   }
 
   method dibujarNuevaSala(){
+    game.removeVisual(barraDeVidas)
+    game.removeVisual(cartelDePuntos)
+    game.removeVisual(martina)
+    
     salaActual.dibujar()
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
+    martina.position(game.at(1,7))
+    game.addVisual(martina)
     //Bueno con esto se crea la  nueva sala pero no se crea ni a martina ni su barra de vida ni contador :P
     //Notar que los cofres se instancian como cofres abiertos aun cuando se cambio de nivel
   }
@@ -57,9 +65,9 @@ object salaDerecha inherits Sala(
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [v, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
