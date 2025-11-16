@@ -27,16 +27,19 @@ object nivelActual{
     game.addVisual(martina)
 
   }
+  method enemigos(){
+    salaActual.enemigos()
+  }
 
 }
 
 object managerListasDeSala{
   var property obstaculos = []
   var property muros  = []
-  var property listaDeCofres = []
-  var property listaDeTrampas = []
-  var property listaDePuertas = []
-  var property listaDeEnemigos = []
+  const  listaDeCofres = []
+  const  listaDeTrampas = []
+  const  listaDePuertas = []
+  const  listaDeEnemigos = []
 
   method agregarObstaculo(objeto){
     obstaculos.add(objeto)
@@ -227,22 +230,22 @@ object c {
 }
 
 object b{
-  var property listaAEscribir = managerListasDeSala
+  var property sala = managerListasDeSala
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
-    listaAEscribir.agregarObstaculo(barril)
+    sala.agregarObstaculo(barril)
   }
 }
 
 object a{
-  var property listaAEscribir = managerListasDeSala
+  var property sala = managerListasDeSala
 
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
 
     game.addVisual(ataud)
-    listaAEscribir.agregarObstaculo(ataud)
+    sala.agregarObstaculo(ataud)
   }
 }
 
@@ -261,12 +264,12 @@ object t{
 
 object m{
   //pasarle el nivel actual 
-  var property listaAEscribir = managerListasDeSala
+  var property sala = managerListasDeSala
   //const muros = []
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
-    listaAEscribir.agregarMuro(muro)
+    sala.agregarMuro(muro)
     
     //muros.add(muro)
   }
@@ -433,6 +436,7 @@ class Puerta{
   method interactuarCon(pj){
     nivelActual.cambiarDeNivel()
     nivelActual.dibujarNuevaSala()
+    nivelActual.enemigos()
   }
 }
 
