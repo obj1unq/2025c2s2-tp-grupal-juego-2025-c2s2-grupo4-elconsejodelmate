@@ -75,6 +75,12 @@ object managerListasDeSala{
     game.removeVisual(barraDeVidas)
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
+    obstaculos.clear()
+    muros.clear()
+    listaDeCofres.clear()
+    listaDeTrampas.clear()
+    listaDePuertas.clear()
+
   }
 }
 
