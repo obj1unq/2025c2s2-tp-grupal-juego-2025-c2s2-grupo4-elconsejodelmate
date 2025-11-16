@@ -1,6 +1,7 @@
 import martina.*
 import enemigos.*
 import extras.*
+import salas.*
 
 
 object nivelActual{
@@ -20,7 +21,7 @@ object nivelActual{
   method dibujarNuevaSala(){
     managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
-    //salaActual.enemigos()
+    salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     martina.position(game.at(1,7))
@@ -31,6 +32,9 @@ object nivelActual{
     salaActual.enemigos()
   }
 
+}
+object managerTicks{
+   
 }
 
 object managerListasDeSala{
@@ -66,83 +70,35 @@ object managerListasDeSala{
   }
 
   method limpiarNivel(){
+    //Listas de visuales 
+    //Y clear de listas viejas
+    
     self.removerVisualesDe(obstaculos)
+    obstaculos.clear()
+
     self.removerVisualesDe(muros)
+    muros.clear()
+
     self.removerVisualesDe(listaDeCofres)
+    listaDeCofres.clear()
+
     self.removerVisualesDe(listaDeTrampas)
+    listaDeTrampas.clear()
+
     self.removerVisualesDe(listaDePuertas)
+    listaDePuertas.clear()
+
     self.removerVisualesDe(listaDeEnemigos)
+    listaDeEnemigos.clear()
+
+    //Visuales individuales
     game.removeVisual(barraDeVidas)
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
-    obstaculos.clear()
-    muros.clear()
-    listaDeCofres.clear()
-    listaDeTrampas.clear()
-    listaDePuertas.clear()
+    
 
   }
 }
-
-object salaInicial inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, p],
-                  [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()){
-                    override method siguiente(){
-                      return salaDerecha
-                    }
-                  }
-
-object salaDerecha inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){}
-
-
-object salaDeCofres inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
-                  [m, v, c, v, v, c, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
-                    
-                  }
-
-
 
 
 
@@ -442,7 +398,7 @@ class Puerta{
   method interactuarCon(pj){
     nivelActual.cambiarDeNivel()
     nivelActual.dibujarNuevaSala()
-    nivelActual.enemigos()
+    //nivelActual.enemigos()
   }
 }
 
