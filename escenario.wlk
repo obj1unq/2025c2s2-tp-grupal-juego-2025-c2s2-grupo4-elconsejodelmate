@@ -96,6 +96,11 @@ object managerListasDeSala{
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
     
+    //Remover ticks
+
+    game.removeTickEvent("movimientoEnemigo")
+    game.removeTickEvent("cambioDireccionEnemigo")
+    game.removeTickEvent("perseguirAMartina")
 
   }
 }
