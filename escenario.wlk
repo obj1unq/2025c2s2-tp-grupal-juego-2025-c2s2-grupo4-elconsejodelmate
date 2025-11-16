@@ -2,7 +2,7 @@ import martina.*
 import enemigos.*
 import extras.*
 import salas.*
-
+import interfaz.*
 
 object nivelActual{
   var salaActual = salaInicial
@@ -31,11 +31,19 @@ object nivelActual{
   method enemigos(){
     salaActual.enemigos()
   }
+  method restart(){
+    game.removeVisual(imagenFinal)
+    game.removeVisual(mensajeFinal)
+    martina.cantDeVidas(3)
+    salaActual = salaInicial
+    self.dibujarNuevaSala()
+    self.iniciar()
+    //hay que delegar mucho de aca
+    //Cuando se resete martina queda en la posicion que se le da en el metho dibujarNuevaSala, ojo con eso 
+  }
 
 }
-object managerTicks{
-   
-}
+
 
 object managerListasDeSala{
   var property obstaculos = []
@@ -249,23 +257,6 @@ object v{
   }
 }
 
-
-object cartelDeMuerte{
-  var property position = game.center()
-  method image(){
-    return "cartelMuerte.png"
-  }
-}
-
-object mensajeFinal{
-  var property position = game.center()
-  method text(){
-    return "Tu puntuacion: " + martina.puntos() + " aprete H para reiniciar"
-  }
-  method textColor(){
-    return "FFFFFFFF"
-  }
-}
 
 
 object inventario{

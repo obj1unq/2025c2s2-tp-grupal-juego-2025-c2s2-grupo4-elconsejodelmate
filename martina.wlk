@@ -78,6 +78,7 @@ object config{
     keyboard.s().onPressDo({abajo.mover(martina)})
     keyboard.d().onPressDo({derecha.mover(martina)})
     keyboard.f().onPressDo({martina.disparar()})
+    keyboard.h().onPressDo({nivelActual.restart()})
   }
 }
 object derecha{
