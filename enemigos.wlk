@@ -18,7 +18,7 @@ class PlantillaEnemigo{
       game.removeVisual(self)
       game.removeVisual(objeto)
     }
-}
+}//Usarlo como plantilla, dejando un method del comportamiento individual 
 class EnemigoPatrulla inherits PlantillaEnemigo{
 
      method cambiarDireccion(){

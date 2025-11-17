@@ -32,20 +32,22 @@ object nivelActual{
     salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
+    salaActual.configMartina()
    // martina.position(game.at(1,7))
-    game.addVisual(martina)
+    //game.addVisual(martina)
 
   }
   method enemigos(){
     salaActual.enemigos()
   }
+  
   method restart(){
     game.removeVisual(imagenFinal)
     game.removeVisual(mensajeFinal)
     martina.cantDeVidas(3)
     salaActual = salaInicial
     self.dibujarNuevaSala()
-    self.iniciar()
+    //self.iniciar()
     //hay que delegar mucho de aca
     //Cuando se resete martina queda en la posicion que se le da en el metho dibujarNuevaSala, ojo con eso 
   }
@@ -134,10 +136,6 @@ method anterior(){
   return
 }
 
-
-
-
-  
   const nivel 
   
   method iniciar(){
@@ -165,7 +163,7 @@ method anterior(){
   method configMartina(){
     martina.position(self.posicionDeMartina())
     game.addVisual(martina)
-    config.configTeclas()
+    
     //TICKS
     game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 

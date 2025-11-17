@@ -137,3 +137,4 @@ class Collar inherits Joya{
     return "collar.png"
   }
 }
+/*agregar o modificar templeate*/

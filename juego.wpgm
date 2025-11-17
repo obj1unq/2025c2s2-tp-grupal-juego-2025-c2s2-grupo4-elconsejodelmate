@@ -9,6 +9,8 @@ program catastrofico{
     game.width(15)
     game.cellSize(32)
     game.title("Cat-astrofico")
+
+    config.configTeclas()
    
     nivelActual.iniciar()
     game.addVisual(barraDeVidas)
