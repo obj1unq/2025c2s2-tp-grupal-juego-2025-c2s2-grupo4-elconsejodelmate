@@ -3,15 +3,23 @@ import enemigos.*
 import extras.*
 import salas.*
 import interfaz.*
-
+//problema a solucionar: volver a la sala anterior 
 object nivelActual{
+  // el gato de schrodinger 
+  var salaAnterior = null 
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
    salaActual = salaActual.siguiente()
   }
+  method cambiarANivelAnterior(){
+    salaActual = salaAnterior
+  }
   method salaActual(){
     return salaActual
+  }
+  method actualizarSalaAnterior(){
+    salaAnterior = salaActual
   }
 
   method iniciar(){
@@ -24,7 +32,7 @@ object nivelActual{
     salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
-    martina.position(game.at(1,7))
+   // martina.position(game.at(1,7))
     game.addVisual(martina)
 
   }
@@ -119,9 +127,16 @@ object managerListasDeSala{
 
 class Sala{
 
-  method siguiente(){
-    return 
-  }
+method siguiente(){
+  return
+}
+method anterior(){
+  return
+}
+
+
+
+
   
   const nivel 
   
@@ -193,6 +208,16 @@ object p{
 
   method dibujar(posicion){
     const puerta = new Puerta(position = posicion)
+
+    game.addVisual(puerta)
+    sala.agregarPuerta(puerta)
+  }
+}
+object pa{
+  const sala = managerListasDeSala
+
+  method dibujar(posicion){
+    const puerta = new PuertaASalaAnterior(position = posicion)
 
     game.addVisual(puerta)
     sala.agregarPuerta(puerta)
@@ -395,15 +420,25 @@ object cofreAbierto{
 class Puerta{
   var property position 
   var property image = "baston.png"
-
-
-  method interactuarCon(pj){
+  
+  method interactuarCon(pj){ 
+    nivelActual.actualizarSalaAnterior()
     nivelActual.cambiarDeNivel()
     nivelActual.dibujarNuevaSala()
     //nivelActual.enemigos()
   }
+
 }
 
+class PuertaASalaAnterior{
+  var property position 
+  var property image = "baston.png"
 
+  method interactuarCon(pj){
+    nivelActual.cambiarANivelAnterior()//hacer que las salas apunten tambien al anterior 
+    nivelActual.cambiarDeNivel()
+    nivelActual.dibujarNuevaSala()
+  }
+}
 
 

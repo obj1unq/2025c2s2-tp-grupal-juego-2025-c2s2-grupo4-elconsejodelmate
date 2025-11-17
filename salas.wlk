@@ -24,7 +24,6 @@ object salaInicial inherits Sala(
                     override method posicionDeMartina(){
                       return game.at(7,1)
                     }
-                    
                   }
 
 object salaDerecha inherits Sala(
@@ -35,22 +34,28 @@ object salaDerecha inherits Sala(
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [pa, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                  [m, m, m, m, m, m, m, p, m, m, m, m, m, m, m]].reverse()){
                     override method posicionDeMartina(){
                       return game.at(1,7)
+                    }
+                    override method siguiente(){
+                      return salaDeCofres 
+                    }
+                    override method anterior(){
+                      return salaInicial
                     }
                   }
 
 
 object salaDeCofres inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+        nivel = [ [m, m, m, m, m, m, m, pa, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
