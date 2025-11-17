@@ -1,4 +1,5 @@
 import escenario.*
+import martina.*
 
 
 object salaInicial inherits Sala(
@@ -20,6 +21,10 @@ object salaInicial inherits Sala(
                     override method siguiente(){
                       return salaDerecha
                     }
+                    override method posicionDeMartina(){
+                      return game.at(7,1)
+                    }
+                    
                   }
 
 object salaDerecha inherits Sala(
@@ -37,7 +42,11 @@ object salaDerecha inherits Sala(
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){}
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                    override method posicionDeMartina(){
+                      return game.at(1,7)
+                    }
+                  }
 
 
 object salaDeCofres inherits Sala(
@@ -56,7 +65,9 @@ object salaDeCofres inherits Sala(
                   [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
-                    
+                    override method posicionDeMartina(){
+                      return game.at(1,7)
+                    }
                   }
 
 

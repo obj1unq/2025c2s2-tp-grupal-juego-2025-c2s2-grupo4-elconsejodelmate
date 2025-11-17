@@ -129,7 +129,7 @@ class Sala{
     game.ground("suelo.png")
     self.construir()
     self.enemigos()
-    self.martina()
+    self.configMartina()
   }
 
   method construir() {
@@ -147,7 +147,8 @@ class Sala{
       })
   }
 
-  method martina(){
+  method configMartina(){
+    martina.position(self.posicionDeMartina())
     game.addVisual(martina)
     config.configTeclas()
     //TICKS
@@ -155,6 +156,11 @@ class Sala{
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
+
+  method posicionDeMartina(){
+    return 
+  }
+
 
   method enemigos(){
     const enemigosACrear = 1.randomUpTo(3)
