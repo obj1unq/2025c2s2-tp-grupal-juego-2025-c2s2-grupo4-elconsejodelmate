@@ -1,17 +1,29 @@
 import escenario.*
 import extras.*
 import interfaz.*
+import salas.*
 object martina {
   var property position = game.at(7,1)
   var property estadoDeMartina =  ""
   var property cantDeVidas = 3
   var property ultimaDireccion = arriba 
-  const property inventario = []
   var property puntos = 0 
 
   var property nivel = managerListasDeSala
   var property obstaculosNivel = nivel.obstaculos()
   var property murosNivel = nivel.muros()
+
+  method restart(){
+    self.cantDeVidas(3)
+    self.puntos(0)
+    self.position(salaInicial.posicionDeMartina())
+
+  }
+
+  method aSala(sala){
+    self.position(sala.posicionDeMartina())
+    game.addVisual(self)
+  }
 
   method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
@@ -28,8 +40,7 @@ object martina {
       game.removeVisual(self)
       game.addVisual(imagenFinal)
       game.addVisual(mensajeFinal)
-      
-      //Preguntar como resetear el nivel con una tecla :P intente llamando al nivel0.inicio en un press do pero nop
+    
     }
   }
   
@@ -55,17 +66,9 @@ object martina {
   method puedeMoverseA(nuevaDireccion){
     return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
   }
-  method añadirAlInventario(objeto){
-    inventario.add(objeto)
-    game.say(self, "Añadi al inventario " + objeto)
-  }
   method sumarPuntuacionDe(objeto){
     puntos = puntos + objeto.puntos()
   }
-  method tieneObjeto(objeto){
-    return inventario.contains(objeto)
-  }
-  //falto agregarle el chocar al pj
   method chocarCon(objeto){
 
   }

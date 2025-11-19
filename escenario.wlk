@@ -25,8 +25,7 @@ object nivelActual{
     salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
-    martina.position(salaActual.posicionDeMartina())
-    game.addVisual(martina)
+    martina.aSala(salaActual)
   }
   method enemigos(){
     salaActual.enemigos()
@@ -35,11 +34,9 @@ object nivelActual{
   method restart(){
     game.removeVisual(imagenFinal)
     game.removeVisual(mensajeFinal)
-    martina.cantDeVidas(3)
     salaActual = salaInicial
     self.dibujarNuevaSala()
-    martina.position(salaActual.posicionDeMartina())
-    //Delegar a martina su nuevo seteo cuando se resetea
+    martina.restart()
   }
 
 }

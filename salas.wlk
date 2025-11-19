@@ -70,6 +70,7 @@ object salaDeCofres inherits Sala(
                   [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
+                    
                     override method posicionDeMartina(){
                       return game.at(7,13)
                     }

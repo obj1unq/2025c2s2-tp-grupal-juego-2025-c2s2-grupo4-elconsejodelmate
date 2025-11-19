@@ -70,7 +70,7 @@ class PocionVida inherits ObjetoRecolectable{
   }
   override method interactuarCon(pj){
     if(pj.cantDeVidas() == 3){
-      pj.añadirAlInventario(self)
+      //pj.añadirAlInventario(self)
       game.say(pj, "Obtuve una pocion de vida que ira a mi inventario")
     }else{
       pj.incrementarEnUnoVidas()
@@ -85,7 +85,7 @@ class PocionVenenosa inherits ObjetoRecolectable{
   override method interactuarCon(pj){
     
     if(pj.cantDeVidas() == 1){
-      pj.añadirAlInventario(self)
+      //pj.añadirAlInventario(self)
       game.say(pj, "Obtuve una pocion venenosa, quedara en mi inventario ")
 
     }else{
@@ -109,7 +109,7 @@ class Llave inherits ObjetoRecolectable{
   }
   override method interactuarCon(pj){
     game.say(pj, "Obtuve una llave, busquemos que puerta abre")
-    pj.añadirAlInventario(self)
+    //pj.añadirAlInventario(self)
     //game.removeVisual(self)
     
   }
