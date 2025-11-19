@@ -3,24 +3,17 @@ import enemigos.*
 import extras.*
 import salas.*
 import interfaz.*
-//problema a solucionar: volver a la sala anterior 
+
 object nivelActual{
-  // el gato de schrodinger 
-  // var salaAnterior = null 
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
    salaActual = salaActual.siguiente()
   }
-  // method cambiarANivelAnterior(){
-  //   salaActual = salaAnterior
-  // }
+  
   method salaActual(){
     return salaActual
   }
-  // method actualizarSalaAnterior(){
-  //   salaAnterior = salaActual
-  // }
 
   method iniciar(){
     salaActual.iniciar()
@@ -32,10 +25,8 @@ object nivelActual{
     salaActual.enemigos()
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
-    salaActual.configMartina()
-   // martina.position(game.at(1,7))
-    //game.addVisual(martina)
-
+    martina.position(salaActual.posicionDeMartina())
+    game.addVisual(martina)
   }
   method enemigos(){
     salaActual.enemigos()
@@ -47,9 +38,8 @@ object nivelActual{
     martina.cantDeVidas(3)
     salaActual = salaInicial
     self.dibujarNuevaSala()
-    //self.iniciar()
-    //hay que delegar mucho de aca
-    //Cuando se resete martina queda en la posicion que se le da en el metho dibujarNuevaSala, ojo con eso 
+    martina.position(salaActual.posicionDeMartina())
+    //Delegar a martina su nuevo seteo cuando se resetea
   }
 
 }
@@ -132,9 +122,6 @@ class Sala{
 method siguiente(){
   return
 }
-method anterior(){
-  return
-}
 
   const nivel 
   
@@ -147,7 +134,7 @@ method anterior(){
 
   method construir() {
       game.height(nivel.size())
-      game.width(nivel.size()) // habia un get(0)
+      game.width(nivel.size()) 
       self.dibujar()
       
   }
@@ -195,7 +182,7 @@ method anterior(){
     //Ticks
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
     game.onTick(2000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
-    game.onTick(800, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
+    game.onTick(1200, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
   }
 
   
@@ -211,16 +198,6 @@ object p{
     sala.agregarPuerta(puerta)
   }
 }
-// object pa{
-//   const sala = managerListasDeSala
-
-//   method dibujar(posicion){
-//     const puerta = new PuertaASalaAnterior(position = posicion)
-
-//     game.addVisual(puerta)
-//     sala.agregarPuerta(puerta)
-//   }
-// }
 
 object c {
   const sala = managerListasDeSala
@@ -255,7 +232,6 @@ object a{
 
 
 object t{
-  //const trampas = []
   var property sala = managerListasDeSala
   method dibujar(posicion){
     const trampa = new Trampa(position = posicion)
@@ -267,15 +243,12 @@ object t{
 
 
 object m{
-  //pasarle el nivel actual 
+
   var property sala = managerListasDeSala
-  //const muros = []
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
     sala.agregarMuro(muro)
-    
-    //muros.add(muro)
   }
 
 }
@@ -288,13 +261,6 @@ object v{
 
 
 
-object inventario{
-  var property position = game.center()
-  method image(){
-    const primerObjDelInventario = martina.inventario().first() 
-    return primerObjDelInventario.image()
-  }
-}
 object barraDeVidas{
   var property position = game.at(12,14)
   
@@ -358,7 +324,7 @@ class Barril inherits Obstaculo{
 }
 
 class Cofre{
-  var property position // si quiero pasar una emptyPosition del rnadomizer a la clase, crashea  
+  var property position
   const property poolDeObjetos = []
   var property estado = cofreCerrado  
 
@@ -370,8 +336,7 @@ class Cofre{
   }
 
   method inicializarPoolObjetos(){
-    //puedo inicializarlo y añadirlo directamente?
-    //poolDeObjetos.add(new PocionVida())
+
     const pocionVida = new PocionVida(position = self.position())
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
@@ -388,7 +353,7 @@ class Cofre{
   }
 
   method interactuarCon(pj){
-    if(estado.image() == "cofre-cerrado.png"){ //preguntar si esto se puede mejorar, no pregunte mas xd 
+    if(estado.image() == "cofre-cerrado.png"){ 
         self.inicializarPoolObjetos()
         self.seleccionarObjeto(poolDeObjetos).interactuarCon(pj)
         self.abrir()
@@ -420,23 +385,11 @@ class Puerta{
   var property image = "baston.png"
   
   method interactuarCon(pj){ 
-    // nivelActual.actualizarSalaAnterior()
     nivelActual.cambiarDeNivel()
     nivelActual.dibujarNuevaSala()
-    //nivelActual.enemigos()
+    
   }
 
 }
-
-// class PuertaASalaAnterior{
-//   var property position 
-//   var property image = "baston.png"
-
-//   method interactuarCon(pj){
-//     nivelActual.cambiarANivelAnterior()//hacer que las salas apunten tambien al anterior 
-//     nivelActual.cambiarDeNivel()
-//     nivelActual.dibujarNuevaSala()
-//   }
-// }
 
 

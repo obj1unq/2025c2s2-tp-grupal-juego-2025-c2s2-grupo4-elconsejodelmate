@@ -48,9 +48,9 @@ object salaDerecha inherits Sala(
                     override method siguiente(){
                       return salaDeCofres 
                     }
-                    override method anterior(){
-                      return salaInicial
-                    }
+                    // override method anterior(){
+                    //   return salaInicial
+                    // }
                   }
 
 
