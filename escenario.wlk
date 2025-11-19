@@ -6,21 +6,21 @@ import interfaz.*
 //problema a solucionar: volver a la sala anterior 
 object nivelActual{
   // el gato de schrodinger 
-  var salaAnterior = null 
+  // var salaAnterior = null 
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
    salaActual = salaActual.siguiente()
   }
-  method cambiarANivelAnterior(){
-    salaActual = salaAnterior
-  }
+  // method cambiarANivelAnterior(){
+  //   salaActual = salaAnterior
+  // }
   method salaActual(){
     return salaActual
   }
-  method actualizarSalaAnterior(){
-    salaAnterior = salaActual
-  }
+  // method actualizarSalaAnterior(){
+  //   salaAnterior = salaActual
+  // }
 
   method iniciar(){
     salaActual.iniciar()
@@ -211,16 +211,16 @@ object p{
     sala.agregarPuerta(puerta)
   }
 }
-object pa{
-  const sala = managerListasDeSala
+// object pa{
+//   const sala = managerListasDeSala
 
-  method dibujar(posicion){
-    const puerta = new PuertaASalaAnterior(position = posicion)
+//   method dibujar(posicion){
+//     const puerta = new PuertaASalaAnterior(position = posicion)
 
-    game.addVisual(puerta)
-    sala.agregarPuerta(puerta)
-  }
-}
+//     game.addVisual(puerta)
+//     sala.agregarPuerta(puerta)
+//   }
+// }
 
 object c {
   const sala = managerListasDeSala
@@ -420,7 +420,7 @@ class Puerta{
   var property image = "baston.png"
   
   method interactuarCon(pj){ 
-    nivelActual.actualizarSalaAnterior()
+    // nivelActual.actualizarSalaAnterior()
     nivelActual.cambiarDeNivel()
     nivelActual.dibujarNuevaSala()
     //nivelActual.enemigos()
@@ -428,15 +428,15 @@ class Puerta{
 
 }
 
-class PuertaASalaAnterior{
-  var property position 
-  var property image = "baston.png"
+// class PuertaASalaAnterior{
+//   var property position 
+//   var property image = "baston.png"
 
-  method interactuarCon(pj){
-    nivelActual.cambiarANivelAnterior()//hacer que las salas apunten tambien al anterior 
-    nivelActual.cambiarDeNivel()
-    nivelActual.dibujarNuevaSala()
-  }
-}
+//   method interactuarCon(pj){
+//     nivelActual.cambiarANivelAnterior()//hacer que las salas apunten tambien al anterior 
+//     nivelActual.cambiarDeNivel()
+//     nivelActual.dibujarNuevaSala()
+//   }
+// }
 
 

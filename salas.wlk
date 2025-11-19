@@ -3,21 +3,21 @@ import martina.*
 
 
 object salaInicial inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m],
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, b, v, c, v, v, v, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, p],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, p],
                   [m, v, v, v, v, v, v, t, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, a, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, v, m, m, m, m, m, m, m]].reverse()){
+                  [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()){
                     override method siguiente(){
                       return salaDerecha
                     }
@@ -34,7 +34,7 @@ object salaDerecha inherits Sala(
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
-                  [pa, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
@@ -55,14 +55,14 @@ object salaDerecha inherits Sala(
 
 
 object salaDeCofres inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, pa, m, m, m, m, m, m, m],
+        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [v, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
