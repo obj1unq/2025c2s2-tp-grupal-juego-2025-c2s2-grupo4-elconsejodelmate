@@ -15,9 +15,10 @@ class PlantillaEnemigo{
       return(murosNivel.any({muro => muro.position() == positionDestino}))
     }
     method chocarCon(objeto) {
+      manager.removerAlEnemigo(self)
       game.removeVisual(self)
-      //Trabajarlo mas tarde deberia borrarse de la lista tambien
     }
+
 }//Usarlo como plantilla, dejando un method del comportamiento individual 
 class EnemigoPatrulla inherits PlantillaEnemigo{
 

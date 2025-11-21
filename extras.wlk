@@ -32,7 +32,6 @@ object flechas{
 
   method remover(flecha){{
     lista.remove(flecha)
-    game.removeVisual(flecha)
   }}
 }
 class Flecha {
@@ -49,15 +48,21 @@ class Flecha {
     }
 
     method inicializar(){
-      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)}))  
+      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)
+                                self.destruir()}))  
     }
     
     method destruir(){
-      game.removeVisual(self)
       flechas.remover(self)
+      game.removeVisual(self)
+      
     }
     method interactuarCon(pj){
 
+    }
+
+    method chocarCon(objeto){
+      
     }
 }
 

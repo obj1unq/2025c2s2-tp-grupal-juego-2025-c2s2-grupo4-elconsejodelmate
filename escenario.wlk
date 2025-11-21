@@ -73,6 +73,10 @@ object managerListasDeSala{
     listaDeEnemigos.add(enemigo)
   }
 
+  method removerAlEnemigo(enemigo){
+    listaDeEnemigos.remove(enemigo)
+  }
+
   method limpiarNivel(){
     //Limpia las visuales de las listas dadas y borra los elementos de las listas
     
@@ -158,7 +162,7 @@ method siguiente(){
     game.addVisual(barraDeVidas)
     game.addVisual(cartelDePuntos)
     //TICKS
-    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
+    game.onTick(250, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
