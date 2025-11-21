@@ -55,18 +55,22 @@ object movimientoPersecutor {
        
     }
 
+    //Saca la distancia entre el persecutor y el perseguido en el eje X y se asegura con abs que sea un valor absoluto
     method distanciaEntreEnEjeX(persecutor , perseguido){
         return (persecutor.position().x() - perseguido.position().x()).abs()
     }
 
+    //Saca la distancia entre el persecutor y el perseguido en el eje Y y se asegura con abs que sea un valor absoluto
     method distanciaEntreEnEjeY(persecutor , perseguido){
         return (persecutor.position().y() - perseguido.position().y()).abs()
     }
 
+    //Indica si la distancia entre el persecutor y el perseguido es mayor en el eje X 
     method distanciaDeXesMayorQueYEntre(persecutor, perseguido){
         return self.distanciaEntreEnEjeX(persecutor, perseguido) > self.distanciaEntreEnEjeY(persecutor, perseguido) 
     }
 
+    //Hace que el persecutor se mueva hacia la posicion que mas le convenga en Y para acercarse al perseguido 
     method moverseEnY(persecutor , posPr , posPs){
         if(posPr.y() > posPs.y() && !self.hayMuroEn(posPr.down(1))){
             persecutor.position(posPr.down(1))
@@ -75,6 +79,7 @@ object movimientoPersecutor {
        }
     }
 
+    //Hace que el persecutor se mueva hacia la posicion que mas le convenga en X para acercarse al perseguido 
     method moverseEnX(persecutor, posPr, posPs){
         if(posPr.x() > posPs.x() && !self.hayMuroEn(posPr.left(1))){
             persecutor.position(posPr.left(1))
