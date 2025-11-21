@@ -1,7 +1,7 @@
 import escenario.*
 import martina.*
 
-
+/*La salas tendrian que tener un method para su creacion y no recibirlas por una const asi quedaria mas prolijo*/
 object salaInicial inherits Sala(
         sala = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
