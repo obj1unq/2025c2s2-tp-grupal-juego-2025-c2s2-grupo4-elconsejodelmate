@@ -9,9 +9,9 @@ object martina {
   var property ultimaDireccion = arriba 
   var property puntos = 0 
 
-  var property nivel = managerListasDeSala
-  var property obstaculosNivel = nivel.obstaculos()
-  var property murosNivel = nivel.muros()
+  var property manager = managerListasDeSala
+  var property obstaculosNivel = manager.obstaculos()
+  var property murosNivel = manager.muros()
 
   method restart(){
     self.cantDeVidas(3)
@@ -81,7 +81,7 @@ object config{
     keyboard.s().onPressDo({abajo.mover(martina)})
     keyboard.d().onPressDo({derecha.mover(martina)})
     keyboard.f().onPressDo({martina.disparar()})
-    keyboard.h().onPressDo({nivelActual.restart()})
+    keyboard.h().onPressDo({salaActual.restart()})
   }
 }
 object derecha{
