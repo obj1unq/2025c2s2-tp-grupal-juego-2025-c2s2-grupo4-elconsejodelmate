@@ -59,6 +59,7 @@ object martina {
   }
   method disparar(){
     const flecha = new Flecha(position = self.position(),direccion= self.ultimaDireccion())
+    flecha.inicializar()
     flechas.agregar(flecha)
   }
   
