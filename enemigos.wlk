@@ -4,8 +4,8 @@ import escenario.*
 class PlantillaEnemigo{
     var property image 
     var property position
-    var property nivel = managerListasDeSala
-    var property murosNivel = managerListasDeSala.muros() 
+    const manager = managerListasDeSala
+    const murosNivel = manager.muros() 
     var property direccion = derechaEnemigo
     
     method interactuarCon(pj){
@@ -36,8 +36,8 @@ class EnemigoPerseguidor inherits PlantillaEnemigo{
     }
 }
 object movimientoPersecutor {
-    var property nivel = managerListasDeSala
-    var property murosNivel = nivel.muros()
+    var property manager = managerListasDeSala
+    var property murosNivel = manager.muros()
 
     method hayMuroEn(positionDestino){
       return(murosNivel.any({muro => muro.position() == positionDestino}))
