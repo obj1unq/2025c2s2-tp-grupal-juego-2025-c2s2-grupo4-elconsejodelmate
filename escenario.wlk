@@ -25,9 +25,8 @@ object salaActual{
     managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
     salaActual.enemigos()
-    game.addVisual(barraDeVidas)
-    game.addVisual(cartelDePuntos)
     martina.aSala(salaActual)
+    martina.carteles()
   }
 
   //Reseteo, te manda a la sala salaInicial, vidas en 3 y puntos en 0
@@ -253,6 +252,7 @@ object t{
     game.addVisual(trampa)
     sala.agregarTrampa(trampa)
   }
+  
 }
 
 //Muro
@@ -279,8 +279,9 @@ object v{
 class Muro{
   var property position
   var property image = "pared1.png"
+  
   method chocarCon(objeto){
-    game.removeVisual(objeto)
+    //method de la colision de la flecha
   }
 }
 
@@ -294,7 +295,7 @@ class Trampa{
   
   }
   method chocarCon(objeto){
-    
+    //method de la colsion con la flecha
   }
 }
 
@@ -302,7 +303,7 @@ class Obstaculo{
   var property position  
   method image()
   method chocarCon(objeto){
-    game.removeVisual(objeto)
+    //method de la colision de la flecha
   }
 }
 
@@ -355,7 +356,7 @@ class Cofre{
     }
   }
   method chocarCon(objeto){
-    
+    //method de la colision de la flecha
   }
 }
 object cofreCerrado{
@@ -383,6 +384,9 @@ class Puerta{
     salaActual.cambiarDeNivel()
     salaActual.dibujarNuevaSala()
     
+  }
+  method chocarCon(objeto){
+    //method de la colision de la flecha
   }
 
 }
