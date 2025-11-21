@@ -31,11 +31,11 @@ object flechas{
   } 
 }
 class Flecha {
-    var property nivel = managerListasDeSala
+    var property manager = managerListasDeSala
     var property position 
     var property direccion 
-    var property murosNivel = nivel.muros()
-    var property obstaculosNivel = nivel.obstaculos()
+    var property murosNivel = manager.muros()
+    var property obstaculosNivel = manager.obstaculos()
 
     method image(){
         return "flecha.png"
@@ -103,17 +103,17 @@ class PocionInvisibilidad inherits ObjetoRecolectable{
     game.schedule(5000, game.removeVisual(pj))
   }
 }*/
-class Llave inherits ObjetoRecolectable{
-  override method image(){
-    return "llave.png"
-  }
-  override method interactuarCon(pj){
-    game.say(pj, "Obtuve una llave, busquemos que puerta abre")
-    //pj.añadirAlInventario(self)
-    //game.removeVisual(self)
+// class Llave inherits ObjetoRecolectable{
+//   override method image(){
+//     return "llave.png"
+//   }
+//   override method interactuarCon(pj){
+//     game.say(pj, "Obtuve una llave, busquemos que puerta abre")
+//     //pj.añadirAlInventario(self)
+//     //game.removeVisual(self)
     
-  }
-}
+//   }
+//}
 class Joya inherits ObjetoRecolectable{
   method puntos()
   override method interactuarCon(pj){
