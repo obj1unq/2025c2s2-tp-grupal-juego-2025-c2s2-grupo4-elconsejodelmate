@@ -4,7 +4,7 @@ import extras.*
 import salas.*
 import interfaz.*
 
-object nivelActual{
+object salaActual{
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
@@ -15,10 +15,12 @@ object nivelActual{
     return salaActual
   }
 
-  method iniciar(){
+  //Se usa solo para el inicio del juego ya que setea el tamaño del tablero
+  method iniciarSalaInicial(){
     salaActual.iniciar()
   }
 
+  /*Limpia todo lo almacenado y dibujado en el nivel anterior e instancia la nueva sala, sus enemigos y a martina*/
   method dibujarNuevaSala(){
     managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
@@ -27,10 +29,8 @@ object nivelActual{
     game.addVisual(cartelDePuntos)
     martina.aSala(salaActual)
   }
-  method enemigos(){
-    salaActual.enemigos()
-  }
-  
+
+  //Reseteo, te manda a la sala salaInicial, vidas en 3 y puntos en 0
   method restart(){
     game.removeVisual(imagenFinal)
     game.removeVisual(mensajeFinal)
@@ -75,8 +75,7 @@ object managerListasDeSala{
   }
 
   method limpiarNivel(){
-    //Listas de visuales 
-    //Y clear de listas viejas
+    //Limpia las visuales de las listas dadas y borra los elementos de las listas
     
     self.removerVisualesDe(obstaculos)
     obstaculos.clear()
@@ -96,7 +95,7 @@ object managerListasDeSala{
     self.removerVisualesDe(listaDeEnemigos)
     listaDeEnemigos.clear()
 
-    //Visuales individuales
+    //Remueve los visuales que no pertenecen a una lista de objetos
     game.removeVisual(barraDeVidas)
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
@@ -115,33 +114,39 @@ object managerListasDeSala{
 
 
 class Sala{
+  /*Voy a dejar una nota muy larga para la fide del futuro que tenga que pensar como hacer el laberinto que se le ocurrio, queres que la sala sea una plantilla que contenga *posibles puertas* entonces vos vas a tener siempre 3 puertas, cada una desencadena una sala, la cual sabe a donde llevan sus puertas, solo haria falta definir esas salas y listo :D, no? D:*/
 
+  /*cosas para hacer aca? que las salas tengan sus 3 puertas, que  no le tengas que pasar por const el modelo del nivel, un method que haga justo lo anterior y que la sala sepa sobre las puertas y a que sala llevan supongo D:*/
+
+//method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
 method siguiente(){
-  return
-}
-
-  const nivel 
   
+}
+  //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
+  const sala 
+  
+  //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
     game.ground("suelo.png")
     self.construir()
     self.enemigos()
-    game.addVisual(barraDeVidas)
-    game.addVisual(cartelDePuntos)
     self.configMartina()
+   
   }
 
+  //method primitivo NO USAR instancia el tamaño del tablero, SOLO USAR DENTRO DE INICIAR 
   method construir() {
-      game.height(nivel.size())
-      game.width(nivel.size()) 
+      game.height(sala.size())
+      game.width(sala.size()) 
       self.dibujar()
       
   }
 
+  //Este es el lindo, method para dibujar el tablero segun la constante nivel creada previamente 
   method dibujar(){
     (0 .. game.width() - 1).forEach({ x =>
           (0 .. game.height() - 1).forEach({ y =>
-              nivel.get(y).get(x).dibujar(game.at(x, y))
+              sala.get(y).get(x).dibujar(game.at(x, y))
           })
       })
   }
@@ -149,7 +154,9 @@ method siguiente(){
   method configMartina(){
     martina.position(self.posicionDeMartina())
     game.addVisual(martina)
-    
+
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
     //TICKS
     game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
@@ -167,13 +174,13 @@ method siguiente(){
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
     enemigosACrear.times({i => 
-        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
+        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         manager.agregarEnemigo(enemigo)
         enemigosPatrulla.add(enemigo)
     })
     enemigosACrear.times({i => 
-        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
+        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
         manager.agregarEnemigo(enemigo)
@@ -384,8 +391,8 @@ class Puerta{
   var property image = "baston.png"
   
   method interactuarCon(pj){ 
-    nivelActual.cambiarDeNivel()
-    nivelActual.dibujarNuevaSala()
+    salaActual.cambiarDeNivel()
+    salaActual.dibujarNuevaSala()
     
   }
 
