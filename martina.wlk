@@ -25,6 +25,11 @@ object martina {
     game.addVisual(self)
   }
 
+  method carteles(){
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
+  }
+
   method incrementarEnUnoVidas(){
     cantDeVidas = cantDeVidas + 1 //quiza medio redundante pero es mas facil de leer
   }
