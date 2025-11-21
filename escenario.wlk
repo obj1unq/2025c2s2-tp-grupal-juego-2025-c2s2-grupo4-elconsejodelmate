@@ -126,6 +126,8 @@ method siguiente(){
     game.ground("suelo.png")
     self.construir()
     self.enemigos()
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
     self.configMartina()
   }
 
