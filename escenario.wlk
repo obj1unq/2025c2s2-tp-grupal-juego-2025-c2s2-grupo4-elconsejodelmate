@@ -151,6 +151,7 @@ method siguiente(){
       })
   }
 
+  //Configura la posicion de martina, sus visuales (ella, y las barras de vida y puntos) , su colision y el tick de las flechas
   method configMartina(){
     martina.position(self.posicionDeMartina())
     game.addVisual(martina)
@@ -163,11 +164,12 @@ method siguiente(){
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
 
+  //Method abstracto para poder indicar donde deberia aparecer martina en la nueva sala, tras pasar una puerta
   method posicionDeMartina(){
-    return 
+     return
   }
 
-
+  //Instancia los enemgios en la sala, random de 1 a 3 por enemigo, y sus ticks
   method enemigos(){
     const enemigosACrear = 1.randomUpTo(3)
     const manager = managerListasDeSala
@@ -194,6 +196,9 @@ method siguiente(){
   
 }
 
+//  OBJETOS QUE MODELAN EL MAPA DE LA SALA  //
+
+//Puerta
 object p{
   const sala = managerListasDeSala
 
@@ -205,6 +210,7 @@ object p{
   }
 }
 
+//Cofre
 object c {
   const sala = managerListasDeSala
 
@@ -216,6 +222,7 @@ object c {
   }
 }
 
+//Barril
 object b{
   var property sala = managerListasDeSala
   method dibujar(posicion){
@@ -225,6 +232,7 @@ object b{
   }
 }
 
+//Ataud
 object a{
   var property sala = managerListasDeSala
 
@@ -236,7 +244,7 @@ object a{
   }
 }
 
-
+//Trampa
 object t{
   var property sala = managerListasDeSala
   method dibujar(posicion){
@@ -247,7 +255,7 @@ object t{
   }
 }
 
-
+//Muro
 object m{
 
   var property sala = managerListasDeSala
@@ -259,33 +267,14 @@ object m{
 
 }
 
+//Vacio
 object v{
   method dibujar(posicion){
 
   }
 }
 
-
-
-object barraDeVidas{
-  var property position = game.at(12,14)
-  
-  method image(){
-    return "corazon" + self.vidasDe(martina) + ".png"
-  }
-  method vidasDe(personaje){
-    return personaje.cantDeVidas()
-  }
-}
-
-object cartelDePuntos{
-  method text() = "" + martina.puntos()
-  var property position = game.at(1,14)
-  method textColor(){
-    return "FFFFFFFF"
-  }
-}
-
+// CLASES DE LOS OBJETOS DEL MAPA //
 
 class Muro{
   var property position
@@ -347,12 +336,12 @@ class Cofre{
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
     const collar = new Collar(position = self.position())
-    const llave = new Llave(position = self.position())
+    //const llave = new Llave(position = self.position())
     poolDeObjetos.add(pocionVida)
     poolDeObjetos.add(pocionVenenosa)
     poolDeObjetos.add(anillo)
     poolDeObjetos.add(collar)
-    poolDeObjetos.add(llave)
+    //poolDeObjetos.add(llave)
   }
   method seleccionarObjeto(listaDeObjetos){
     return poolDeObjetos.anyOne()
