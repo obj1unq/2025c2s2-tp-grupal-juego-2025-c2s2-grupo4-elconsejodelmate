@@ -117,9 +117,6 @@ object managerListasDeSala{
 
 
 class Sala{
-  /*Voy a dejar una nota muy larga para la fide del futuro que tenga que pensar como hacer el laberinto que se le ocurrio, queres que la sala sea una plantilla que contenga *posibles puertas* entonces vos vas a tener siempre 3 puertas, cada una desencadena una sala, la cual sabe a donde llevan sus puertas, solo haria falta definir esas salas y listo :D, no? D:*/
-
-  /*cosas para hacer aca? que las salas tengan sus 3 puertas, que  no le tengas que pasar por const el modelo del nivel, un method que haga justo lo anterior y que la sala sepa sobre las puertas y a que sala llevan supongo D:*/
 
 //method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
 method siguiente(){
