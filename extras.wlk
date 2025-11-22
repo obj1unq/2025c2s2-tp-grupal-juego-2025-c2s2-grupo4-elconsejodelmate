@@ -20,43 +20,50 @@ object randomizer{
 
 
 object flechas{
-  const property lista= []
+  const lista = []
   
   method moverFlechas(){
-    lista.forEach({flecha => flecha.arrojarse()})
+    lista.forEach({flecha => flecha.mover()})
   }
   method agregar(flecha){
     lista.add(flecha)
     game.addVisual(flecha)
   } 
+
+  method remover(flecha){{
+    lista.remove(flecha)
+  }}
 }
 class Flecha {
-    var property nivel = managerListasDeSala
-    var property position 
-    var property direccion 
-    var property murosNivel = nivel.muros()
-    var property obstaculosNivel = nivel.obstaculos()
 
+    var property position 
+    const direccion 
+    
     method image(){
         return "flecha.png"
     }
-    method arrojarse(){
-      self.position(direccion.siguientePosicion(self.position()))    
-      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)}))     
+    
+    method mover(){
+      self.position(direccion.siguientePosicion(self.position()))  
+    }
+
+    method inicializar(){
+      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)
+                                self.destruir()}))  
     }
     
-    method hayMuroEn(positionDestino){
-      return(murosNivel.any({muro => muro.position() == positionDestino}))
+    method destruir(){
+      flechas.remover(self)
+      game.removeVisual(self)
+      
     }
-    method hayObstaculoEn(positionDestino){
-      return(obstaculosNivel.any({obstaculo => obstaculo.position() == positionDestino}))
-    }
-    method puedeMoverseA(nuevaDireccion){
-      return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
-  }
-  method interactuarCon(pj){
+    method interactuarCon(pj){
 
-  }
+    }
+
+    method chocarCon(objeto){
+      
+    }
 }
 
 class ObjetoRecolectable{
@@ -103,17 +110,17 @@ class PocionInvisibilidad inherits ObjetoRecolectable{
     game.schedule(5000, game.removeVisual(pj))
   }
 }*/
-class Llave inherits ObjetoRecolectable{
-  override method image(){
-    return "llave.png"
-  }
-  override method interactuarCon(pj){
-    game.say(pj, "Obtuve una llave, busquemos que puerta abre")
-    //pj.añadirAlInventario(self)
-    //game.removeVisual(self)
+// class Llave inherits ObjetoRecolectable{
+//   override method image(){
+//     return "llave.png"
+//   }
+//   override method interactuarCon(pj){
+//     game.say(pj, "Obtuve una llave, busquemos que puerta abre")
+//     //pj.añadirAlInventario(self)
+//     //game.removeVisual(self)
     
-  }
-}
+//   }
+//}
 class Joya inherits ObjetoRecolectable{
   method puntos()
   override method interactuarCon(pj){

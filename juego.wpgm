@@ -10,7 +10,7 @@ program catastrofico{
 
     config.configTeclas()
    
-    nivelActual.iniciar()
+    salaActual.iniciarSalaInicial()
     
     game.start()
 

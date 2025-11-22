@@ -1,9 +1,9 @@
 import escenario.*
 import martina.*
 
-
+/*La salas tendrian que tener un method para su creacion y no recibirlas por una const asi quedaria mas prolijo*/
 object salaInicial inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+        sala = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
@@ -27,7 +27,7 @@ object salaInicial inherits Sala(
                   }
 
 object salaDerecha inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+        sala = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
@@ -55,7 +55,7 @@ object salaDerecha inherits Sala(
 
 
 object salaDeCofres inherits Sala(
-        nivel = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+        sala = [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],

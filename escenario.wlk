@@ -4,7 +4,7 @@ import extras.*
 import salas.*
 import interfaz.*
 
-object nivelActual{
+object salaActual{
   var salaActual = salaInicial
 
   method cambiarDeNivel(){
@@ -15,22 +15,21 @@ object nivelActual{
     return salaActual
   }
 
-  method iniciar(){
+  //Se usa solo para el inicio del juego ya que setea el tamaño del tablero
+  method iniciarSalaInicial(){
     salaActual.iniciar()
   }
 
+  /*Limpia todo lo almacenado y dibujado en el nivel anterior e instancia la nueva sala, sus enemigos y a martina*/
   method dibujarNuevaSala(){
     managerListasDeSala.limpiarNivel()
     salaActual.dibujar()
     salaActual.enemigos()
-    game.addVisual(barraDeVidas)
-    game.addVisual(cartelDePuntos)
     martina.aSala(salaActual)
+    martina.carteles()
   }
-  method enemigos(){
-    salaActual.enemigos()
-  }
-  
+
+  //Reseteo, te manda a la sala salaInicial, vidas en 3 y puntos en 0
   method restart(){
     game.removeVisual(imagenFinal)
     game.removeVisual(mensajeFinal)
@@ -74,9 +73,12 @@ object managerListasDeSala{
     listaDeEnemigos.add(enemigo)
   }
 
+  method removerAlEnemigo(enemigo){
+    listaDeEnemigos.remove(enemigo)
+  }
+
   method limpiarNivel(){
-    //Listas de visuales 
-    //Y clear de listas viejas
+    //Limpia las visuales de las listas dadas y borra los elementos de las listas
     
     self.removerVisualesDe(obstaculos)
     obstaculos.clear()
@@ -96,7 +98,7 @@ object managerListasDeSala{
     self.removerVisualesDe(listaDeEnemigos)
     listaDeEnemigos.clear()
 
-    //Visuales individuales
+    //Remueve los visuales que no pertenecen a una lista de objetos
     game.removeVisual(barraDeVidas)
     game.removeVisual(cartelDePuntos)
     game.removeVisual(martina)
@@ -115,65 +117,75 @@ object managerListasDeSala{
 
 
 class Sala{
+  /*Voy a dejar una nota muy larga para la fide del futuro que tenga que pensar como hacer el laberinto que se le ocurrio, queres que la sala sea una plantilla que contenga *posibles puertas* entonces vos vas a tener siempre 3 puertas, cada una desencadena una sala, la cual sabe a donde llevan sus puertas, solo haria falta definir esas salas y listo :D, no? D:*/
 
+  /*cosas para hacer aca? que las salas tengan sus 3 puertas, que  no le tengas que pasar por const el modelo del nivel, un method que haga justo lo anterior y que la sala sepa sobre las puertas y a que sala llevan supongo D:*/
+
+//method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
 method siguiente(){
-  return
-}
-
-  const nivel 
   
+}
+  //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
+  const sala 
+  
+  //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
     game.ground("suelo.png")
     self.construir()
     self.enemigos()
-    game.addVisual(barraDeVidas)
-    game.addVisual(cartelDePuntos)
     self.configMartina()
+   
   }
 
+  //method primitivo NO USAR instancia el tamaño del tablero, SOLO USAR DENTRO DE INICIAR 
   method construir() {
-      game.height(nivel.size())
-      game.width(nivel.size()) 
+      game.height(sala.size())
+      game.width(sala.size()) 
       self.dibujar()
       
   }
 
+  //Este es el lindo, method para dibujar el tablero segun la constante nivel creada previamente 
   method dibujar(){
     (0 .. game.width() - 1).forEach({ x =>
           (0 .. game.height() - 1).forEach({ y =>
-              nivel.get(y).get(x).dibujar(game.at(x, y))
+              sala.get(y).get(x).dibujar(game.at(x, y))
           })
       })
   }
 
+  //Configura la posicion de martina, sus visuales (ella, y las barras de vida y puntos) , su colision y el tick de las flechas
   method configMartina(){
     martina.position(self.posicionDeMartina())
     game.addVisual(martina)
-    
+
+    game.addVisual(barraDeVidas)
+    game.addVisual(cartelDePuntos)
     //TICKS
-    game.onTick(200, "DispararFlecha", {flechas.moverFlechas()})
+    game.onTick(250, "DispararFlecha", {flechas.moverFlechas()})
     //COLISIONES 
      game.onCollideDo(martina, {objeto => objeto.interactuarCon(martina)})
   }
 
+  //Method abstracto para poder indicar donde deberia aparecer martina en la nueva sala, tras pasar una puerta
   method posicionDeMartina(){
-    return 
+     return
   }
 
-
+  //Instancia los enemgios en la sala, random de 1 a 3 por enemigo, y sus ticks
   method enemigos(){
     const enemigosACrear = 1.randomUpTo(3)
     const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
     enemigosACrear.times({i => 
-        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition(), nivel = self)
+        const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         manager.agregarEnemigo(enemigo)
         enemigosPatrulla.add(enemigo)
     })
     enemigosACrear.times({i => 
-        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition(), nivel = self)
+        const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
         manager.agregarEnemigo(enemigo)
@@ -187,6 +199,9 @@ method siguiente(){
   
 }
 
+//  OBJETOS QUE MODELAN EL MAPA DE LA SALA  //
+
+//Puerta
 object p{
   const sala = managerListasDeSala
 
@@ -198,6 +213,7 @@ object p{
   }
 }
 
+//Cofre
 object c {
   const sala = managerListasDeSala
 
@@ -209,6 +225,7 @@ object c {
   }
 }
 
+//Barril
 object b{
   var property sala = managerListasDeSala
   method dibujar(posicion){
@@ -218,6 +235,7 @@ object b{
   }
 }
 
+//Ataud
 object a{
   var property sala = managerListasDeSala
 
@@ -229,7 +247,7 @@ object a{
   }
 }
 
-
+//Trampa
 object t{
   var property sala = managerListasDeSala
   method dibujar(posicion){
@@ -238,9 +256,10 @@ object t{
     game.addVisual(trampa)
     sala.agregarTrampa(trampa)
   }
+  
 }
 
-
+//Muro
 object m{
 
   var property sala = managerListasDeSala
@@ -252,39 +271,21 @@ object m{
 
 }
 
+//Vacio
 object v{
   method dibujar(posicion){
 
   }
 }
 
-
-
-object barraDeVidas{
-  var property position = game.at(12,14)
-  
-  method image(){
-    return "corazon" + self.vidasDe(martina) + ".png"
-  }
-  method vidasDe(personaje){
-    return personaje.cantDeVidas()
-  }
-}
-
-object cartelDePuntos{
-  method text() = "" + martina.puntos()
-  var property position = game.at(1,14)
-  method textColor(){
-    return "FFFFFFFF"
-  }
-}
-
+// CLASES DE LOS OBJETOS DEL MAPA //
 
 class Muro{
   var property position
   var property image = "pared1.png"
+  
   method chocarCon(objeto){
-    game.removeVisual(objeto)
+    //method de la colision de la flecha
   }
 }
 
@@ -298,7 +299,7 @@ class Trampa{
   
   }
   method chocarCon(objeto){
-    
+    //method de la colsion con la flecha
   }
 }
 
@@ -306,7 +307,7 @@ class Obstaculo{
   var property position  
   method image()
   method chocarCon(objeto){
-    game.removeVisual(objeto)
+    //method de la colision de la flecha
   }
 }
 
@@ -340,12 +341,12 @@ class Cofre{
     const pocionVenenosa = new PocionVenenosa(position = self.position())
     const anillo = new Anillo(position = self.position())
     const collar = new Collar(position = self.position())
-    const llave = new Llave(position = self.position())
+    //const llave = new Llave(position = self.position())
     poolDeObjetos.add(pocionVida)
     poolDeObjetos.add(pocionVenenosa)
     poolDeObjetos.add(anillo)
     poolDeObjetos.add(collar)
-    poolDeObjetos.add(llave)
+    //poolDeObjetos.add(llave)
   }
   method seleccionarObjeto(listaDeObjetos){
     return poolDeObjetos.anyOne()
@@ -359,7 +360,7 @@ class Cofre{
     }
   }
   method chocarCon(objeto){
-    
+    //method de la colision de la flecha
   }
 }
 object cofreCerrado{
@@ -384,9 +385,12 @@ class Puerta{
   var property image = "baston.png"
   
   method interactuarCon(pj){ 
-    nivelActual.cambiarDeNivel()
-    nivelActual.dibujarNuevaSala()
+    salaActual.cambiarDeNivel()
+    salaActual.dibujarNuevaSala()
     
+  }
+  method chocarCon(objeto){
+    //method de la colision de la flecha
   }
 
 }
