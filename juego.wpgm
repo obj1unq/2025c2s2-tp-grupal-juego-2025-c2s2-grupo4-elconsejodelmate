@@ -9,7 +9,7 @@ program catastrofico{
     game.title("Cat-astrofico")
 
     config.configTeclas()
-   
+
     salaActual.iniciarSalaInicial()
     
     game.start()

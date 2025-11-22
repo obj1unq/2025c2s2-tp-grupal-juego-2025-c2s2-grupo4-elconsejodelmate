@@ -7,8 +7,12 @@ import interfaz.*
 object salaActual{
   var salaActual = salaInicial
 
-  method cambiarDeNivel(){
-   salaActual = salaActual.siguiente()
+  // method cambiarDeNivel(){
+  //  salaActual = salaActual.siguiente()
+  // }
+
+  method cambiarASala(salaNueva){
+    salaActual = salaNueva
   }
   
   method salaActual(){
@@ -118,12 +122,26 @@ object managerListasDeSala{
 
 class Sala{
 
-//method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
-method siguiente(){
-  
-}
+  //method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
+  method salaDerecha(){
+     
+  }
+
+  method salaIzquierda(){
+
+  }
+
+  method salaArriba(){
+
+  }
+
   //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
-  const sala 
+  const sala = self.dibujoDeSala()
+
+  method dibujoDeSala(){
+    return []
+  }
+
   
   //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
@@ -199,59 +217,84 @@ method siguiente(){
 //  OBJETOS QUE MODELAN EL MAPA DE LA SALA  //
 
 //Puerta
-object p{
-  const sala = managerListasDeSala
+object pd{ //puerta arriba
+  const manager = managerListasDeSala
 
   method dibujar(posicion){
-    const puerta = new Puerta(position = posicion)
+    const sala = salaActual.salaActual()
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaDerecha() )
 
     game.addVisual(puerta)
-    sala.agregarPuerta(puerta)
+    manager.agregarPuerta(puerta)
+  }
+}
+
+object pi{ //puerta izquierda
+  const manager = managerListasDeSala
+
+  method dibujar(posicion){
+    const sala = salaActual.salaActual()
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaIzquierda() )
+
+    game.addVisual(puerta)
+    manager.agregarPuerta(puerta)
+  }
+}
+object pa{ //puerta adelante
+  const manager = managerListasDeSala
+  
+
+  method dibujar(posicion){
+    const sala = salaActual.salaActual()
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaArriba() )
+
+    game.addVisual(puerta)
+    manager.agregarPuerta(puerta)
   }
 }
 
 //Cofre
 object c {
-  const sala = managerListasDeSala
+  const manager = managerListasDeSala
 
   method dibujar(posicion){
     const cofre = new Cofre(position = posicion)
 
     game.addVisual(cofre)
-    sala.agregarCofre(cofre)
+    manager.agregarCofre(cofre)
   }
 }
 
 //Barril
 object b{
-  var property sala = managerListasDeSala
+  var property manager = managerListasDeSala
   method dibujar(posicion){
     const barril = new Barril(position = posicion)
     game.addVisual(barril)
-    sala.agregarObstaculo(barril)
+    manager.agregarObstaculo(barril)
   }
 }
 
 //Ataud
 object a{
-  var property sala = managerListasDeSala
+  var property manager = managerListasDeSala
 
   method dibujar(posicion){
     const ataud = new Ataud(position = posicion)
 
     game.addVisual(ataud)
-    sala.agregarObstaculo(ataud)
+    manager.agregarObstaculo(ataud)
   }
 }
 
 //Trampa
 object t{
-  var property sala = managerListasDeSala
+  var property manager = managerListasDeSala
   method dibujar(posicion){
     const trampa = new Trampa(position = posicion)
 
     game.addVisual(trampa)
-    sala.agregarTrampa(trampa)
+    manager.agregarTrampa(trampa)
   }
   
 }
@@ -259,11 +302,11 @@ object t{
 //Muro
 object m{
 
-  var property sala = managerListasDeSala
+  var property manager = managerListasDeSala
   method dibujar(posicion){
     const muro = new Muro(position = posicion)
     game.addVisual(muro)
-    sala.agregarMuro(muro)
+    manager.agregarMuro(muro)
   }
 
 }
@@ -380,9 +423,10 @@ object cofreAbierto{
 class Puerta{
   var property position 
   var property image = "baston.png"
+  const salaADondeDirige 
   
   method interactuarCon(pj){ 
-    salaActual.cambiarDeNivel()
+    salaActual.cambiarASala(salaADondeDirige)
     salaActual.dibujarNuevaSala()
     
   }
