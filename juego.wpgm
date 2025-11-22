@@ -1,0 +1,19 @@
+import extras.*
+import wollok.game.*
+import martina.*
+import enemigos.*
+import escenario.*
+import interfaz.*
+program catastrofico{
+    game.cellSize(32)
+    game.title("Cat-astrofico")
+
+    config.configTeclas()
+
+    salaActual.iniciarSalaInicial()
+    
+    game.start()
+
+    
+}
+
