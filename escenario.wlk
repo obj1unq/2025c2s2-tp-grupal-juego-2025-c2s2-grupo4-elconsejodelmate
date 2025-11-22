@@ -42,6 +42,10 @@ object salaActual{
     martina.restart()
   }
 
+  method construir(){
+    salaActual.construir()
+  }
+
 }
 
 
@@ -147,6 +151,7 @@ class Sala{
   method iniciar(){
     game.ground("suelo.png")
     self.construir()
+    self.dibujar()
     self.enemigos()
     self.configMartina()
    
@@ -156,7 +161,7 @@ class Sala{
   method construir() {
       game.height(sala.size())
       game.width(sala.size()) 
-      self.dibujar()
+      
       
   }
 

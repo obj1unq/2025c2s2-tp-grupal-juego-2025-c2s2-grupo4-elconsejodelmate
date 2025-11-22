@@ -29,3 +29,8 @@ object cartelDePuntos{
     return "FFFFFFFF"
   }
 }
+
+object imagenInicial{
+  method position() = game.at(0,0)
+  method image() = "pantallaInicial.png"
+}

@@ -104,7 +104,9 @@ object config{
     keyboard.d().onPressDo({derecha.mover(martina)})
     keyboard.f().onPressDo({martina.disparar()})
     keyboard.h().onPressDo({salaActual.restart()})
-    //keyboard.any().onPressDo({salaActual.iniciarSalaInicial()})
+    /*keyboard.c().onPressDo({
+                            salaActual.iniciarSalaInicial()
+                            game.removeVisual(imagenInicial)})*/
   }
 }
 object derecha{
