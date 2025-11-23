@@ -51,7 +51,7 @@ object salaDerecha inherits Sala(){
     return game.at(1,7)
   }
                   
-  override method salaIzquierda(){
+  override method salaDerecha(){
     return salaDeCofres 
   }
 
@@ -70,7 +70,7 @@ object salaDerecha inherits Sala(){
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
+                  [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m]].reverse()
   }
 }
 
@@ -84,6 +84,14 @@ object salaDeCofres inherits Sala(){
   override method posicionDeMartina(){
     return game.at(7,13)
   }
+
+  override method salaDerecha(){
+    return  salaTrampa
+  }
+  override method salaIzquierda(){
+    return salaEnemigos
+  }
+
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
@@ -92,7 +100,7 @@ object salaDeCofres inherits Sala(){
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [pd, v, v, v, v, v, v, v, v, v, v, v, v, v, pi],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
@@ -104,3 +112,177 @@ object salaDeCofres inherits Sala(){
 }     
 
 
+
+object salaEnemigos inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at(1,7)
+  }
+
+  override method salaDerecha(){
+    return salaGanar
+  }
+
+  
+
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, pd],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
+}
+
+
+object salaTrampa inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at(13,7)
+  }
+  
+  override method salaIzquierda(){
+    return salaPerder
+  }
+
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [pi, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
+}
+
+
+object salaGanar inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at(13,7)
+  }
+
+
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, b, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
+}
+
+
+object salaPerder inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at(1,7)
+  }
+
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, a, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
+}   
+
+
+
+
+/*
+object sala inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at()
+  }
+
+  override method salaDerecha(){
+    return  
+  }
+  override method salaIzquierda(){
+    return  
+  }
+  override method salaArriba(){
+    return
+  }
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
+}   
+
+*/
