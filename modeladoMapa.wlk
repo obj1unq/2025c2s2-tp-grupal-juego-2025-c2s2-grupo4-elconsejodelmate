@@ -213,7 +213,7 @@ object cofreAbierto{
 
 class Puerta{
   var property position 
-  var property image = "baston.png"
+ 
   const salaADondeDirige 
   
   method interactuarCon(pj){ 
