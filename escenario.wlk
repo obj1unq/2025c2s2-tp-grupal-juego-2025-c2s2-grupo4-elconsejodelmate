@@ -27,7 +27,7 @@ object salaActual{
   method dibujarNuevaSala(){
     manager.limpiarNivel()
     salaActual.dibujar()
-    enemigosDeSala.crearEnemigos()
+    enemigosDeSala.crearEnemigosEn(salaActual)
     martina.aSala(salaActual)
     martina.carteles()
   }
@@ -133,7 +133,7 @@ object managerListasDeSala{
 
 class Sala{
   
-
+  //diferentes punteros a distintas salas?
   method salaDerecha(){
   }
 
@@ -150,13 +150,15 @@ class Sala{
     return []
   }
 
-  
+  method cantDeEnemigos(){ //esto es para probar, voy a hacer overrides en distintas salas para testear
+    return 1.randomUpTo(3)
+  }
   //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
     game.ground("suelo.png")
     self.construir()
     self.dibujar()
-    enemigos.crearEnemigos()
+    enemigos.crearEnemigosEn(self) //esto podria preguntarle a la sala cuantos tiene que instanciar algo como crearEnemigosEn(sala)
     self.configMartina()
    
   }
@@ -199,7 +201,7 @@ class Sala{
 }
 
 object enemigos{
-    var cantidadDeEnemigos = 1.randomUpTo(3)
+   // var cantidadDeEnemigos = 1.randomUpTo(3)  aca deberiamos darle a la sala un atributo o msj para que le pase la cantidad 
     const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
@@ -209,23 +211,23 @@ object enemigos{
       enemigosPerseguidores.clear()
     }
 
-    method cantidadDeEnemigos(cantidad){
+   /* method cantidadDeEnemigos(cantidad){
       cantidadDeEnemigos = cantidad
-    }
+    }*/
 
-    method cantidadDeEnemigos(){
+   /* method cantidadDeEnemigos(){
       return cantidadDeEnemigos
-    }
+    }*/
 
-    method crearEnemigos(){
+    method crearEnemigosEn(sala){// podriamos a este method pasarle la sala como parametro, esta que sepa el numero de enemigos a instanciar
 
-    self.cantidadDeEnemigos().times({i => 
+    sala.cantDeEnemigos().times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         manager.agregarEnemigo(enemigo)
         enemigosPatrulla.add(enemigo)
     })
-    self.cantidadDeEnemigos().times({i => 
+    sala.cantDeEnemigos().times({i => 
         const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)

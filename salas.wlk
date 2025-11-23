@@ -64,6 +64,9 @@ object salaIzquierda inherits Sala(){
   override method salaMedia(){
     return salaGanar
   }
+  override method cantDeEnemigos(){
+    return 1 
+  }
   method sala(){
     return        [ [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
@@ -129,7 +132,9 @@ object salaDerecha inherits Sala(){
   override method salaDerecha(){
     return salaDeCofres 
   }
-
+  override method cantDeEnemigos(){
+    return 2 
+  }
   method sala(){
     return      [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
