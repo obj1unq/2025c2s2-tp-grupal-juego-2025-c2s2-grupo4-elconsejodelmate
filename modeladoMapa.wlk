@@ -31,13 +31,13 @@ object pi{ //puerta izquierda
     manager.agregarPuerta(puerta)
   }
 }
-object pa{ //puerta adelante
+object pm{ //puerta adelante
   const manager = managerListasDeSala
   
 
   method dibujar(posicion){
     const sala = salaActual.salaActual()
-    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaArriba() )
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaMedia() )
 
     game.addVisual(puerta)
     manager.agregarPuerta(puerta)
