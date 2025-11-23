@@ -5,15 +5,12 @@ class PlantillaEnemigo{
     var property image 
     var property position
     const manager = managerListasDeSala
-    const murosNivel = manager.muros() 
     var property direccion = derechaEnemigo
     
     method interactuarCon(pj){
         pj.decrementarEnUnoVidas()
     }
-    method hayMuroEn(positionDestino){
-      return(murosNivel.any({muro => muro.position() == positionDestino}))
-    }
+    
     method chocarCon(objeto) {
       manager.removerAlEnemigo(self)
       game.removeVisual(self)
@@ -26,7 +23,7 @@ class EnemigoPatrulla inherits PlantillaEnemigo{
         direccion = [derechaEnemigo,izquierdaEnemigo,abajoEnemigo,arribaEnemigo].anyOne()
     }
     method avanzar(){
-        if(!self.hayMuroEn(direccion.siguientePosition(position)))
+        if(!manager.hayMuroEn(direccion.siguientePosition(position)))
         self.position(direccion.siguientePosition(self.position()))
     }
 }
@@ -38,11 +35,6 @@ class EnemigoPerseguidor inherits PlantillaEnemigo{
 }
 object movimientoPersecutor {
     var property manager = managerListasDeSala
-    var property murosNivel = manager.muros()
-
-    method hayMuroEn(positionDestino){
-      return(murosNivel.any({muro => muro.position() == positionDestino}))
-    } 
 
     method perseguirConA(persecutor , perseguido){
         const posPr = persecutor.position()
@@ -73,18 +65,18 @@ object movimientoPersecutor {
 
     //Hace que el persecutor se mueva hacia la posicion que mas le convenga en Y para acercarse al perseguido 
     method moverseEnY(persecutor , posPr , posPs){
-        if(posPr.y() > posPs.y() && !self.hayMuroEn(posPr.down(1))){
+        if(posPr.y() > posPs.y() && !manager.hayMuroEn(posPr.down(1))){
             persecutor.position(posPr.down(1))
-       }else if(posPr.y() < posPs.y() && !self.hayMuroEn(posPr.up(1))) {
+       }else if(posPr.y() < posPs.y() && !manager.hayMuroEn(posPr.up(1))) {
             persecutor.position(posPr.up(1))
        }
     }
 
     //Hace que el persecutor se mueva hacia la posicion que mas le convenga en X para acercarse al perseguido 
     method moverseEnX(persecutor, posPr, posPs){
-        if(posPr.x() > posPs.x() && !self.hayMuroEn(posPr.left(1))){
+        if(posPr.x() > posPs.x() && !manager.hayMuroEn(posPr.left(1))){
             persecutor.position(posPr.left(1))
-       }else if(posPr.x() < posPs.x()&& !self.hayMuroEn(posPr.right(1))) {
+       }else if(posPr.x() < posPs.x()&& !manager.hayMuroEn(posPr.right(1))) {
             persecutor.position(posPr.right(1))
        }
     }
@@ -95,6 +87,9 @@ object derechaEnemigo {
         return "-derecha"
     }
     method mover(enemigo){
+        //setea la posicion del enemigo con el method siguientePosition que aumenta en algun eje una posicion
+        //siguientePosition recibe por parametro una posicion para aumentar en 1 en este caso la posicion del enemigo
+
         enemigo.position(self.siguientePosition(enemigo.position()))
     }
     method siguientePosition(position){
