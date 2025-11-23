@@ -95,8 +95,7 @@ object config{
     keyboard.d().onPressDo({derecha.mover(martina)})
     keyboard.f().onPressDo({martina.disparar()})
     keyboard.h().onPressDo({salaActual.restart()})
-    keyboard.c().onPressDo({
-                            salaActual.iniciarSalaInicial()})
+    keyboard.c().onPressDo({salaActual.iniciarSalaInicial()})
   }
 }
 object derecha{
