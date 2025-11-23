@@ -6,11 +6,9 @@ import interfaz.*
 import modeladoMapa.*
 
 object salaActual{
+  const enemigosDeSala = enemigos
+  const manager = managerListasDeSala
   var salaActual = salaInicial
-
-  // method cambiarDeNivel(){
-  //  salaActual = salaActual.siguiente()
-  // }
 
   method cambiarASala(salaNueva){
     salaActual = salaNueva
@@ -27,9 +25,9 @@ object salaActual{
 
   /*Limpia todo lo almacenado y dibujado en el nivel anterior e instancia la nueva sala, sus enemigos y a martina*/
   method dibujarNuevaSala(){
-    managerListasDeSala.limpiarNivel()
+    manager.limpiarNivel()
     salaActual.dibujar()
-    salaActual.enemigos()
+    enemigosDeSala.crearEnemigos()
     martina.aSala(salaActual)
     martina.carteles()
   }
@@ -57,6 +55,7 @@ object managerListasDeSala{
   const  listaDeTrampas = []
   const  listaDePuertas = []
   const  listaDeEnemigos = []
+  const enemigosDeSala = enemigos
 
   //Para los de afuera
   method hayMuroEn(nuevaDireccion){
@@ -114,6 +113,7 @@ object managerListasDeSala{
 
     self.removerVisualesDe(listaDeEnemigos)
     listaDeEnemigos.clear()
+    enemigosDeSala.clearList()
 
     //Remueve los visuales que no pertenecen a una lista de objetos
     game.removeVisual(barraDeVidas)
@@ -159,7 +159,7 @@ class Sala{
     game.ground("suelo.png")
     self.construir()
     self.dibujar()
-    self.enemigos()
+    enemigos.crearEnemigos()
     self.configMartina()
    
   }
@@ -198,13 +198,26 @@ class Sala{
   method posicionDeMartina(){
      return
   }
+  
+}
 
-  //Instancia los enemgios en la sala, random de 1 a 3 por enemigo, y sus ticks
-  method enemigos(){
-    const enemigosACrear = 1.randomUpTo(3)
+object enemigos{
+    var enemigosACrear = 0
     const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
+
+    method clearList(){
+      enemigosPatrulla.clear()
+      enemigosPerseguidores.clear()
+    }
+    method enemgigosACrear(cantidad){
+      enemigosACrear = cantidad
+    }
+
+    method crearEnemigos(){
+    enemigosACrear = 1.randomUpTo(3)
+
     enemigosACrear.times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
@@ -221,8 +234,5 @@ class Sala{
     game.onTick(800, "movimientoEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.avanzar()})})
     game.onTick(2000, "cambioDireccionEnemigo", {enemigosPatrulla.forEach({enemigo => enemigo.cambiarDireccion()})})
     game.onTick(1200, "perseguirAMartina", {enemigosPerseguidores.forEach({enemigo => enemigo.perseguir(martina)})})
-  }
-
-  
+    }
 }
-
