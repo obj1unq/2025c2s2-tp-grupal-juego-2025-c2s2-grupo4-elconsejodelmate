@@ -1,5 +1,6 @@
 import escenario.*
 import martina.*
+import modeladoMapa.*
 
 
 object salaInicial inherits Sala(){
