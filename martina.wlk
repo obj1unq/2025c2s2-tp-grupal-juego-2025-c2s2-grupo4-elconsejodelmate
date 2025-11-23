@@ -10,8 +10,8 @@ object martina {
   var property puntos = 0 
 
   const manager = managerListasDeSala
-  const obstaculosNivel = manager.obstaculos()
-  const murosNivel = manager.muros()
+  // const obstaculosNivel = manager.obstaculos()
+  // const murosNivel = manager.muros()
 
   method image(){
     return "martina" + estadoDeMartina + ".png"
@@ -73,17 +73,17 @@ object martina {
   }
   
   // esto podria ser delegado a el manager de las listas de la sala
-  method hayMuroEn(nuevaDireccion){
-    return murosNivel.any({muro => muro.position() == nuevaDireccion})
-  }
+  // method hayMuroEn(nuevaDireccion){
+  //   return murosNivel.any({muro => muro.position() == nuevaDireccion})
+  // }
 
-  method hayObstaculoEn(nuevaDireccion){
-    return obstaculosNivel.any({obstaculo => obstaculo.position() == nuevaDireccion})
-  }
+  // method hayObstaculoEn(nuevaDireccion){
+  //   return obstaculosNivel.any({obstaculo => obstaculo.position() == nuevaDireccion})
+  // }
   //
 
   method puedeMoverseA(nuevaDireccion){
-    return !self.hayMuroEn(nuevaDireccion) && !self.hayObstaculoEn(nuevaDireccion)
+    return !manager.hayMuroEn(nuevaDireccion) && !manager.hayObstaculoEn(nuevaDireccion)
   }
 
   //agrega la puntuacion del objeto dado

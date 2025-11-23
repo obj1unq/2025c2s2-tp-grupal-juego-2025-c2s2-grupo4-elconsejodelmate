@@ -58,6 +58,14 @@ object managerListasDeSala{
   const  listaDePuertas = []
   const  listaDeEnemigos = []
 
+  //Para los de afuera
+  method hayMuroEn(nuevaDireccion){
+    return muros.any({muro => muro.position() == nuevaDireccion})
+  }
+  method hayObstaculoEn(nuevaDireccion){
+    return obstaculos.any({obstaculo => obstaculo.position() == nuevaDireccion})
+  }
+
   method agregarObstaculo(objeto){
     obstaculos.add(objeto)
   }
