@@ -20,6 +20,7 @@ object salaActual{
 
   //Se usa solo para el inicio del juego ya que setea el tamaño del tablero
   method iniciarSalaInicial(){
+    game.removeVisual(imagenInicial)
     salaActual.iniciar()
   }
 
@@ -155,8 +156,8 @@ class Sala{
   }
   //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
-    game.ground("suelo.png")
-    self.construir()
+    //game.ground("suelo.png")
+   // self.construir()
     self.dibujar()
     enemigos.crearEnemigosEn(self) //esto podria preguntarle a la sala cuantos tiene que instanciar algo como crearEnemigosEn(sala)
     self.configMartina()
@@ -164,12 +165,10 @@ class Sala{
   }
 
   //method primitivo NO USAR instancia el tamaño del tablero, SOLO USAR DENTRO DE INICIAR 
-  method construir() {
+  /*method construir() {
       game.height(sala.size())
       game.width(sala.size()) 
-      
-      
-  }
+  }*/
 
   //Este es el lindo, method para dibujar el tablero segun la constante nivel creada previamente 
   method dibujar(){
@@ -201,7 +200,7 @@ class Sala{
 }
 
 object enemigos{
-   // var cantidadDeEnemigos = 1.randomUpTo(3)  aca deberiamos darle a la sala un atributo o msj para que le pase la cantidad 
+   
     const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
@@ -210,16 +209,7 @@ object enemigos{
       enemigosPatrulla.clear()
       enemigosPerseguidores.clear()
     }
-
-   /* method cantidadDeEnemigos(cantidad){
-      cantidadDeEnemigos = cantidad
-    }*/
-
-   /* method cantidadDeEnemigos(){
-      return cantidadDeEnemigos
-    }*/
-
-    method crearEnemigosEn(sala){// podriamos a este method pasarle la sala como parametro, esta que sepa el numero de enemigos a instanciar
+    method crearEnemigosEn(sala){
 
     sala.cantDeEnemigos().times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())

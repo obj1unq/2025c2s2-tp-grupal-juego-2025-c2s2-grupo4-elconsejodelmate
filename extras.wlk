@@ -66,10 +66,12 @@ class Flecha {
     }
 }
 
-class ObjetoRecolectable{
+/*class ObjetoRecolectable{
   const property position  
   method image()
-  method interactuarCon(pj)
+  method interactuarCon(pj){
+
+  }
 }
 class PocionVida inherits ObjetoRecolectable{
   override method image(){
@@ -101,26 +103,6 @@ class PocionVenenosa inherits ObjetoRecolectable{
     }
   }
 }
-/* a implementar mas tarde, solo para molestar jeje 
-class PocionInvisibilidad inherits ObjetoRecolectable{
-  override method image(){
-    return "pocion-invisibilidad.png"
-  }
-   override method interactuarCon(pj){
-    game.schedule(5000, game.removeVisual(pj))
-  }
-}*/
-// class Llave inherits ObjetoRecolectable{
-//   override method image(){
-//     return "llave.png"
-//   }
-//   override method interactuarCon(pj){
-//     game.say(pj, "Obtuve una llave, busquemos que puerta abre")
-//     //pj.añadirAlInventario(self)
-//     //game.removeVisual(self)
-    
-//   }
-//}
 class Joya inherits ObjetoRecolectable{
   method puntos()
   override method interactuarCon(pj){
@@ -143,5 +125,61 @@ class Collar inherits Joya{
   override method image(){
     return "collar.png"
   }
-}
+}*/
 /*agregar o modificar templeate*/
+class ObjetoRecolectable{
+
+  var property position 
+  method image(){
+
+  }
+  method interactuarCon(pj){
+    self.aplicarEfecto(pj)
+  }
+  method aplicarEfecto(pj){
+
+  }
+}
+
+class PocionVida inherits ObjetoRecolectable{
+  override method image(){
+    return "pocion.png"
+  }
+  override method aplicarEfecto(pj){
+    if(pj.noTieneVidaCompleta()){
+      pj.incrementarEnUnoVidas()
+      game.say(pj, "Recolecte una pocion de vida, incremento mi vida por que estaba baja")
+    }
+  }
+}
+class PocionVenenosa inherits ObjetoRecolectable{
+  override method image(){
+    return "pocion.png"
+  }
+  override method aplicarEfecto(pj){
+    if(pj.cantDeVidas() > 1){
+      pj.decrementarEnUnoVidas()
+      game.say(pj, "Recolecte una pocion de venenosa, decrementara mi vida")
+    }
+  }
+}
+class Anillo inherits ObjetoRecolectable{
+  const property puntos = 50 
+  override method image(){
+    return "joya.png"
+  }
+  override method aplicarEfecto(pj){
+    game.say(pj, "Obtuve un anillo, incrementara mi puntuacion")
+    pj.sumarPuntuacionDe(self)
+  }
+}
+class Collar inherits ObjetoRecolectable{
+  const property puntos = 100
+  override method image(){
+    return "joya.png"
+  }
+  override method aplicarEfecto(pj){
+    game.say(pj, "Obtuve un collar, incrementara mi puntuacion")
+    pj.sumarPuntuacionDe(self)
+  }
+}

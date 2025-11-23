@@ -56,6 +56,9 @@ object martina {
   method estaViva(){
     return self.cantDeVidas() > 0
   }
+  method noTieneVidaCompleta(){
+    return cantDeVidas < 3 
+  }
 
   method moverA(nuevaDireccion){
     if(self.estaViva() && self.puedeMoverseA(nuevaDireccion)){
@@ -92,9 +95,8 @@ object config{
     keyboard.d().onPressDo({derecha.mover(martina)})
     keyboard.f().onPressDo({martina.disparar()})
     keyboard.h().onPressDo({salaActual.restart()})
-    /*keyboard.c().onPressDo({
-                            salaActual.iniciarSalaInicial()
-                            game.removeVisual(imagenInicial)})*/
+    keyboard.c().onPressDo({
+                            salaActual.iniciarSalaInicial()})
   }
 }
 object derecha{

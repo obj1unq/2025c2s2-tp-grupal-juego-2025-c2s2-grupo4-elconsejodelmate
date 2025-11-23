@@ -1,8 +1,16 @@
 import escenario.*
 import martina.*
 import modeladoMapa.*
+import interfaz.*
 
 
+
+
+object cartelInicial inherits Sala(){
+  override method dibujoDeSala(){
+    return 
+  }
+}
 object salaInicial inherits Sala(){
 
   override method dibujoDeSala(){
