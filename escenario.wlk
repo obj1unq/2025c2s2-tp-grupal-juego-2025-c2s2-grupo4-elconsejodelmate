@@ -132,18 +132,15 @@ object managerListasDeSala{
 
 
 class Sala{
+  
 
-  //method abstracto para definir en la creacion de cada sala //vuela con las puertas :P
   method salaDerecha(){
-     
   }
 
   method salaIzquierda(){
-
   }
 
-  method salaArriba(){
-
+  method salaMedia(){
   }
 
   //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
@@ -202,7 +199,7 @@ class Sala{
 }
 
 object enemigos{
-    var enemigosACrear = 0
+    var cantidadDeEnemigos = 1.randomUpTo(3)
     const manager = managerListasDeSala
     const enemigosPatrulla = []
     const enemigosPerseguidores = []  
@@ -211,20 +208,24 @@ object enemigos{
       enemigosPatrulla.clear()
       enemigosPerseguidores.clear()
     }
-    method enemgigosACrear(cantidad){
-      enemigosACrear = cantidad
+
+    method cantidadDeEnemigos(cantidad){
+      cantidadDeEnemigos = cantidad
+    }
+
+    method cantidadDeEnemigos(){
+      return cantidadDeEnemigos
     }
 
     method crearEnemigos(){
-    enemigosACrear = 1.randomUpTo(3)
 
-    enemigosACrear.times({i => 
+    self.cantidadDeEnemigos().times({i => 
         const enemigo = new EnemigoPatrulla(image = "troll.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         manager.agregarEnemigo(enemigo)
         enemigosPatrulla.add(enemigo)
     })
-    enemigosACrear.times({i => 
+    self.cantidadDeEnemigos().times({i => 
         const enemigo = new EnemigoPerseguidor(image = "wendingo.png", position = randomizer.emptyPosition())
         game.addVisual(enemigo)
         enemigosPerseguidores.add(enemigo)
