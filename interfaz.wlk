@@ -2,11 +2,11 @@ import martina.*
 
 object imagenFinal{
   method position() = game.at(0,0)
-  method image() = "PantallaFinal.png"
+  method image() = "pantallafinal.jpg"
 }
 object mensajeFinal{
-  method position() = game.center()
-  method text() = "Puntos = "+ martina.puntos()+ "Presiona H para reintentar"
+  method position() = game.center() 
+  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para reintentar"
   method textColor() = "FFFFFFFF"
 
 }
@@ -33,4 +33,9 @@ object cartelDePuntos{
 object imagenInicial{
   method position() = game.at(0,0)
   method image() = "pantallaInicial.png"
+}
+
+object imagenGanaste{
+  method position() = game.at(0,0)
+  method image() = ""
 }
