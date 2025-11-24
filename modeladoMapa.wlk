@@ -5,6 +5,112 @@ import salas.*
 import interfaz.*
 import escenario.*
 
+//  GATO  //  
+
+object g{ //gato
+  var property position = game.center()
+  const manager = managerListasDeSala
+
+  method image() = "gatubi.png"
+  method chocarCon(objeto){
+    //method de la colision de la flecha
+  }
+  method interactuarCon(pj){
+    game.addVisual(imagenFinal)
+    game.addVisual(mensajeFinal)
+  }
+  method dibujar(posicion){
+    game.addVisual(self)
+    manager.agregarDecoraciones(self)
+  }
+}
+
+object ng{ //NO gato
+  var property position = game.center()
+  const manager = managerListasDeSala
+
+  method image() = "pentagrama.png"
+
+  method chocarCon(objeto){
+    //method de la colision de la flecha
+  }
+
+  method interactuarCon(pj){
+    game.addVisual(imagenFinal)
+    game.addVisual(mensajeFinal)
+  }
+  
+  method dibujar(posicion){
+    game.addVisual(self)
+    manager.agregarDecoraciones(self)
+  }
+}
+
+
+//  OBJETOS DECORATIVOS  //
+
+object d3 {
+  const manager = managerListasDeSala
+  method dibujar(posicion){
+    const decoPiso = new DecoracionPiso(position = posicion )
+    game.addVisual(decoPiso)
+    manager.agregarDecoraciones(decoPiso)
+  }
+}
+
+object d2 {
+  const manager = managerListasDeSala
+  method dibujar(posicion){
+    const pentagrama = new Pentagrama(position = posicion )
+    game.addVisual(pentagrama)
+    manager.agregarDecoraciones(pentagrama)
+    
+  }
+}
+
+object d1 {
+  const manager = managerListasDeSala
+  method dibujar(posicion){
+    const piedras = new PiedraDeco(position = posicion )
+    game.addVisual(piedras)
+    manager.agregarDecoraciones(piedras)
+    
+  }
+}
+//  CLASES DECORATIVAS  
+
+class DecoracionPiso inherits ObjetoDecorativo{
+  override method image(){
+    return "decoracion-piso.png"
+  }
+}
+
+class Pentagrama inherits ObjetoDecorativo{
+  override method image(){
+    return "pentagrama.png"
+  }
+}
+
+class PiedraDeco inherits ObjetoDecorativo{ 
+  override method image(){
+    return "piedras.png"
+  }
+}
+
+
+class ObjetoDecorativo {
+  var property position  
+  method image()
+  method chocarCon(objeto){
+    //method de la colision de la flecha
+  }
+  method interactuarCon(pj){
+    //colision con martina
+  }
+
+}
+
+
 //  OBJETOS QUE MODELAN EL MAPA DE LA SALA  //
 
 //Puerta
