@@ -56,9 +56,13 @@ object managerListasDeSala{
   const  listaDeTrampas = []
   const  listaDePuertas = []
   const  listaDeEnemigos = []
+  const decoraciones = []
   const enemigosDeSala = enemigos
 
   //Para los de afuera
+  method agregarDecoraciones(obj){
+    decoraciones.add(obj)
+  }
   method hayMuroEn(nuevaDireccion){
     return muros.any({muro => muro.position() == nuevaDireccion})
   }
@@ -96,6 +100,9 @@ object managerListasDeSala{
 
   method limpiarNivel(){
     //Limpia las visuales de las listas dadas y borra los elementos de las listas
+
+    self.removerVisualesDe(decoraciones)
+    decoraciones.clear()
     
     self.removerVisualesDe(obstaculos)
     obstaculos.clear()
@@ -154,21 +161,14 @@ class Sala{
   method cantDeEnemigos(){ //esto es para probar, voy a hacer overrides en distintas salas para testear
     return 1.randomUpTo(3)
   }
+
   //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
   method iniciar(){
-    //game.ground("suelo.png")
-   // self.construir()
     self.dibujar()
     enemigos.crearEnemigosEn(self) //esto podria preguntarle a la sala cuantos tiene que instanciar algo como crearEnemigosEn(sala)
     self.configMartina()
    
   }
-
-  //method primitivo NO USAR instancia el tamaño del tablero, SOLO USAR DENTRO DE INICIAR 
-  /*method construir() {
-      game.height(sala.size())
-      game.width(sala.size()) 
-  }*/
 
   //Este es el lindo, method para dibujar el tablero segun la constante nivel creada previamente 
   method dibujar(){
