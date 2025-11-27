@@ -36,6 +36,9 @@ object salaActual{
   //Reseteo, te manda a la sala salaInicial, vidas en 3 y puntos en 0
   method restart(){
     game.removeVisual(imagenFinal)
+    game.removeVisual(imagenInicial)
+    game.removeVisual(imagenGanaste)
+    game.removeVisual(imagenRestar)
     game.removeVisual(cartelMostrarPuntos)
 
     salaActual = salaInicial

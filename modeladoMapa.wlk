@@ -16,7 +16,7 @@ object g{ //gato
     //method de la colision de la flecha
   }
   method interactuarCon(pj){
-    game.addVisual(imagenFinal)
+    game.addVisual(imagenGanaste)
     game.addVisual(cartelMostrarPuntos)
   }
   method dibujar(posicion){
@@ -36,8 +36,8 @@ object ng{ //NO gato
   }
 
   method interactuarCon(pj){
-    game.addVisual(imagenFinal)
     game.addVisual(imagenRestar)
+    game.addVisual(cartelMostrarPuntos)
   }
   
   method dibujar(posicion){
