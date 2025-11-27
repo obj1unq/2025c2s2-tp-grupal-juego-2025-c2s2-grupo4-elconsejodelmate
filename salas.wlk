@@ -17,16 +17,21 @@ object salaInicial inherits Sala(){
     return salaDerecha
   }
 
-  override method salaMedia(){
-    return salaMedia
+  override method salaArriba(){
+    return salaArriba
   }
 
   override method salaIzquierda(){
-    return salaIzquierda
+    return salaIzquierda1
   }
-
+  /*PARA HACER EL MAPA COMPLETO, SE LE CAMBIARAN LOS NOMBRES A LAS SALAS POR DIRECCIONES, TOMANDO COMO REFERENCIA 
+  LA SALA INICIAL, DESPUES CUANDO SE TERMINEN LOS MAPAS LES CAMBIAN LOS NOMBRES
+  SALAS USADAS: 
+  izquierda1 
+  izquierda2
+  salaGAnar no se puede usar*/
   method sala(){
-    return      [ [m, m, m, m, m, m, pm, m, m, m, m, m, m, m, m],
+    return      [ [m, m, m, m, m, m, pa, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, d3, m],
                   [m, v, d1, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
@@ -46,7 +51,51 @@ object salaInicial inherits Sala(){
                     
 }
 
-object salaIzquierda inherits Sala(){
+object salaIzquierda1 inherits Sala(){
+
+  override method dibujoDeSala(){
+    return self.sala()
+  }
+
+  override method posicionDeMartina(){
+    return game.at(13,7)
+  }
+
+ /* override method salaDerecha(){ aca iria la sala inicial en caso de poder volver 
+    return  salaDeCofres
+  }*/
+  override method salaIzquierda(){
+    return  salaIzquierda2
+  }
+  override method salaDerecha(){
+    return salaInicial
+  }
+  //tambien iria la sala IzqAb3 en caso de poder volver 
+ /* override method salaMedia(){
+    return salaGanar
+  }*/
+  override method cantDeEnemigos(){
+    return 3
+  }
+  method sala(){
+    return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
+                    [pi,v, v, v, v, d1, d3,d2,d3, d1, v, v, v, v,pd],
+                    [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
+  }//d1 = piedras , d2 = pentagrama , d3 = Huesos
+}   
+object salaIzquierda2 inherits Sala(){
 
   override method dibujoDeSala(){
     return self.sala()
@@ -57,37 +106,35 @@ object salaIzquierda inherits Sala(){
   }
 
   override method salaDerecha(){
-    return  salaDeCofres
+    return  salaIzquierda1 
   }
   override method salaIzquierda(){
-    return  salaMixta
+    return  salaGanar
   }
-  override method salaMedia(){
-    return salaGanar
+  override method salaArriba(){
+    return salaArribaIzquierda2
   }
-  override method cantDeEnemigos(){
-    return 3
-  }
+
   method sala(){
-    return        [ [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m],
+    return        [ [m, m, m, m, m, m, m, pa, m, m, m, m, m, m, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
-                    [pm,v, v, v, v, d1, d3,d2,d3, d1, v, v, v, v,m],
-                    [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [pi, v, v, v, v, v, v, v, v, v, v, v, v, v, pd],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
-  }//d1 = piedras , d2 = pentagrama , d3 = Huesos
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+  }
 }   
 
-object salaMedia inherits Sala(){
+object salaArriba inherits Sala(){
 
   override method dibujoDeSala(){
     return self.sala()
@@ -98,7 +145,7 @@ object salaMedia inherits Sala(){
   }
 
   override method salaIzquierda(){
-    return  salaMixta
+    return  salaArribaIzquierda
   }
 
   override method cantDeEnemigos(){
@@ -135,7 +182,7 @@ object salaDerecha inherits Sala(){
   }
                   
   override method salaDerecha(){
-    return salaDeCofres 
+    return 
   }
 
   method sala(){
@@ -157,43 +204,9 @@ object salaDerecha inherits Sala(){
   }
 }
 
-object salaMixta inherits Sala(){
 
-  override method dibujoDeSala(){
-    return self.sala()
-  }
 
-  override method posicionDeMartina(){
-    return game.at(13,7)
-  }
-
-  override method salaDerecha(){
-    return  salaEnemigosPro
-  }
-  override method salaIzquierda(){
-    return  salaTrampa
-  }
-
-  method sala(){
-    return        [ [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
-  }
-}   
-
-object salaDeCofres inherits Sala(){
+object salaArribaIzquierda inherits Sala(){
 
   override method dibujoDeSala(){
     return self.sala()
@@ -207,7 +220,7 @@ object salaDeCofres inherits Sala(){
     return  salaTrampa
   }
   override method salaIzquierda(){
-    return salaEnemigos
+    return salaArribaIzquierda2
   }
 
   method sala(){
@@ -218,7 +231,7 @@ object salaDeCofres inherits Sala(){
                     [m, v, v, v, d1, v, v, v, v, v, v, d3, v, v, m],
                     [m, v, v, c, v, v, v, c, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [pd, v, v, v, v, v, v, v, v, v, v, v, v, v, pi],
+                    [pi, v, v, v, v, v, v, v, v, v, v, v, v, v, pi],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, d1, d3, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, c, v, v, m],
@@ -231,9 +244,9 @@ object salaDeCofres inherits Sala(){
 
 
 
-object salaEnemigos inherits Sala(){
+object salaArribaIzquierda2 inherits Sala(){
 
-  const enemigosDeSala = enemigos
+ // const enemigosDeSala = enemigos
 
   override method dibujoDeSala(){
     return self.sala()
@@ -243,9 +256,13 @@ object salaEnemigos inherits Sala(){
     return game.at(1,7)
   }
 
-  override method salaDerecha(){
+
+ /* override method salaDerecha(){
     return salaGanar
-  }
+  }*/
+  /*override method salaAbajo(){
+    return salaIzquierda2
+  }*/
 
   override method cantDeEnemigos(){
     return 4
@@ -266,7 +283,7 @@ object salaEnemigos inherits Sala(){
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, t, m],
                     [m, v, v, v, t, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
+                    [m, m, m, m, m, m, m, pab, m, m, m, m, m, m, m]].reverse()
   }
 }
 
@@ -317,7 +334,9 @@ object salaGanar inherits Sala(){
   override method posicionDeMartina(){
     return game.at(13,7)
   }
-
+  override method salaIzquierda(){
+    return salaIzquierda2 
+  }
 
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
@@ -327,7 +346,7 @@ object salaGanar inherits Sala(){
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, g, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, g, v, v, v, v, v, v, pi],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],

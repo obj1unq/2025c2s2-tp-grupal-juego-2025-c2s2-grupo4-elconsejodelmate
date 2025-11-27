@@ -114,7 +114,7 @@ class ObjetoDecorativo {
 //  OBJETOS QUE MODELAN EL MAPA DE LA SALA  //
 
 //Puerta
-object pd{ //puerta arriba
+object pd{ //puerta derecha
   const manager = managerListasDeSala
 
   method dibujar(posicion){
@@ -125,7 +125,17 @@ object pd{ //puerta arriba
     manager.agregarPuerta(puerta)
   }
 }
+object pa{ //puerta arriba
+  const manager = managerListasDeSala
 
+  method dibujar(posicion){
+    const sala = salaActual.salaActual()
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaArriba() )
+
+    game.addVisual(puerta)
+    manager.agregarPuerta(puerta)
+  }
+}
 object pi{ //puerta izquierda
   const manager = managerListasDeSala
 
@@ -137,13 +147,13 @@ object pi{ //puerta izquierda
     manager.agregarPuerta(puerta)
   }
 }
-object pm{ //puerta adelante
+object pab{ //puerta arriba
   const manager = managerListasDeSala
   
 
   method dibujar(posicion){
     const sala = salaActual.salaActual()
-    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaMedia() )
+    const puerta = new Puerta(position = posicion, salaADondeDirige = sala.salaAbajo() )
 
     game.addVisual(puerta)
     manager.agregarPuerta(puerta)

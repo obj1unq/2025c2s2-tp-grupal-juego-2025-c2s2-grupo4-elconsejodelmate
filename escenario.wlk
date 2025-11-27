@@ -148,9 +148,11 @@ class Sala{
   method salaIzquierda(){
   }
 
-  method salaMedia(){
+  method salaArriba(){
   }
+  method salaAbajo(){
 
+  }
   //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
   const sala = self.dibujoDeSala()
 
