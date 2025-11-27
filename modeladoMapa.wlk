@@ -17,7 +17,7 @@ object g{ //gato
   }
   method interactuarCon(pj){
     game.addVisual(imagenFinal)
-    game.addVisual(cartelGanar)
+    game.addVisual(cartelMostrarPuntos)
   }
   method dibujar(posicion){
     game.addVisual(self)
@@ -37,7 +37,7 @@ object ng{ //NO gato
 
   method interactuarCon(pj){
     game.addVisual(imagenFinal)
-    game.addVisual(mensajeFinal)
+    game.addVisual(cartelMostrarPuntos)
   }
   
   method dibujar(posicion){

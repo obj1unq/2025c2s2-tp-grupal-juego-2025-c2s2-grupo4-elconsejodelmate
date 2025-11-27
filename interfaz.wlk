@@ -1,23 +1,6 @@
 import martina.*
 
-object imagenFinal{
-  method position() = game.at(0,0)
-  method image() = "pantallaFinal.jpg"
-}
-object mensajeFinal{
-  method position() = game.center() 
-  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para reintentar"
-  method textColor() = "FFFFFFFF"
-
-}
-
-object cartelGanar{
-  method position() = game.center() 
-  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para volver a jugar"
-  method textColor() = "FFFFFFFF"
-
-}
-
+//////
 object barraDeVidas{
   var property position = game.at(12,14)
   
@@ -36,6 +19,19 @@ object cartelDePuntos{
     return "FFFFFFFF"
   }
 }
+/////
+
+object cartelMostrarPuntos{
+  method position() = game.center() 
+  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para volver a jugar"
+  method textColor() = "FFFFFFFF"
+
+}
+
+object imagenFinal{
+  method position() = game.at(0,0)
+  method image() = "pantallaFinal.png"
+}
 
 object imagenInicial{
   method position() = game.at(0,0)
@@ -44,5 +40,10 @@ object imagenInicial{
 
 object imagenGanaste{
   method position() = game.at(0,0)
-  method image() = ""
+  method image() = "pantallaGanaste.png"
+}
+
+object imagenRestar{
+  method position() = game.at(0,0)
+  method image() = "pantallaReintentar.png"
 }

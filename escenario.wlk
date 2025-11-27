@@ -36,8 +36,8 @@ object salaActual{
   //Reseteo, te manda a la sala salaInicial, vidas en 3 y puntos en 0
   method restart(){
     game.removeVisual(imagenFinal)
-    game.removeVisual(mensajeFinal)
-    game.removeVisual(cartelGanar)
+    game.removeVisual(cartelMostrarPuntos)
+
     salaActual = salaInicial
     self.dibujarNuevaSala()
     martina.restart()

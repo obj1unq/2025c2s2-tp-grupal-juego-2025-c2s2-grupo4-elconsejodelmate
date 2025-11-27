@@ -48,7 +48,7 @@ object martina {
     if( self.cantDeVidas() == 0 ){
       game.removeVisual(self)
       game.addVisual(imagenFinal)
-      game.addVisual(mensajeFinal)
+      game.addVisual(cartelMostrarPuntos)
     
     }
   }
