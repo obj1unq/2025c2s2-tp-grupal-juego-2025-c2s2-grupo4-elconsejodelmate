@@ -58,15 +58,6 @@ object d3 {
   }
 }
 
-object d2 {
-  const manager = managerListasDeSala
-  method dibujar(posicion){
-    const pentagrama = new Pentagrama(position = posicion )
-    game.addVisual(pentagrama)
-    manager.agregarDecoraciones(pentagrama)
-    
-  }
-}
 
 object d1 {
   const manager = managerListasDeSala
@@ -85,11 +76,6 @@ class DecoracionPiso inherits ObjetoDecorativo{
   }
 }
 
-class Pentagrama inherits ObjetoDecorativo{
-  override method image(){
-    return "pentagrama.png"
-  }
-}
 
 class PiedraDeco inherits ObjetoDecorativo{ 
   override method image(){

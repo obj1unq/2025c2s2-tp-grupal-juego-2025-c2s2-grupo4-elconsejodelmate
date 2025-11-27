@@ -76,7 +76,7 @@ object salaIzquierda inherits Sala(){
                     [m, v, v, c, v, v, v, v, v, v, v, v, v, d3, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
-                    [pm,v, v, v, v, d1, d3,d2,d3, d1, v, v, v, v,m],
+                    [pm,v, v, v, v, d1, d3,d3,d3, d1, v, v, v, v,m],
                     [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
