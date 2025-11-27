@@ -344,7 +344,7 @@ object salaPerder inherits Sala(){
   }
 
   override method posicionDeMartina(){
-    return game.at(1,7)
+    return game.at(13,7)
   }
 
   method sala(){
