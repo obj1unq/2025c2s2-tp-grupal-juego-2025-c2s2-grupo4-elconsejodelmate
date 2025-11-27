@@ -161,7 +161,7 @@ class Sala{
   }
 
   method cantDeEnemigos(){ //esto es para probar, voy a hacer overrides en distintas salas para testear
-    return 1.randomUpTo(3)
+    return 0//1.randomUpTo(3)
   }
 
   //method primitivo, es necesario unicamente para la creacion del primer nivel (para levantar el juego)  NO USAR FUERA DE ESO 
