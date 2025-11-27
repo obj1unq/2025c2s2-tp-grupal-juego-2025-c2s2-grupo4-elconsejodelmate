@@ -37,6 +37,7 @@ object salaActual{
   method restart(){
     game.removeVisual(imagenFinal)
     game.removeVisual(mensajeFinal)
+    game.removeVisual(cartelGanar)
     salaActual = salaInicial
     self.dibujarNuevaSala()
     martina.restart()

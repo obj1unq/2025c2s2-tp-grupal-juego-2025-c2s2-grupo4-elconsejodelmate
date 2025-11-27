@@ -11,6 +11,14 @@ object mensajeFinal{
 
 }
 
+object cartelGanar{
+  method position() = game.center() 
+  method text() = "Encontraste a tu michi! Felicidades completaste el juego.
+                  Puntos = "+ martina.puntos()+ " Presiona H para volver a jugar"
+  method textColor() = "FFFFFFFF"
+
+}
+
 object barraDeVidas{
   var property position = game.at(12,14)
   

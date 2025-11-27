@@ -71,18 +71,18 @@ object salaIzquierda inherits Sala(){
   method sala(){
     return        [ [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, d1, v, v, v, c, v, v, v, v, d3, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, d3, v, m],
+                    [m, v, v, c, v, v, v, v, v, v, v, v, v, d3, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
                     [pm,v, v, v, v, d1, d3,d2,d3, d1, v, v, v, v,m],
                     [m, v, v, v, v, v, d1, d3,d1, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, a, v, v, v, v, v, m],
+                    [m, v, v, c, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, b, v, v, m],
                     [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
   }//d1 = piedras , d2 = pentagrama , d3 = Huesos
 }   
@@ -142,14 +142,14 @@ object salaDerecha inherits Sala(){
     return      [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, d3, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, d1, v, v, v, d1, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, d3, m],
+                  [m, v, v, t, v, v, v, v, d1, v, v, v, d1, v, m],
+                  [m, v, v, v, v, t, v, v, v, v, v, v, v, v, m],
+                  [m, v, v, v, v, v, v, v, t, v, v, v, v, d3, m],
                   [m, v, d1, v, v, v, t, t, t, v, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, d3, v, v, v, v, m],
                   [m, v, v, v, v, v, t, t, t, d3, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                  [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                  [m, v, t, t, t, v, v, v, v, v, v, v, v, v, m],
                   [m, v, d1, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, d3, d3, v, v, v, v, v, v, v, v, d1, v, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
@@ -176,19 +176,19 @@ object salaMixta inherits Sala(){
 
   method sala(){
     return        [ [m, m, m, m, m, m, m, pd, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, d1, d3, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, d3, m],
+                    [m, v, v, v, v, v, v, a, a, v, v, c, v, v, m],
+                    [m, v, v, b, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, c, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, c, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, t, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, d3, d1, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, d3, d3, v, v, v, v, v, b, v, v, v, v, v, m],
                     [m, m, m, m, m, m, m, pi, m, m, m, m, m, m, m]].reverse()
   }
 }   
@@ -233,8 +233,6 @@ object salaDeCofres inherits Sala(){
 
 object salaEnemigos inherits Sala(){
 
-  const enemigosDeSala = enemigos
-
   override method dibujoDeSala(){
     return self.sala()
   }
@@ -253,18 +251,18 @@ object salaEnemigos inherits Sala(){
 
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, d3, d3, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, d3, v, v, v, v, v, m],
+                    [m, v, v, v, t, v, v, v, v, v, v, c, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, t, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, d1, v, v, v, v, v, v, v, v, d1, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, pd],
-                    [m, v, v, v, v, v, v, v, v, t, v, v, v, v, m],
+                    [m, v, v, v, v, c, v, d3, v, t, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, t, m],
-                    [m, v, v, v, t, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, d3, t, m],
+                    [m, v, v, v, t, d1, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
   }
@@ -323,16 +321,16 @@ object salaGanar inherits Sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, b, v, v, v, v, d1, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, c, v, v, d1, d3, d1, v, v, v, v, v, m],
+                    [m, v, v, v, v, d1, d3, g, d3, d1, v, v, v, v, m],
+                    [m, v, v, v, v, v, d1, d3, d1, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, g, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, c, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, d1, v, m],
+                    [m, v, v, v, v, c, v, v, v, v, v, d1, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
   }
@@ -351,18 +349,18 @@ object salaPerder inherits Sala(){
 
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, d3, v, v, v, v, v, v, v, v, v, d3, v, m],
+                    [m, d3, v, c, v, v, v, v, v, v, v, v, v, d3, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, d1, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, d3, d1, d3, v, v, v, v, v, m],
+                    [m, v, v, v, v, d3, d1, ng, d1, d3, v, v, v, v, m],
+                    [m, v, v, v, v, v, d3, d1, d3, v, v, d1, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, a, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, a, v, v, v, c, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, c, v, v, v, m],
+                    [m, v, v, v, b, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
   }
@@ -381,21 +379,25 @@ object salaEnemigosPro inherits Sala(){
   override method salaDerecha(){
     return  salaGanar
   }
+
+  override method cantDeEnemigos(){
+    return 4
+  }
   
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, d3, d3, m],
+                    [m, c, d1, v, v, v, v, v, v, v, v, v, v, d3, m],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, a, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, c, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, v, v, v, v, d3, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, pd],
+                    [m, v, v, v, v, v, v, v, v, v, v, v, c, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, a, v, d1, v, v, v, v, v, v, v, v, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
-                    [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
+                    [m, v, v, v, v, v, c, v, v, v, v, v, b, v, m],
                     [m, v, v, v, v, v, v, v, v, v, v, v, v, v, m],
                     [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m]].reverse()
   }
