@@ -37,7 +37,7 @@ object ng{ //NO gato
 
   method interactuarCon(pj){
     game.addVisual(imagenFinal)
-    game.addVisual(cartelMostrarPuntos)
+    game.addVisual(imagenRestar)
   }
   
   method dibujar(posicion){
