@@ -22,8 +22,8 @@ object cartelDePuntos{
 /////
 
 object cartelMostrarPuntos{
-  method position() = game.center() 
-  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para volver a jugar"
+  method position() = game.at(7,4)
+  method text() = "Puntos = "+ martina.puntos()
   method textColor() = "FFFFFFFF"
 
 }

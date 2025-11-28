@@ -246,7 +246,7 @@ object salaEnemigos inherits Sala(){
   }
 
   override method cantDeEnemigos(){
-    return 4
+    return 3
   }
 
   method sala(){
@@ -316,6 +316,10 @@ object salaGanar inherits Sala(){
     return game.at(13,7)
   }
 
+  override method cantDeEnemigos(){
+    return 0
+  }
+
 
   method sala(){
     return        [ [m, m, m, m, m, m, m, m, m, m, m, m, m, m, m],
@@ -345,6 +349,10 @@ object salaPerder inherits Sala(){
 
   override method posicionDeMartina(){
     return game.at(13,7)
+  }
+
+  override method cantDeEnemigos(){
+    return 0
   }
 
   method sala(){
