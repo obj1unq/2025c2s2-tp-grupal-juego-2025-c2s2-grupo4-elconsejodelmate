@@ -26,7 +26,7 @@ object salaInicial inherits Sala(){
   }
 
   method sala(){
-    return      [ [m, m, m, m, m, m, pm, m, m, m, m, m, m, m, m],
+    return      [ [m, m, m, m, m, m, m, pm, m, m, m, m, m, m, m],
                   [m, v, v, v, v, v, v, v, v, v, v, v, v, d3, m],
                   [m, v, d1, v, v, v, v, v, v, v, v, v, v, v, m],
                   [m, v, v, v, v, v, v, v, v, v, a, v, v, v, m],
