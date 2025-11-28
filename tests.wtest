@@ -1,0 +1,38 @@
+import martina.*
+import extras.*
+import interfaz.*
+import escenario.*
+import modeladoMapa.*
+import enemigos.*
+import salas.*
+
+
+
+describe "Estado internos del personaje"{
+    const collar = new Collar(position = game.at(7,1))
+    const anillo = new Anillo(position = game.at(9,2))
+    const trampa = new Trampa(position = game.at(12, 6))
+    const enemigo = new EnemigoPerseguidor(image ="troll.png", position = game.at(7,7))
+    
+
+    test"Inventario vacio y puntos = 0"{
+        assert.equals(0, martina.puntos())
+        }
+    test "Personaje interactua con recolectables"{
+        collar.interactuarCon(martina)
+        assert.equals(100, martina.puntos())
+        anillo.interactuarCon(martina)
+        assert.equals(150, martina.puntos())
+        }
+    test "Colision con trampa"{
+        assert.equals(3, martina.cantDeVidas())
+        trampa.interactuarCon(martina)
+        assert.equals(2, martina.cantDeVidas())
+        }
+    test "Colision con enemigo"{
+        enemigo.interactuarCon(martina)
+        assert.equals(2, martina.cantDeVidas())
+        }
+ 
+    }
+   

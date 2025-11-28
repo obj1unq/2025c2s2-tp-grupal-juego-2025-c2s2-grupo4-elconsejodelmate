@@ -218,8 +218,6 @@ class Trampa{
 
   method interactuarCon(pj){
     pj.decrementarEnUnoVidas()
-    game.say(pj,"tengo "+ martina.cantDeVidas() + " vidas")
-  
   }
   method chocarCon(objeto){
     //method de la colsion con la flecha
