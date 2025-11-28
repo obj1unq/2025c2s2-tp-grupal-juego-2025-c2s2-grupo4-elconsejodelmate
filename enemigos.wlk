@@ -16,6 +16,8 @@ class PlantillaEnemigo{
       game.removeVisual(self)
     }
 
+
+
 }//Usarlo como plantilla, dejando un method del comportamiento individual 
 class EnemigoPatrulla inherits PlantillaEnemigo{
 
@@ -23,7 +25,7 @@ class EnemigoPatrulla inherits PlantillaEnemigo{
         direccion = [derechaEnemigo,izquierdaEnemigo,abajoEnemigo,arribaEnemigo].anyOne()
     }
     method avanzar(){
-        if(!manager.hayMuroEn(direccion.siguientePosition(position)))
+        if(!manager.hayMuroEn(direccion.siguientePosition(position)) && !manager.hayPuertaEn(direccion.siguientePosition(position)))
         self.position(direccion.siguientePosition(self.position()))
     }
 }

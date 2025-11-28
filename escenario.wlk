@@ -70,6 +70,9 @@ object managerListasDeSala{
   method hayMuroEn(nuevaDireccion){
     return muros.any({muro => muro.position() == nuevaDireccion})
   }
+  method hayPuertaEn(nuevaDireccion){
+    return listaDePuertas.any({muro => muro.position() == nuevaDireccion})
+  }
   method hayObstaculoEn(nuevaDireccion){
     return obstaculos.any({obstaculo => obstaculo.position() == nuevaDireccion})
   }

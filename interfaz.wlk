@@ -1,6 +1,5 @@
 import martina.*
 
-//////
 object barraDeVidas{
   var property position = game.at(12,14)
   
@@ -19,12 +18,15 @@ object cartelDePuntos{
     return "FFFFFFFF"
   }
 }
-/////
 
 object cartelMostrarPuntos{
-  method position() = game.center() 
-  method text() = "Puntos = "+ martina.puntos()+ " Presiona H para volver a jugar"
+  method position() = game.at(7,5)
+  method text() = "Puntos = "+ martina.puntos()
   method textColor() = "FFFFFFFF"
+
+  method interactuarCon(pj){
+
+  }
 
 }
 
