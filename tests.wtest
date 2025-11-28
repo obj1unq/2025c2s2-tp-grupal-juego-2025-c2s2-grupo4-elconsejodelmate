@@ -13,16 +13,23 @@ describe "Estado internos del personaje"{
     const anillo = new Anillo(position = game.at(9,2))
     const trampa = new Trampa(position = game.at(12, 6))
     const enemigo = new EnemigoPerseguidor(image ="troll.png", position = game.at(7,7))
+    const veneno = new PocionVenenosa(position = game.at(1,1))
+    const curacion = new PocionVida(position = game.at(2,2))
     
 
-    test"Inventario vacio y puntos = 0"{
+    test"0 puntos y 3 vidas"{
         assert.equals(0, martina.puntos())
+        assert.equals(3, martina.cantDeVidas())
         }
     test "Personaje interactua con recolectables"{
         collar.interactuarCon(martina)
         assert.equals(100, martina.puntos())
         anillo.interactuarCon(martina)
         assert.equals(150, martina.puntos())
+        veneno.interactuarCon(martina)
+        assert.equals(2, martina.cantDeVidas())
+        curacion.interactuarCon(martina)
+        assert.equals(3, martina.cantDeVidas())
         }
     test "Colision con trampa"{
         assert.equals(3, martina.cantDeVidas())
@@ -33,6 +40,5 @@ describe "Estado internos del personaje"{
         enemigo.interactuarCon(martina)
         assert.equals(2, martina.cantDeVidas())
         }
- 
     }
    
