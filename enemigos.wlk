@@ -89,50 +89,37 @@ object movimientoPersecutor {
        }
     }
 }
+class DireccionEnemigo inherits Direccion{
 
-object derechaEnemigo {
-    method name(){
+    override method mover(enemigo){
+        enemigo.posicion(self.siguientePosicion(enemigo.posicion()))
+    }
+    method siguientePosition(posicion){
+        return
+    }
+}
+object derechaEnemigo inherits DireccionEnemigo {
+    override method name(){
         return "-derecha"
     }
-    method mover(enemigo){
-        enemigo.position(self.siguientePosition(enemigo.position()))
-    }
-    method siguientePosition(position){
-        return game.at(position.x()+1,position.y())
+    override method siguientePosition(posicion){
+        return game.at(posicion.x()+1,posicion.y())
     }
  
 }
-object izquierdaEnemigo {
-    method name(){
-        return ""
-    }
-    method mover(enemigo){
-        enemigo.position(self.siguientePosition(enemigo.position()))
-    }
-    method siguientePosition(position){
-        return game.at(position.x()-1,position.y())
+object izquierdaEnemigo inherits DireccionEnemigo {
+    override method siguientePosition(posicion){
+        return game.at(posicion.x()-1,posicion.y())
     }
 }
-object abajoEnemigo {
-    method name() {
-        return ""
-    }
-    method mover(enemigo){
-        enemigo.position(self.siguientePosition(enemigo.position()))
-    }
-    method siguientePosition(position){
-        return game.at(position.x(),position.y()-1)
+object abajoEnemigo inherits DireccionEnemigo {
+    override method siguientePosition(posicion){
+        return game.at(posicion.x(),posicion.y()-1)
     }
 }
-object arribaEnemigo {
-   method name() {
-        return ""
-    }
-    method mover(enemigo){
-        enemigo.position(self.siguientePosition(enemigo.position()))
-    }
-    method siguientePosition(position){
-        return game.at(position.x(),position.y()+1)
+object arribaEnemigo inherits DireccionEnemigo {
+    override method siguientePosition(posicion){
+        return game.at(posicion.x(),posicion.y()+1)
     }
 }
 
