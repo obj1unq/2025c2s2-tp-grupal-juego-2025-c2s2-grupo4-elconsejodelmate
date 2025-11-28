@@ -65,68 +65,6 @@ class Flecha {
       
     }
 }
-
-/*class ObjetoRecolectable{
-  const property position  
-  method image()
-  method interactuarCon(pj){
-
-  }
-}
-class PocionVida inherits ObjetoRecolectable{
-  override method image(){
-    return "pocion.png"
-  }
-  override method interactuarCon(pj){
-    if(pj.cantDeVidas() == 3){
-      //pj.añadirAlInventario(self)
-      game.say(pj, "Obtuve una pocion de vida que ira a mi inventario")
-    }else{
-      pj.incrementarEnUnoVidas()
-      game.say(pj, "Recolecte una pocion de vida, incremento mi vida por que estaba baja")
-    }
-  }
-}
-class PocionVenenosa inherits ObjetoRecolectable{
-  override method image(){
-    return "pocion-venenosa.png"
-  }
-  override method interactuarCon(pj){
-    
-    if(pj.cantDeVidas() == 1){
-      //pj.añadirAlInventario(self)
-      game.say(pj, "Obtuve una pocion venenosa, quedara en mi inventario ")
-
-    }else{
-      pj.decrementarEnUnoVidas()
-      game.say(pj, "Recolecte una pocion de venenosa, decrementara mi vida")
-    }
-  }
-}
-class Joya inherits ObjetoRecolectable{
-  method puntos()
-  override method interactuarCon(pj){
-    game.say(pj, "Obtuve una joya, incrementara mi puntuacion")
-    pj.sumarPuntuacionDe(self)
-  }
-}
-class Anillo inherits Joya{
-  override method puntos(){
-    return 50 
-  }
-  override method image(){
-    return "anillo.png"
-  }
-}
-class Collar inherits Joya{
-  override method puntos(){
-    return 100 
-  }
-  override method image(){
-    return "collar.png"
-  }
-}*/
-/*agregar o modificar templeate*/
 class ObjetoRecolectable{
 
   var property position 
