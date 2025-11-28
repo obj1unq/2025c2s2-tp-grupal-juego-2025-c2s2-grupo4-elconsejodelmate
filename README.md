@@ -7,9 +7,9 @@
 - Martiniano Oliveto 
 
 ## Capturas
-![](./captura1.png)
-![](./captura2.png)
-![](./captura3.png)
+![](./capturas/captura1.png)
+![](./capturas/captura2.png)
+![](./capturas/captura3.png)
 
 ## Reglas de Juego / Instrucciones
 Martina tiene un problema. Su amado gato, Michi, se ha extraviado y la búsqueda la ha llevado al lugar más improbable y peligroso: la entrada de la infame Mazmorra de la Sombra.
