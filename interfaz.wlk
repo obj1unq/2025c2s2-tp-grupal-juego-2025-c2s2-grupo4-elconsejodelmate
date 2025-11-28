@@ -30,12 +30,12 @@ object cartelMostrarPuntos{
 
 object imagenFinal{
   method position() = game.at(0,0)
-  method image() = "pantallaFinal.png"
+  method image() = "PantallaFinal.png"
 }
 
 object imagenInicial{
   method position() = game.at(0,0)
-  method image() = "PantallaInicial.png"
+  method image() = "pantallaInicial.png"
 }
 
 object imagenGanaste{
