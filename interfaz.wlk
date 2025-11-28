@@ -26,6 +26,10 @@ object cartelMostrarPuntos{
   method text() = "Puntos = "+ martina.puntos()
   method textColor() = "FFFFFFFF"
 
+  method interactuarCon(pj){
+    
+  }
+
 }
 
 object imagenFinal{
