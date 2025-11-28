@@ -109,9 +109,10 @@ object config{
                             game.removeVisual(imagenInicial)})*/
   }
 }
-object derecha{
+
+class Direccion{
   method name(){
-    return "-derecha"
+    return ""
   }
   method mover(pj){
     if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
@@ -121,51 +122,32 @@ object derecha{
     }
   }
   method siguientePosicion(posicion){
+    return
+  }
+}
+object derecha inherits Direccion{
+  override method name(){
+    return "-derecha"
+  }
+  override method siguientePosicion(posicion){
     return game.at(posicion.x() + 1 , posicion.y())
   }
 }
-object izquierda{
-  method name(){
-    return ""
-  }
-  method mover(pj){
-    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
-      pj.position(self.siguientePosicion(pj.position()))
-      pj.estadoDeMartina(self.name()) 
-      pj.ultimaDireccion(self)
-    }
-  }
-  method siguientePosicion(posicion){
+object izquierda inherits Direccion{
+
+  override method siguientePosicion(posicion){
     return game.at(posicion.x() - 1 , posicion.y())
   }
 }
-object arriba{
-  method name(){
-    return ""
-  }
-  method mover(pj){
-    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
-      pj.position(self.siguientePosicion(pj.position()))
-      pj.estadoDeMartina(self.name()) 
-      pj.ultimaDireccion(self)
-    }
-  }
-  method siguientePosicion(posicion){
+object arriba inherits Direccion{
+
+  override method siguientePosicion(posicion){
     return game.at(posicion.x(), posicion.y() + 1)
   }
 }
-object abajo{
-  method name(){
-    return ""
-  }
-  method mover(pj){
-    if(pj.puedeMoverseA(self.siguientePosicion(pj.position()))){
-      pj.position(self.siguientePosicion(pj.position()))
-      pj.estadoDeMartina(self.name()) 
-      pj.ultimaDireccion(self)
-    }
-  }
-  method siguientePosicion(posicion){
+object abajo inherits Direccion{
+
+  override method siguientePosicion(posicion){
     return game.at(posicion.x(), posicion.y() -1)
   }
 }
