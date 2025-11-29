@@ -158,7 +158,7 @@ class Sala{
   method salaMedia(){
   }
 
-  //Constante abstracta para modelar el nivel, //vuela cuando se actualicen las salas
+  //Constante abstracta para modelar el nivel
   const sala = self.dibujoDeSala()
 
   method dibujoDeSala(){
