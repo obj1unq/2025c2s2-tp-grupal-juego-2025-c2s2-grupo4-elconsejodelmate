@@ -82,8 +82,8 @@ object martina {
     puntos = puntos + objeto.puntos()
   }
 
-  method chocarCon(objeto){
-    //colision de la flecha
+  method esAtravesablePorFlecha(){
+      return true
   }
   
 }
