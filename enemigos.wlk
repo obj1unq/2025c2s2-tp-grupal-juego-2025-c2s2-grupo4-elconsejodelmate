@@ -11,9 +11,13 @@ class PlantillaEnemigo{
         pj.decrementarEnUnoVidas()
     }
     
-    method chocarCon(objeto) {
+    method enemigoAlcanzadoPorFlecha() {
       manager.removerAlEnemigo(self)
       game.removeVisual(self)
+    }
+    method esAtravesablePorFlecha(){
+      self.enemigoAlcanzadoPorFlecha()
+      return false
     }
 
 

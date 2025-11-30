@@ -87,12 +87,13 @@ class PiedraDeco inherits ObjetoDecorativo{
 class ObjetoDecorativo {
   var property position  
   method image()
-  method chocarCon(objeto){
-    //method de la colision de la flecha
-  }
+
   method interactuarCon(pj){
     //colision con martina
   }
+  method esAtravesablePorFlecha(){
+      return true
+    }
 
 }
 
@@ -210,6 +211,9 @@ class Muro{
   method chocarCon(objeto){
     //method de la colision de la flecha
   }
+  method esAtravesablePorFlecha(){
+      return true
+  }
 }
 
 class Trampa{
@@ -222,6 +226,9 @@ class Trampa{
   method chocarCon(objeto){
     //method de la colsion con la flecha
   }
+  method esAtravesablePorFlecha(){
+      return true
+  }
 }
 
 class Obstaculo{
@@ -229,6 +236,9 @@ class Obstaculo{
   method image()
   method chocarCon(objeto){
     //method de la colision de la flecha
+  }
+  method esAtravesablePorFlecha(){
+      return false
   }
 }
 
@@ -248,6 +258,10 @@ class Cofre{
   var property position
   const property poolDeObjetos = []
   var property estado = cofreCerrado  
+
+  method esAtravesablePorFlecha(){
+      return false
+  }
 
   method image(){
     return estado.image()
@@ -313,6 +327,9 @@ class Puerta{
   }
   method chocarCon(objeto){
     //method de la colision de la flecha
+  }
+  method esAtravesablePorFlecha(){
+      return false
   }
 
 }

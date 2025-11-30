@@ -48,8 +48,13 @@ class Flecha {
     }
 
     method inicializar(){
-      game.onCollideDo(self, ({objeto => objeto.chocarCon(self)
-                                self.destruir()}))  
+      game.onCollideDo(self, ({objeto => self.chocarCon(objeto)}))  
+    }
+
+    method chocarCon(obj){
+      if(not obj.esAtravesablePorFlecha()){
+        game.removeVisual(self)
+      }
     }
     
     method destruir(){
@@ -60,9 +65,8 @@ class Flecha {
     method interactuarCon(pj){
 
     }
-
-    method chocarCon(objeto){
-      
+    method esAtravesablePorFlecha(){
+      return false
     }
 }
 class ObjetoRecolectable{
