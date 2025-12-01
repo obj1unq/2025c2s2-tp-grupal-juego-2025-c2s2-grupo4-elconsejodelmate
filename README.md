@@ -13,6 +13,9 @@
 ## Diagrama
 ![](./capturas/UML.jpg)
 
+## Diagrama UML 
+![](./capturas/UML-juego.png)
+
 ## Reglas de Juego / Instrucciones
 Martina tiene un problema. Su amado gato, Michi, se ha extraviado y la búsqueda la ha llevado al lugar más improbable y peligroso: la entrada de la infame Mazmorra de la Sombra.
 
@@ -27,8 +30,6 @@ Controles.
 - Moverse: W,A,S,D
 - Iniciar juego: C
 - Reintentar : H 
-
-
 
 ## Otros
 
