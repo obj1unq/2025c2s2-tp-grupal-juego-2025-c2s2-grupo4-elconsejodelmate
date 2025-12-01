@@ -212,7 +212,7 @@ class Muro{
     //method de la colision de la flecha
   }
   method esAtravesablePorFlecha(){
-      return true
+      return false 
   }
 }
 
