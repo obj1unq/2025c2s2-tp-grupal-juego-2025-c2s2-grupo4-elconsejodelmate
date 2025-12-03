@@ -91,6 +91,8 @@ class PocionVida inherits ObjetoRecolectable{
     if(pj.noTieneVidaCompleta()){
       pj.incrementarEnUnoVidas()
       game.say(pj, "Recolecte una pocion de vida, incremento mi vida por que estaba baja")
+    }else{
+      game.say(pj, "Parece que solo es un cofre vacio")
     }
   }
 }
@@ -102,6 +104,9 @@ class PocionVenenosa inherits ObjetoRecolectable{
     if(pj.cantDeVidas() > 1){
       pj.decrementarEnUnoVidas()
       game.say(pj, "Recolecte una pocion de venenosa, decrementara mi vida")
+    }
+    else{
+      game.say(pj, "Parece que solo es un cofre vacio")
     }
   }
 }
